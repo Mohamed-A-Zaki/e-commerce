@@ -1,7 +1,4 @@
-export type HomeProps = {
-  children: React.ReactNode;
-};
-export default function Home(props: HomeProps) {
+export default function Home() {
   return (
     <>
       <h1>Home</h1>

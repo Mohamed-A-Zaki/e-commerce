@@ -1,7 +1,4 @@
-export type ProductsProps = {
-  children: React.ReactNode;
-};
-export default function Products(props: ProductsProps) {
+export default function Products() {
   return (
     <>
       <h1>Products</h1>

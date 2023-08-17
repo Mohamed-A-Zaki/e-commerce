@@ -1,7 +1,4 @@
-export type NavbarProps = {
-  children: React.ReactNode;
-};
-export default function Navbar(props: NavbarProps) {
+export default function Navbar() {
   return (
     <>
       <h1>Navbar</h1>
