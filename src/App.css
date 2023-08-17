@@ -8,3 +8,22 @@ body {
 a {
   text-decoration: none;
 }
+
+/* start slider */
+
+.custom-dot-list {
+  margin-bottom: 20px !important;
+}
+.custom-dot-list li button {
+  width: 35px !important;
+  border-radius: 0 !important;
+  border: 0 !important;
+  height: 4px !important;
+  border-radius: 2px !important;
+  background-color: #ffffff57 !important;
+}
+.custom-dot-list li.react-multi-carousel-dot--active button {
+  background-color: #fff !important;
+}
+
+/* end slider */

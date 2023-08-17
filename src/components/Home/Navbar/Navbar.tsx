@@ -34,7 +34,7 @@ export default function Navbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#000", py: 1 }}>
+    <AppBar position="sticky" sx={{ bgcolor: "#000", py: 1 }}>
       <Container fixed>
         <Toolbar disableGutters>
           <Box component={Link} to="/">

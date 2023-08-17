@@ -3,6 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
+import "react-multi-carousel/lib/styles.css";
+
 const router = createHashRouter([
   {
     path: "/",
