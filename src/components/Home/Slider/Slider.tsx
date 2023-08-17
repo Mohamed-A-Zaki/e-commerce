@@ -1,7 +1,4 @@
-export type SliderProps = {
-  children: React.ReactNode;
-};
-export default function Slider(props: SliderProps) {
+export default function Slider() {
   return (
     <>
       <h1>Slider</h1>
