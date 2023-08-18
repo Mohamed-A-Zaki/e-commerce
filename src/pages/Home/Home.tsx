@@ -1,4 +1,5 @@
-import Navbar from "../../components/Home/Navbar/Navbar";
+import CategorySection from "../../components/Home/CategorySection/CategorySection";
+import Navbar from "../../utility/Navbar/Navbar";
 import Slider from "../../components/Home/Slider/Slider";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Navbar />
       <Slider />
+      <CategorySection />
     </>
   );
 }
