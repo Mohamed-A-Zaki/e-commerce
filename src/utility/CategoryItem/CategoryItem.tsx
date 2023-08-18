@@ -7,7 +7,7 @@ export type CategoryItemProps = {
 };
 export default function CategoryItem({ image, color }: CategoryItemProps) {
   return (
-    <Grid item xs={12} sm={6} md={3} lg={2}>
+    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Box textAlign={"center"}>
         <Box bgcolor={color} sx={BoxStyle}>
           <Box component={"img"} src={image} alt="" width={100} height={100} />

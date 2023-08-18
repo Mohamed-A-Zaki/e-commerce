@@ -16,6 +16,7 @@ const ButtonStyle: SxProps<Theme> = {
   border: 1,
   px: 2.5,
   py: 1,
+  color: "#000  ",
   borderRadius: 3,
   "&:hover": {
     bgcolor: "#000",
