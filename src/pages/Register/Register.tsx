@@ -22,6 +22,10 @@ export default function Register() {
           <TextField
             type="text"
             size="small"
+            variant="standard"
+            InputProps={{
+              disableUnderline: true,
+            }}
             fullWidth
             sx={TextFieldStyle}
             placeholder="اسم المستخدم..."
@@ -30,6 +34,10 @@ export default function Register() {
           <TextField
             type="email"
             size="small"
+            variant="standard"
+            InputProps={{
+              disableUnderline: true,
+            }}
             fullWidth
             sx={TextFieldStyle}
             placeholder="الايميل..."
@@ -38,6 +46,10 @@ export default function Register() {
           <TextField
             type="email"
             size="small"
+            variant="standard"
+            InputProps={{
+              disableUnderline: true,
+            }}
             fullWidth
             sx={TextFieldStyle}
             placeholder="كلمة السر..."
@@ -60,15 +72,16 @@ export default function Register() {
 }
 
 const TextFieldStyle: SxProps<Theme> = {
-  bgcolor: "#fff",
-  borderRadius: 2,
   "& input": {
+    border: 1,
+    bgcolor: "#fff",
+    borderColor: "#888",
+    borderRadius: 2,
+    "&:focus": {
+      borderColor: "#000",
+    },
     textAlign: "center !important",
     py: 0.8,
-  },
-  "& .MuiOutlinedInput-root > fieldset": {
-    borderRadius: 2,
-    borderColor: "#888",
   },
 };
 

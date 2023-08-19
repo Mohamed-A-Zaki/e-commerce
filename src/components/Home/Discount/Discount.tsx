@@ -8,9 +8,10 @@ export default function Discount() {
       sx={{ bgcolor: "#515354", borderRadius: 3, color: "#fff", py: 2 }}
     >
       <Stack
-        direction={"row"}
+        direction={{ xs: "column", md: "row" }}
         alignItems={"center"}
         justifyContent={"space-evenly"}
+        gap={2}
       >
         <Typography variant="h6">
           خصم يصل حتي ٣٠٪ علي اجهازه اللاب توب
