@@ -10,9 +10,10 @@ export default function Footer() {
     <Box py={3} bgcolor={"#fff"} color={"text.secondary"}>
       <Container fixed>
         <Stack
-          direction={"row"}
+          direction={{ xs: "column", md: "row" }}
           alignItems={"center"}
           justifyContent={"space-between"}
+          gap={1}
         >
           <Box display={"flex"} gap={2}>
             <Typography sx={{ cursor: "pointer" }}>الشروط والاحكام</Typography>
