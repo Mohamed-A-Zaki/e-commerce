@@ -11,7 +11,6 @@ a {
 }
 
 /* start slider */
-
 .custom-dot-list {
   margin-bottom: 20px !important;
 }
@@ -26,5 +25,27 @@ a {
 .custom-dot-list li.react-multi-carousel-dot--active button {
   background-color: #fff !important;
 }
-
 /* end slider */
+
+/* start form */
+.form-input input {
+  border: 1px solid #888;
+  border-radius: 8px;
+  padding: 6.4px;
+  text-align: center;
+  background-color: #fff;
+}
+.form-input input:focus {
+  border-color: #000;
+}
+
+.submit-btn {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  padding: 8px !important;
+}
+.submit-btn:hover {
+  color: #888 !important;
+}
+/* end form */

@@ -3,9 +3,7 @@ import {
   Button,
   Container,
   Stack,
-  SxProps,
   TextField,
-  Theme,
   Typography,
 } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -27,7 +25,7 @@ export default function Login() {
               disableUnderline: true,
             }}
             fullWidth
-            sx={TextFieldStyle}
+            className="form-input"
             placeholder="الايميل..."
           />
 
@@ -39,11 +37,11 @@ export default function Login() {
               disableUnderline: true,
             }}
             fullWidth
-            sx={TextFieldStyle}
+            className="form-input"
             placeholder="كلمة السر..."
           />
 
-          <Button type="submit" fullWidth sx={ButtonStyle}>
+          <Button type="submit" fullWidth className="submit-btn">
             تسجيل الدخول
           </Button>
 
@@ -58,27 +56,3 @@ export default function Login() {
     </Box>
   );
 }
-
-const TextFieldStyle: SxProps<Theme> = {
-  "& input": {
-    border: 1,
-    bgcolor: "#fff",
-    borderColor: "#888",
-    borderRadius: 2,
-    "&:focus": {
-      borderColor: "#000",
-    },
-    textAlign: "center !important",
-    py: 0.8,
-  },
-};
-
-const ButtonStyle: SxProps<Theme> = {
-  bgcolor: "#000 !important",
-  color: "#fff !important",
-  borderRadius: 3,
-  p: 1,
-  "&:hover": {
-    color: "#888 !important",
-  },
-};

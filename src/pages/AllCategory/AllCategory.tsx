@@ -1,6 +1,7 @@
 import MainSection from "../../utility/MainSection/MainSection";
 import CategoryList from "../../utility/CategoryList/CategoryList";
 import SectionHeading from "../../utility/SectionHeading/SectionHeading";
+import PaginationComp from "../../utility/PaginationComp/PaginationComp";
 
 export default function AllCategory() {
   return (
@@ -9,6 +10,7 @@ export default function AllCategory() {
       <CategoryList />
       <CategoryList />
       <CategoryList />
+      <PaginationComp />
     </MainSection>
   );
 }
