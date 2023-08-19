@@ -78,31 +78,52 @@ export default function Navbar() {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">دخول</Typography>
+                <Link to={"/login"}>
+                  <Typography sx={MenuItemStyle}>
+                    <AccountCircleIcon />
+                    دخول
+                  </Typography>
+                </Link>
               </MenuItem>
 
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography textAlign="center">العربة</Typography>
+                <Link to="/cart">
+                  <Typography sx={MenuItemStyle}>
+                    <AddShoppingCartIcon />
+                    العربة
+                  </Typography>
+                </Link>
               </MenuItem>
             </Menu>
           </Box>
 
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Button onClick={handleCloseNavMenu} sx={ButtonStyle}>
-              <AccountCircleIcon />
-              دخول
-            </Button>
+            <Link to="/login">
+              <Button onClick={handleCloseNavMenu} sx={ButtonStyle}>
+                <AccountCircleIcon />
+                دخول
+              </Button>
+            </Link>
 
-            <Button onClick={handleCloseNavMenu} sx={ButtonStyle}>
-              <AddShoppingCartIcon />
-              العربة
-            </Button>
+            <Link to="/cart">
+              <Button onClick={handleCloseNavMenu} sx={ButtonStyle}>
+                <AddShoppingCartIcon />
+                العربة
+              </Button>
+            </Link>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
+const MenuItemStyle: SxProps<Theme> = {
+  textAlign: "center",
+  display: "flex",
+  gap: 1,
+  color: "#000",
+};
 
 const ButtonStyle: SxProps<Theme> = {
   my: 2,
