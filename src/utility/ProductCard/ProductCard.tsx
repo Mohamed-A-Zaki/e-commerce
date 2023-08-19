@@ -18,7 +18,13 @@ export default function ProductCard() {
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card>
         <CardActionArea>
-          <CardMedia component="img" image={img} alt="" />
+          <CardMedia
+            component="img"
+            image={img}
+            alt=""
+            height={200}
+            sx={{ objectFit: "fill" }}
+          />
           <CardContent>
             <FavoriteBorderIcon sx={{ mr: "auto", display: "block" }} />
 

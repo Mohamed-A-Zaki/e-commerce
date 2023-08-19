@@ -7,7 +7,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 
 export default function Footer() {
   return (
-    <Box py={3} boxShadow={2} color={"text.secondary"}>
+    <Box py={3} bgcolor={"#fff"} color={"text.secondary"}>
       <Container fixed>
         <Stack
           direction={"row"}
