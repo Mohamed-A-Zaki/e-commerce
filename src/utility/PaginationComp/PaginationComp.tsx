@@ -22,7 +22,7 @@ export default function PaginationComp() {
 }
 
 const PaginationStyle: SxProps<Theme> = {
-  mt: "2rem !important",
+  my: "2rem !important",
 
   "& ul": {
     justifyContent: "center",
