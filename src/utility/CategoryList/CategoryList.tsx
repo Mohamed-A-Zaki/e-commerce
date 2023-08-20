@@ -42,7 +42,7 @@ const data = [
 
 export default function CategoryList() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       {data.map((category) => {
         return <CategoryItem key={category.id} {...category} />;
       })}
