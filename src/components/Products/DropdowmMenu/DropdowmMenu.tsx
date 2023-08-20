@@ -21,16 +21,16 @@ export default function DropdowmMenu() {
         label="Age"
         onChange={(e) => setValue(e.target.value)}
       >
-        <MenuItem value={""} sx={MenuItemStyle}>
+        <MenuItem value={"الاكثر مبيعا"} sx={MenuItemStyle}>
           الاكثر مبيعا
         </MenuItem>
-        <MenuItem value={""} sx={MenuItemStyle}>
+        <MenuItem value={"الاعلي تقييما"} sx={MenuItemStyle}>
           الاعلي تقييما
         </MenuItem>
-        <MenuItem value={""} sx={MenuItemStyle}>
+        <MenuItem value={"السعر من الاقل للاعلي"} sx={MenuItemStyle}>
           السعر من الاقل للاعلي
         </MenuItem>
-        <MenuItem value={""} sx={MenuItemStyle}>
+        <MenuItem value={"السعر من الاعلي للاقل"} sx={MenuItemStyle}>
           السعر من الاعلي للاقل
         </MenuItem>
       </Select>
