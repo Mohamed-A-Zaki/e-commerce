@@ -1,20 +1,10 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+
+import ColorItem from "../../../utility/ColorItem/ColorItem";
+import MainButton from "../../../utility/MainButton/MainButton";
+import PriceButton from "../../../utility/PriceButton/PriceButton";
 
 export default function ProductDetailsSection() {
-  const renderColor = (color: string) => {
-    return (
-      <Box
-        width={30}
-        height={30}
-        bgcolor={color}
-        borderRadius={"50%"}
-        border={1}
-        borderColor={"#ddd"}
-        sx={{ cursor: "pointer" }}
-      ></Box>
-    );
-  };
-
   return (
     <Box p={3} borderRadius={3}>
       <Box>
@@ -33,30 +23,24 @@ export default function ProductDetailsSection() {
       </Box>
 
       <Box my={4}>
-        <Box>
+        <Box display={"flex"} alignItems={"center"} gap={1}>
           <Typography
             fontSize={14}
-            color={"text.secondary"}
             fontWeight={"bold"}
-            component={"span"}
+            color={"text.secondary"}
           >
             الماركة :
           </Typography>
 
-          <Typography
-            component={"span"}
-            fontWeight={"bold"}
-            mr={1}
-            fontSize={20}
-          >
+          <Typography fontWeight={"bold"} fontSize={20}>
             سامسنوج
           </Typography>
         </Box>
 
         <Box display={"flex"} gap={1} mt={2}>
-          {renderColor("#f00")}
-          {renderColor("#fff")}
-          {renderColor("#000")}
+          <ColorItem color="#f00" />
+          <ColorItem color="#fff" />
+          <ColorItem color="#000" />
         </Box>
       </Box>
 
@@ -79,29 +63,8 @@ export default function ProductDetailsSection() {
       </Box>
 
       <Box display={"flex"} gap={2}>
-        <Box
-          px={2}
-          py={1.5}
-          bgcolor={"#fff"}
-          borderRadius={2}
-          border={1}
-          borderColor={"#ddd"}
-        >
-          34000 جنيه
-        </Box>
-
-        <Button
-          variant="contained"
-          sx={{
-            py: 1.5,
-            px: 2,
-            bgcolor: "#000",
-            borderRadius: 2,
-            "&:hover": { bgcolor: "#000", color: "#999" },
-          }}
-        >
-          اضف للعربة
-        </Button>
+        <PriceButton>34000</PriceButton>
+        <MainButton> اضف للعربة</MainButton>
       </Box>
     </Box>
   );

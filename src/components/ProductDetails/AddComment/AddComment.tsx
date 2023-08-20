@@ -1,5 +1,6 @@
-import { Box, Button, Rating, TextField, Typography } from "@mui/material";
+import { Box, Rating, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import MainButton from "../../../utility/MainButton/MainButton";
 
 export default function AddComment() {
   const [value, setValue] = useState<number | null>(2);
@@ -29,18 +30,9 @@ export default function AddComment() {
         placeholder="اكتب تعليقك...."
       />
 
-      <Button
-        variant="contained"
-        sx={{
-          mt: 2,
-          mr: "auto",
-          display: "block",
-          bgcolor: "#000",
-          "&:hover": { bgcolor: "#000" },
-        }}
-      >
-        اضف تعليق
-      </Button>
+      <Box mt={1} textAlign={"left"}>
+        <MainButton>اضف تعليق</MainButton>
+      </Box>
     </Box>
   );
 }

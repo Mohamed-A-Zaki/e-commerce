@@ -34,7 +34,7 @@ const data = [
 
 export default function BrandList() {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={1}>
       {data.map((brand) => {
         return <BrandItem key={brand.id} {...brand} />;
       })}

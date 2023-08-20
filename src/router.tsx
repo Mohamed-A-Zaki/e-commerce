@@ -1,14 +1,15 @@
 import { createHashRouter } from "react-router-dom";
 
 import App from "./App";
+import Home from "./pages/Home/Home";
+import Cart from "./pages/Cart/Cart";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import Cart from "./pages/Cart/Cart";
 import AllBrand from "./pages/AllBrand/AllBrand";
 import AllCategory from "./pages/AllCategory/AllCategory";
 import Products from "./pages/Products/Products";
-import Home from "./pages/Home/Home";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import PaymentMethod from "./pages/PaymentMethod/PaymentMethod";
 
 const router = createHashRouter([
   {
@@ -46,6 +47,10 @@ const router = createHashRouter([
       {
         path: "products/:id",
         element: <ProductDetails />,
+      },
+      {
+        path: "order/paymethod",
+        element: <PaymentMethod />,
       },
     ],
   },
