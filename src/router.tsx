@@ -8,6 +8,7 @@ import AllBrand from "./pages/AllBrand/AllBrand";
 import AllCategory from "./pages/AllCategory/AllCategory";
 import Products from "./pages/Products/Products";
 import Home from "./pages/Home/Home";
+import ProductDetails from "./pages/ProductDetails/ProductDetails";
 
 const router = createHashRouter([
   {
@@ -41,6 +42,10 @@ const router = createHashRouter([
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "products/:id",
+        element: <ProductDetails />,
       },
     ],
   },

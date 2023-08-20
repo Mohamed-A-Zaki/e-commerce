@@ -49,3 +49,22 @@ a {
   color: #888 !important;
 }
 /* end form */
+
+/* start image gallery */
+.image-gallery {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 10px 0;
+}
+.image-gallery .image-gallery-svg {
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50%;
+}
+.image-gallery .image-gallery-svg:hover {
+  color: #646464;
+}
+.image-gallery img {
+  height: 450px;
+}
+/* end image gallery */
