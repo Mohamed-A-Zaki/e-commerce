@@ -30,6 +30,8 @@ export default function CategoryNavbar() {
 
 const ToolbarStyle: SxProps<Theme> = {
   gap: 2,
+  py: 2,
+  flexWrap: "wrap",
   minHeight: "45px !important",
 
   "& *": {
