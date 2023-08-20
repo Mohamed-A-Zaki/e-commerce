@@ -1,11 +1,11 @@
 import { Grid } from "@mui/material";
 import CategoryItem from "../CategoryItem/CategoryItem";
 
-import cat1 from "../../assets/cat2.png";
-import cat2 from "../../assets/clothe.png";
-import cat3 from "../../assets/labtop.png";
-import cat4 from "../../assets/sale.png";
-import cat5 from "../../assets/pic.png";
+import cat1 from "../../../assets/cat2.png";
+import cat2 from "../../../assets/clothe.png";
+import cat3 from "../../../assets/labtop.png";
+import cat4 from "../../../assets/sale.png";
+import cat5 from "../../../assets/pic.png";
 
 const data = [
   {

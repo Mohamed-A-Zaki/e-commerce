@@ -1,7 +1,7 @@
-import ProductDetailsContainer from "../../components/ProductDetails/ProductDetailsContainer/ProductDetailsContainer";
+import CategoryNavbar from "../../utility/Category/CategoryNavbar/CategoryNavbar";
+import ProductSection from "../../utility/Product/ProductSection/ProductSection";
 import RatesSection from "../../components/ProductDetails/RatesSection/RatesSection";
-import CategoryNavbar from "../../utility/CategoryNavbar/CategoryNavbar";
-import ProductSection from "../../utility/ProductSection/ProductSection";
+import ProductDetailsContainer from "../../components/ProductDetails/ProductDetailsContainer/ProductDetailsContainer";
 
 export default function ProductDetails() {
   return (

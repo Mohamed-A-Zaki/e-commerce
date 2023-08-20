@@ -1,7 +1,7 @@
 import MainSection from "../../utility/MainSection/MainSection";
-import CategoryList from "../../utility/CategoryList/CategoryList";
 import SectionHeading from "../../utility/SectionHeading/SectionHeading";
 import PaginationComp from "../../utility/PaginationComp/PaginationComp";
+import CategoryList from "../../utility/Category/CategoryList/CategoryList";
 
 export default function AllCategory() {
   return (

@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
-
-import brand1 from "../../assets/brand1.png";
-import brand2 from "../../assets/brand2.png";
-import brand3 from "../../assets/brand3.png";
 import BrandItem from "../BrandItem/BrandItem";
+
+import brand1 from "../../../assets/brand1.png";
+import brand2 from "../../../assets/brand2.png";
+import brand3 from "../../../assets/brand3.png";
 
 const data = [
   {

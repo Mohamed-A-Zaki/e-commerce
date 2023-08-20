@@ -1,4 +1,4 @@
-import BrandList from "../../utility/BrandList/BrandList";
+import BrandList from "../../utility/Brand/BrandList/BrandList";
 import MainSection from "../../utility/MainSection/MainSection";
 import PaginationComp from "../../utility/PaginationComp/PaginationComp";
 import SectionHeading from "../../utility/SectionHeading/SectionHeading";

@@ -1,9 +1,10 @@
 import { Container } from "@mui/material";
+
 import ProductsTopBar from "../../components/Products/ProductsTopBar/ProductsTopBar";
-import CategoryNavbar from "../../utility/CategoryNavbar/CategoryNavbar";
+import CategoryNavbar from "../../utility/Category/CategoryNavbar/CategoryNavbar";
 import ProductsSidebar from "../../components/Products/ProductsSidebar/ProductsSidebar";
 import PaginationComp from "../../utility/PaginationComp/PaginationComp";
-import ProductList from "../../utility/ProductList/ProductList";
+import ProductList from "../../utility/Product/ProductList/ProductList";
 
 export default function Products() {
   return (

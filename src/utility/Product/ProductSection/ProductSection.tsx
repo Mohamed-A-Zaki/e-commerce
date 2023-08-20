@@ -1,6 +1,6 @@
-import MainSection from "../MainSection/MainSection";
+import MainSection from "../../MainSection/MainSection";
 import ProductList from "../ProductList/ProductList";
-import SectionHeading from "../SectionHeading/SectionHeading";
+import SectionHeading from "../../SectionHeading/SectionHeading";
 
 export type ProductSectionProps = {
   title: string;
