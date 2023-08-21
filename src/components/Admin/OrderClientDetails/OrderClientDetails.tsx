@@ -49,7 +49,10 @@ export default function OrderClientDetails() {
         gap={1}
         my={0.5}
       >
-        <FormControl size="small" sx={{ my: 2, flexGrow: 1 }}>
+        <FormControl
+          size="small"
+          sx={{ my: 2, flexGrow: 1, "& fieldset": { borderRadius: 2 } }}
+        >
           <InputLabel>حالة الطلب</InputLabel>
           <Select
             value={status}

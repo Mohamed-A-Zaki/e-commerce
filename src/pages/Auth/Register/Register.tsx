@@ -13,7 +13,7 @@ export default function Register() {
     <Box component={"form"} textAlign={"center"} my={5} height={"66vh"}>
       <Container fixed>
         <Typography variant="h5" fontWeight={"bold"} mb={2}>
-          تسجيل الدخول
+          تسجيل حساب جديد
         </Typography>
 
         <Stack spacing={2} alignItems={"center"} width={375} m={"auto"}>
