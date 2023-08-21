@@ -34,7 +34,7 @@ export default function AdminAddSubCategory() {
           InputProps={{
             disableUnderline: true,
           }}
-          sx={{ "& input": { textAlign: "right" } }}
+          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
         />
 
         <FormControl

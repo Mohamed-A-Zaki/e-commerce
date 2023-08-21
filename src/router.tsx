@@ -18,6 +18,12 @@ import AdminAddCategory from "./pages/Admin/AdminAddCategory/AdminAddCategory";
 import AdminAddSubCategory from "./pages/Admin/AdminAddSubCategory/AdminAddSubCategory";
 import AdminAddProduct from "./pages/Admin/AdminAddProduct/AdminAddProduct";
 import AdminOrderDetails from "./pages/Admin/AdminOrderDetails/AdminOrderDetails";
+import UserLayout from "./components/User/UserLayout/UserLayout";
+import UserAllOrders from "./pages/User/UserAllOrders/UserAllOrders";
+import UserFavourite from "./pages/User/UserFavourite/UserFavourite";
+import UserAddresses from "./pages/User/UserAddresses/UserAddresses";
+import UserProfile from "./pages/User/UserProfile/UserProfile";
+import AddNewAddress from "./pages/User/AddNewAddress/AddNewAddress";
 
 const router = createHashRouter([
   {
@@ -91,6 +97,32 @@ const router = createHashRouter([
           {
             path: "addproduct",
             element: <AdminAddProduct />,
+          },
+        ],
+      },
+      {
+        path: "/user",
+        element: <UserLayout />,
+        children: [
+          {
+            path: "allorders",
+            element: <UserAllOrders />,
+          },
+          {
+            path: "favoriteproducts",
+            element: <UserFavourite />,
+          },
+          {
+            path: "addresses",
+            element: <UserAddresses />,
+          },
+          {
+            path: "add-address",
+            element: <AddNewAddress />,
+          },
+          {
+            path: "profile",
+            element: <UserProfile />,
           },
         ],
       },

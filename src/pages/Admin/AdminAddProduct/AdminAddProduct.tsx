@@ -57,21 +57,14 @@ export default function AdminAddProduct() {
           InputProps={{
             disableUnderline: true,
           }}
-          sx={{ "& input": { textAlign: "right" } }}
+          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
         />
 
         <TextField
           multiline
           minRows={3}
           fullWidth
-          sx={{
-            mt: 2,
-            bgcolor: "#fff",
-            border: 1,
-            borderColor: "#888",
-            borderRadius: 2,
-            "& fieldset": { borderRadius: 2, border: 0 },
-          }}
+          sx={{ mt: 2 }}
           placeholder="وصف المنتج"
         />
 
@@ -85,7 +78,7 @@ export default function AdminAddProduct() {
           InputProps={{
             disableUnderline: true,
           }}
-          sx={{ "& input": { textAlign: "right" } }}
+          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
         />
 
         <TextField
@@ -98,7 +91,7 @@ export default function AdminAddProduct() {
           InputProps={{
             disableUnderline: true,
           }}
-          sx={{ "& input": { textAlign: "right" } }}
+          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
         />
 
         <FormControl
@@ -150,7 +143,7 @@ export default function AdminAddProduct() {
         </FormControl>
 
         <MultiSelect
-        className="multi-select"
+          className="multi-select"
           closeMenuOnSelect={false}
           components={animatedComponents}
           isMulti

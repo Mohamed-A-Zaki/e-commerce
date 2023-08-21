@@ -16,6 +16,7 @@ a {
 }
 .multi-select > div {
   border-radius: 8px;
+  background: #f1f1f1;
 }
 /* end multi select */
 
@@ -46,6 +47,15 @@ a {
 }
 .form-input input:focus {
   border-color: #000;
+  border-width: 2px;
+}
+
+fieldset {
+  border-radius: 8px !important;
+  border-color: #888 !important;
+}
+.Mui-focused fieldset {
+  border-color: #000 !important;
 }
 
 .submit-btn {

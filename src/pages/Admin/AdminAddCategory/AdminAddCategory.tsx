@@ -23,7 +23,7 @@ export default function AdminAddCategory() {
           InputProps={{
             disableUnderline: true,
           }}
-          sx={{ "& input": { textAlign: "right" } }}
+          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
         />
 
         <MainButton>حفظ التعديلات</MainButton>

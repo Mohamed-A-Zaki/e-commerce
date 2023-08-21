@@ -1,6 +1,4 @@
-import { List, ListItem, ListItemButton, ListItemText } from "@mui/material";
-import { MenuItemStyle } from "../../../Styles/Styles";
-import { Link } from "react-router-dom";
+import SidebarList from "../../../utility/SidebarList/SidebarList";
 
 export default function AdminSidebar() {
   const list = [
@@ -12,31 +10,5 @@ export default function AdminSidebar() {
     { id: 6, text: "اضف منتج", to: "addproduct" },
   ];
 
-  return (
-    <List sx={{ my: 2, bgcolor: "#fff", borderRadius: 3, height: "100vh" }}>
-      {list.map(({ id, text, to }) => {
-        return (
-          <Link key={id} to={to}>
-            <ListItem
-              disablePadding
-              sx={{ borderBottom: 1, borderColor: "#ddd" }}
-            >
-              <ListItemButton
-                sx={{
-                  ...MenuItemStyle,
-                  textAlign: "center",
-                  py: 0.2,
-                  mx: 0,
-                  my: 0.5,
-                  color: "#000",
-                }}
-              >
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          </Link>
-        );
-      })}
-    </List>
-  );
+  return <SidebarList list={list} />;
 }

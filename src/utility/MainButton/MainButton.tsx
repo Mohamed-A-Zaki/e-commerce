@@ -3,10 +3,11 @@ import { Button, SxProps, Theme } from "@mui/material";
 export type MainButtonProps = {
   fullWidth?: boolean;
   children: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
 };
-export default function MainButton({ children, fullWidth }: MainButtonProps) {
+export default function MainButton({ children, ...rest }: MainButtonProps) {
   return (
-    <Button variant="contained" fullWidth={fullWidth} sx={ButtonStyle}>
+    <Button variant="contained" sx={ButtonStyle} {...rest}>
       {children}
     </Button>
   );
