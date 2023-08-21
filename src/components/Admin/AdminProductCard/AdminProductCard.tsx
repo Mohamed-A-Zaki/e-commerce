@@ -4,7 +4,6 @@ import {
   CardActions,
   CardContent,
   CardMedia,
-  Grid,
   Stack,
   Typography,
 } from "@mui/material";
@@ -17,44 +16,42 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
 export default function AdminProductCard() {
   return (
-    <Grid item xs={12} md={6} lg={4}>
-      <Card>
-        <CardActions sx={{ justifyContent: "space-between" }}>
-          <Button>ازالة</Button>
-          <Button>تعديل</Button>
-        </CardActions>
+    <Card>
+      <CardActions sx={{ justifyContent: "space-between" }}>
+        <Button>ازالة</Button>
+        <Button>تعديل</Button>
+      </CardActions>
 
-        <Link to="/products/id">
-          <CardMedia
-            component="img"
-            image={img}
-            alt=""
-            height={200}
-            sx={{ objectFit: "fill" }}
-          />
-        </Link>
+      <Link to="/products/id">
+        <CardMedia
+          component="img"
+          image={img}
+          alt=""
+          height={200}
+          sx={{ objectFit: "fill" }}
+        />
+      </Link>
 
-        <CardContent>
-          <FavoriteBorderIcon sx={{ mr: "auto", display: "block" }} />
+      <CardContent>
+        <FavoriteBorderIcon sx={{ mr: "auto", display: "block" }} />
 
-          <Typography my={1} component="div">
-            سود كربون ساعة يد ذكية بيب إس أسود كربون
+        <Typography my={1} component="div">
+          سود كربون ساعة يد ذكية بيب إس أسود كربون
+        </Typography>
+
+        <Stack
+          direction={"row"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+        >
+          <Typography sx={{ display: "flex", gap: 0.5, color: "#FFC107" }}>
+            <StarIcon /> 4.5
           </Typography>
-
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-          >
-            <Typography sx={{ display: "flex", gap: 0.5, color: "#FFC107" }}>
-              <StarIcon /> 4.5
-            </Typography>
-            <Typography fontWeight={"bold"} fontSize={20}>
-              880 جنيه
-            </Typography>
-          </Stack>
-        </CardContent>
-      </Card>
-    </Grid>
+          <Typography fontWeight={"bold"} fontSize={20}>
+            880 جنيه
+          </Typography>
+        </Stack>
+      </CardContent>
+    </Card>
   );
 }

@@ -1,5 +1,5 @@
 import { Theme } from "@emotion/react";
-import { Box, Grid, SxProps, Typography } from "@mui/material";
+import { Box, SxProps, Typography } from "@mui/material";
 
 export type CategoryItemProps = {
   image: string;
@@ -7,15 +7,13 @@ export type CategoryItemProps = {
 };
 export default function CategoryItem({ image, color }: CategoryItemProps) {
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-      <Box textAlign={"center"}>
-        <Box bgcolor={color} sx={BoxStyle}>
-          <Box component={"img"} src={image} alt="" width={100} height={100} />
-        </Box>
-
-        <Typography variant="h6">اجهزة منزلية</Typography>
+    <Box textAlign={"center"}>
+      <Box bgcolor={color} sx={BoxStyle}>
+        <Box component={"img"} src={image} alt="" width={100} height={100} />
       </Box>
-    </Grid>
+
+      <Typography variant="h6">اجهزة منزلية</Typography>
+    </Box>
   );
 }
 

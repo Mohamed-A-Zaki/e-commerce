@@ -44,7 +44,11 @@ export default function CategoryList() {
   return (
     <Grid container spacing={1}>
       {data.map((category) => {
-        return <CategoryItem key={category.id} {...category} />;
+        return (
+          <Grid item key={category.id} xs={12} sm={6} md={4} lg={3} xl={2}>
+            <CategoryItem {...category} />
+          </Grid>
+        );
       })}
     </Grid>
   );

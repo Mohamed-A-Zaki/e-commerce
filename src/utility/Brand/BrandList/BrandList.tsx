@@ -36,7 +36,11 @@ export default function BrandList() {
   return (
     <Grid container spacing={1}>
       {data.map((brand) => {
-        return <BrandItem key={brand.id} {...brand} />;
+        return (
+          <Grid item key={brand.id} xs={12} sm={6} md={4} lg={3} xl={2}>
+            <BrandItem  {...brand} />
+          </Grid>
+        );
       })}
     </Grid>
   );
