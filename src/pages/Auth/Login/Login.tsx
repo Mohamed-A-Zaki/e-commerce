@@ -52,6 +52,11 @@ export default function Login() {
             </Box>
           </Typography>
         </Stack>
+
+        <Box my={5} display={"flex"} gap={3}>
+          <Link to="/admin/allproducts">الدخول ادمن</Link>
+          <Link to="/user/allorders">الدخول مستخدم</Link>
+        </Box>
       </Container>
     </Box>
   );

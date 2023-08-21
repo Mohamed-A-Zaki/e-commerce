@@ -10,6 +10,14 @@ import AllCategory from "./pages/AllCategory/AllCategory";
 import Products from "./pages/Products/Products";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import PaymentMethod from "./pages/PaymentMethod/PaymentMethod";
+import AdminLayout from "./components/Admin/AdminLayout/AdminLayout";
+import AdminAllOrders from "./pages/Admin/AdminAllOrders/AdminAllOrders";
+import AdminAllProducts from "./pages/Admin/AdminAllProducts/AdminAllProducts";
+import AdminAddBrand from "./pages/Admin/AdminAddBrand/AdminAddBrand";
+import AdminAddCategory from "./pages/Admin/AdminAddCategory/AdminAddCategory";
+import AdminAddSubCategory from "./pages/Admin/AdminAddSubCategory/AdminAddSubCategory";
+import AdminAddProduct from "./pages/Admin/AdminAddProduct/AdminAddProduct";
+import AdminOrderDetails from "./pages/Admin/AdminOrderDetails/AdminOrderDetails";
 
 const router = createHashRouter([
   {
@@ -51,6 +59,40 @@ const router = createHashRouter([
       {
         path: "order/paymethod",
         element: <PaymentMethod />,
+      },
+      {
+        path: "/admin",
+        element: <AdminLayout />,
+        children: [
+          {
+            path: "allorders",
+            element: <AdminAllOrders />,
+          },
+          {
+            path: "orders/:order_id",
+            element: <AdminOrderDetails />,
+          },
+          {
+            path: "allproducts",
+            element: <AdminAllProducts />,
+          },
+          {
+            path: "addbrand",
+            element: <AdminAddBrand />,
+          },
+          {
+            path: "addcategory",
+            element: <AdminAddCategory />,
+          },
+          {
+            path: "addsubcategory",
+            element: <AdminAddSubCategory />,
+          },
+          {
+            path: "addproduct",
+            element: <AdminAddProduct />,
+          },
+        ],
       },
     ],
   },

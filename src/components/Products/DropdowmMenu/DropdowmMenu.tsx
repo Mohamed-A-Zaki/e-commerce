@@ -1,12 +1,6 @@
 import { useState } from "react";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SxProps,
-  Theme,
-} from "@mui/material";
+import { MenuItemStyle } from "../../../Styles/Styles";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function DropdowmMenu() {
   const [value, setValue] = useState("");
@@ -18,39 +12,22 @@ export default function DropdowmMenu() {
         labelId="drop-down-menu"
         id="drop-down-menu"
         value={value}
-        label="Age"
+        label="ترتيب حسب"
         onChange={(e) => setValue(e.target.value)}
       >
-        <MenuItem value={"الاكثر مبيعا"} sx={MenuItemStyle}>
+        <MenuItem sx={MenuItemStyle} value={"الاكثر مبيعا"}>
           الاكثر مبيعا
         </MenuItem>
-        <MenuItem value={"الاعلي تقييما"} sx={MenuItemStyle}>
+        <MenuItem sx={MenuItemStyle} value={"الاعلي تقييما"}>
           الاعلي تقييما
         </MenuItem>
-        <MenuItem value={"السعر من الاقل للاعلي"} sx={MenuItemStyle}>
+        <MenuItem sx={MenuItemStyle} value={"السعر من الاقل للاعلي"}>
           السعر من الاقل للاعلي
         </MenuItem>
-        <MenuItem value={"السعر من الاعلي للاقل"} sx={MenuItemStyle}>
+        <MenuItem sx={MenuItemStyle} value={"السعر من الاعلي للاقل"}>
           السعر من الاعلي للاقل
         </MenuItem>
       </Select>
     </FormControl>
   );
 }
-
-const MenuItemStyle: SxProps<Theme> = {
-  bgcolor: "#fff !important",
-  mx: 1.5,
-  py: 1,
-  fontSize: 14,
-  borderBottom: 1,
-  borderColor: "#ddd",
-  borderRadius: 2,
-  "&:last-child": {
-    borderBottom: 0,
-  },
-  "&:hover": {
-    bgcolor: "#000 !important",
-    color: "#fff",
-  },
-};

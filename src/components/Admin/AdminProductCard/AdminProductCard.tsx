@@ -1,5 +1,7 @@
 import {
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Grid,
@@ -13,10 +15,15 @@ import img from "../../../assets/item.png";
 import StarIcon from "@mui/icons-material/Star";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-export default function ProductCard() {
+export default function AdminProductCard() {
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
+    <Grid item xs={12} md={6} lg={4}>
       <Card>
+        <CardActions sx={{ justifyContent: "space-between" }}>
+          <Button>ازالة</Button>
+          <Button>تعديل</Button>
+        </CardActions>
+
         <Link to="/products/id">
           <CardMedia
             component="img"
