@@ -5,7 +5,7 @@ import MainButton from "../../../utility/MainButton/MainButton";
 export default function EditAddress() {
   return (
     <Stack spacing={2} my={2}>
-      <SectionTitle>اضافة عنوان جديد</SectionTitle>
+      <SectionTitle>تعديل العنوان</SectionTitle>
 
       <Stack spacing={2} alignItems={"end"} width={700} maxWidth={"100%"}>
         <TextField
