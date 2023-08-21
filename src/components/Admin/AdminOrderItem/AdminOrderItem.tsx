@@ -17,7 +17,7 @@ export default function AdminOrderItem() {
       mb={1}
       borderRadius={3}
       sx={{ cursor: "pointer" }}
-      onClick={() => navigate("/orders/23")}
+      onClick={() => navigate("/admin/orders/23")}
     >
       <Box component={"img"} src={image} alt="" sx={{ width: 120 }} />
 

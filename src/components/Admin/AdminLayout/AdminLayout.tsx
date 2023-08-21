@@ -5,7 +5,7 @@ import AdminSidebar from "../AdminSidebar/AdminSidebar";
 export default function AdminLayout() {
   return (
     <Container>
-      <Grid container>
+      <Grid container spacing={2}>
         <Grid item xs={2} >
           <AdminSidebar />
         </Grid>
