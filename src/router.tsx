@@ -24,6 +24,7 @@ import UserFavourite from "./pages/User/UserFavourite/UserFavourite";
 import UserAddresses from "./pages/User/UserAddresses/UserAddresses";
 import UserProfile from "./pages/User/UserProfile/UserProfile";
 import AddNewAddress from "./pages/User/AddNewAddress/AddNewAddress";
+import EditAddress from "./pages/User/EditAddress/EditAddress";
 
 const router = createHashRouter([
   {
@@ -119,6 +120,10 @@ const router = createHashRouter([
           {
             path: "add-address",
             element: <AddNewAddress />,
+          },
+          {
+            path: "edit-address",
+            element: <EditAddress />,
           },
           {
             path: "profile",

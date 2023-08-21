@@ -4,7 +4,7 @@ import UserSidebar from "../UserSidebar/UserSidebar";
 
 export default function UserLayout() {
   return (
-    <Container>
+    <Container fixed>
       <Grid container spacing={2}>
         <Grid item xs={3}>
           <UserSidebar />
