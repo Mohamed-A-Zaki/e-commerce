@@ -1,6 +1,6 @@
 import { Container } from "@mui/material";
-import SectionTitle from "../../utility/SectionTitle/SectionTitle";
-import CartLayout from "../../components/Cart/CartLayout/CartLayout";
+import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
+import CartLayout from "../../../components/Cart/CartLayout/CartLayout";
 
 export default function Cart() {
   return (

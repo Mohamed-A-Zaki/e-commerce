@@ -1,15 +1,11 @@
 import { createHashRouter } from "react-router-dom";
 
 import App from "./App";
-import Home from "./pages/Home/Home";
-import Cart from "./pages/Cart/Cart";
+
+import Cart from "./pages/Website/Cart/Cart";
 import Register from "./pages/Auth/Register/Register";
 import Login from "./pages/Auth/Login/Login";
-import AllBrand from "./pages/AllBrand/AllBrand";
-import AllCategory from "./pages/AllCategory/AllCategory";
-import Products from "./pages/Products/Products";
-import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import PaymentMethod from "./pages/PaymentMethod/PaymentMethod";
+import ProductDetails from "./pages/Website/ProductDetails/ProductDetails";
 import AdminLayout from "./components/Admin/AdminLayout/AdminLayout";
 import AdminAllOrders from "./pages/Admin/AdminAllOrders/AdminAllOrders";
 import AdminAllProducts from "./pages/Admin/AdminAllProducts/AdminAllProducts";
@@ -25,6 +21,11 @@ import UserAddresses from "./pages/User/UserAddresses/UserAddresses";
 import UserProfile from "./pages/User/UserProfile/UserProfile";
 import AddNewAddress from "./pages/User/AddNewAddress/AddNewAddress";
 import EditAddress from "./pages/User/EditAddress/EditAddress";
+import Home from "./pages/Website/Home/Home";
+import AllBrand from "./pages/Website/AllBrand/AllBrand";
+import AllCategory from "./pages/Website/AllCategory/AllCategory";
+import Products from "./pages/Website/Products/Products";
+import PaymentMethod from "./pages/Website/PaymentMethod/PaymentMethod";
 
 const router = createHashRouter([
   {
