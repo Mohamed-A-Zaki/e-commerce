@@ -49,6 +49,9 @@ a {
   border-color: #000;
   border-width: 2px;
 }
+.Mui-error {
+  align-self: flex-start;
+}
 
 fieldset {
   border-radius: 8px !important;

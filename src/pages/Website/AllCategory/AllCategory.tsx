@@ -9,8 +9,6 @@ export default function AllCategory() {
     <MainSection>
       <SectionHeading title={"كل التصنيفات"} />
       <CategoryList />
-      <CategoryList />
-      <CategoryList />
       <PaginationComp />
     </MainSection>
   );

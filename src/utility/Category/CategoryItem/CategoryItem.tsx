@@ -1,18 +1,20 @@
 import { Theme } from "@emotion/react";
 import { Box, SxProps, Typography } from "@mui/material";
+import { CategoryType } from "../../../types/Category/Category.type";
 
-export type CategoryItemProps = {
-  image: string;
-  color: string;
-};
-export default function CategoryItem({ image, color }: CategoryItemProps) {
+export default function CategoryItem({ image, name }: CategoryType) {
+  const colors = ["#AEBEFB", "#FBCCCC", "#F8F0E0"];
+
+  const getRandomColor = () => {
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
   return (
     <Box textAlign={"center"}>
-      <Box bgcolor={color} sx={BoxStyle}>
+      <Box bgcolor={getRandomColor()} sx={BoxStyle}>
         <Box component={"img"} src={image} alt="" width={100} height={100} />
       </Box>
-
-      <Typography variant="h6">اجهزة منزلية</Typography>
+      <Typography variant="h6">{name}</Typography>
     </Box>
   );
 }

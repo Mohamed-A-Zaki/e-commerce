@@ -6,7 +6,7 @@ export default function CategorySection() {
   return (
     <MainSection>
       <SectionHeading title={"التصنيفات"} to="/allcategory" />
-      <CategoryList />
+      <CategoryList count={6}/>
     </MainSection>
   );
 }

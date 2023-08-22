@@ -1,51 +1,36 @@
 import { Grid } from "@mui/material";
+import Loading from "../../Loading/Loading";
+import { useAppSelector } from "../../../store/hooks";
+
 import CategoryItem from "../CategoryItem/CategoryItem";
+import ErrorMessage from "../../ErrorMessage/ErrorMessage";
+import EmptyListMessage from "../../EmptyListMessage/EmptyListMessage";
 
-import cat1 from "../../../assets/cat2.png";
-import cat2 from "../../../assets/clothe.png";
-import cat3 from "../../../assets/labtop.png";
-import cat4 from "../../../assets/sale.png";
-import cat5 from "../../../assets/pic.png";
+type CategoryListProps = {
+  count?: number;
+};
+export default function CategoryList({ count }: CategoryListProps) {
+  const { categories, loading, error } = useAppSelector(
+    (state) => state.Categories
+  );
 
-const data = [
-  {
-    id: 1,
-    image: cat1,
-    color: "#AEBEFB",
-  },
-  {
-    id: 2,
-    image: cat2,
-    color: "#FBCCCC",
-  },
-  {
-    id: 3,
-    image: cat3,
-    color: "#F8F0E0",
-  },
-  {
-    id: 4,
-    image: cat4,
-    color: "#AEBEFB",
-  },
-  {
-    id: 5,
-    image: cat1,
-    color: "#FBCCCC",
-  },
-  {
-    id: 6,
-    image: cat5,
-    color: "#F8F0E0",
-  },
-];
+  if (loading) {
+    return <Loading />;
+  }
 
-export default function CategoryList() {
+  if (error) {
+    return <ErrorMessage>يوجد خطا ما...</ErrorMessage>;
+  }
+
+  if (categories.length === 0) {
+    return <EmptyListMessage>لا يوجد أي تصنيفات حاليا...</EmptyListMessage>;
+  }
+
   return (
     <Grid container spacing={1}>
-      {data.map((category) => {
+      {categories.slice(0, count).map((category) => {
         return (
-          <Grid item key={category.id} xs={12} sm={6} md={4} lg={3} xl={2}>
+          <Grid item key={category._id} xs={12} sm={6} md={4} lg={3} xl={2}>
             <CategoryItem {...category} />
           </Grid>
         );
