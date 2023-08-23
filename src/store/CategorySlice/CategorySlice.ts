@@ -21,10 +21,10 @@ const initialState: InitialStateType = {
 
 export const getCategories = createAsyncThunk(
   "Category/getCategories",
-  async () => {
-    const url = "api/v1/categories";
+  async (page: number) => {
+    const url = `api/v1/categories?limit=3&page=${page}`;
     const { data } = await BaseURL.get<GetCategoriesResponseType>(url);
-    return data.data;
+    return data;
   }
 );
 
@@ -51,7 +51,7 @@ const CategorySlice = createSlice({
       })
       .addCase(getCategories.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.categories = payload;
+        state.categories = payload.data;
       })
       .addCase(getCategories.rejected, (state, { error }) => {
         state.loading = false;

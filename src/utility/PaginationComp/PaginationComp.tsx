@@ -1,22 +1,39 @@
-import { Pagination, PaginationItem, SxProps, Theme } from "@mui/material";
+import {
+  Pagination,
+  PaginationItem,
+  PaginationRenderItemParams,
+  SxProps,
+  Theme,
+} from "@mui/material";
+
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { setPage } from "../../store/PaginationSlice/PaginationSlice";
 
 export default function PaginationComp() {
-  const Prev = () => {
-    return <>السابق</>;
+  const dispatch = useAppDispatch();
+  const { page, number_of_pages } = useAppSelector((state) => state.Pagination);
+
+  const Prev = () => <>السابق</>;
+  const Next = () => <>التالي</>;
+
+  const renderItem = () => {
+    return (item: PaginationRenderItemParams) => (
+      <PaginationItem slots={{ previous: Prev, next: Next }} {...item} />
+    );
   };
-  const Next = () => {
-    return <>التالي</>;
-  };
+
+  if (number_of_pages === 0) {
+    return null;
+  }
 
   return (
     <Pagination
-      count={10}
+      count={number_of_pages}
       shape="rounded"
-      renderItem={(item) => (
-        <PaginationItem slots={{ previous: Prev, next: Next }} {...item} />
-      )}
-      siblingCount={0}
+      renderItem={renderItem()}
       sx={PaginationStyle}
+      page={page}
+      onChange={(_e, value) => dispatch(setPage(value))}
     />
   );
 }

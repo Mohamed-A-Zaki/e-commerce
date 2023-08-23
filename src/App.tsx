@@ -3,16 +3,17 @@ import { Outlet } from "react-router-dom";
 import Footer from "./utility/Footer/Footer";
 import Navbar from "./utility/Navbar/Navbar";
 import { useEffect } from "react";
-import { useAppDispatch } from "./store/hooks";
+import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { getCategories } from "./store/CategorySlice/CategorySlice";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const { page } = useAppSelector((state) => state.Pagination);
 
   useEffect(() => {
-    dispatch(getCategories());
-  }, [dispatch]);
+    dispatch(getCategories(page));
+  }, [dispatch, page]);
 
   return (
     <>
