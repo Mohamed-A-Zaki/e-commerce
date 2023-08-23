@@ -22,7 +22,7 @@ const initialState: InitialStateType = {
 export const getCategories = createAsyncThunk(
   "Category/getCategories",
   async (page: number) => {
-    const url = `api/v1/categories?limit=3&page=${page}`;
+    const url = `api/v1/categories?limit=18&page=${page}`;
     const { data } = await BaseURL.get<GetCategoriesResponseType>(url);
     return data;
   }
