@@ -1,53 +1,25 @@
-import { useRef, useState } from "react";
+import { Formik, Form } from "formik";
 import { Box, Stack, TextField, Typography } from "@mui/material";
 
-import * as yup from "yup";
-import { Formik, Form } from "formik";
-
-import { useAppDispatch } from "../../../store/hooks";
-import { createCategory } from "../../../store/CategorySlice/CategorySlice";
-
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-
-import avatar from "../../../assets/avatar.png";
+import useAddCategory from "../../../Hooks/useAddCategory";
 import MainButton from "../../../utility/MainButton/MainButton";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 
 export default function AdminAddCategory() {
-  const [image, setImage] = useState(avatar);
-  const inputRef = useRef<null | HTMLInputElement>(null);
-
-  const naviagte = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files![0];
-    setImage(URL.createObjectURL(file));
-  };
+  const {
+    image,
+    inputRef,
+    validationSchema,
+    initialValues,
+    onSubmit,
+    handleChange,
+  } = useAddCategory();
 
   return (
     <Formik
-      initialValues={{
-        name: "",
-        image: "",
-      }}
-      validationSchema={yup.object({
-        name: yup.string().required("هذا الحقل مطلوب"),
-        image: yup.string().optional(),
-      })}
-      onSubmit={(values, { setSubmitting }) => {
-        const formData = new FormData();
-
-        formData.append("name", values.name);
-        formData.append("image", inputRef.current?.files![0] as File);
-
-        dispatch(createCategory(formData))
-          .unwrap()
-          .then(() => naviagte("/allcategory"))
-          .catch(() => toast.error("يوجد خطا ما..."))
-          .finally(() => setSubmitting(false));
-      }}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
     >
       {({ getFieldProps, errors, touched, isSubmitting, handleBlur }) => (
         <Box component={Form}>
@@ -62,7 +34,7 @@ export default function AdminAddCategory() {
                 htmlFor="img-file"
                 sx={{ cursor: "pointer" }}
               >
-                <Box component={"img"} src={image} width={120} />
+                <Box component={"img"} src={image as string} width={120} />
               </Box>
               <TextField
                 type="file"
@@ -71,7 +43,9 @@ export default function AdminAddCategory() {
                 inputRef={inputRef}
                 name="image"
                 onBlur={handleBlur}
-                onChange={handleChange}
+                onChange={handleChange as () => void}
+                error={!!(errors.image && touched.image)}
+                helperText={errors.image && touched.image && errors.image}
               />
             </Box>
 
