@@ -6,14 +6,14 @@ import { FormikHelpers } from "formik";
 import { useAppDispatch } from "../store/hooks";
 
 import avatar from "../assets/avatar.png";
-import { createCategory } from "../store/CategorySlice/CategorySlice";
+import { createBrand } from "../store/BrandSlice/BrandSlice";
 
 type InitialValuesType = {
   name: string;
   image: string;
 };
 
-const useAddCategory = () => {
+const useAddBrand = () => {
   const dispatch = useAppDispatch();
 
   const [image, setImage] = useState(avatar);
@@ -38,7 +38,7 @@ const useAddCategory = () => {
     formData.append("name", values.name);
     formData.append("image", inputRef.current?.files![0] as File);
 
-    dispatch(createCategory(formData))
+    dispatch(createBrand(formData))
       .unwrap()
       .then(() => {
         toast.success("تمت الاضافة بنجاح");
@@ -64,4 +64,4 @@ const useAddCategory = () => {
   };
 };
 
-export default useAddCategory;
+export default useAddBrand;

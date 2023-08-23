@@ -1,6 +1,6 @@
 import { PaginationResultType } from "../PaginationResult/PaginationResult.type";
 
-export type CategoryType = {
+export type BrandType = {
   _id: string;
   name: string;
   slug: string;
@@ -9,12 +9,12 @@ export type CategoryType = {
   updatedAt: string;
 };
 
-export type GetCategoriesResponseType = {
+export type GetBrandResponseType = {
   results: number;
-  data: CategoryType[];
+  data: BrandType[];
   paginationResult: PaginationResultType;
 };
 
-export type CreateCategoryResponseType = {
-  data: CategoryType;
+export type CreateBrandResponseType = {
+  data: BrandType;
 };

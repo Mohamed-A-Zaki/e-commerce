@@ -11,12 +11,14 @@ type InitialStateType = {
   categories: CategoryType[];
   loading: boolean;
   error: string;
+  number_of_pages: number;
 };
 
 const initialState: InitialStateType = {
   categories: [],
   loading: true,
   error: "",
+  number_of_pages: 0,
 };
 
 export const getCategories = createAsyncThunk(
@@ -52,6 +54,7 @@ const CategorySlice = createSlice({
       .addCase(getCategories.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.categories = payload.data;
+        state.number_of_pages = payload.paginationResult.numberOfPages;
       })
       .addCase(getCategories.rejected, (state, { error }) => {
         state.loading = false;

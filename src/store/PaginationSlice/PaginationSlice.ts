@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCategories } from "../CategorySlice/CategorySlice";
 
 type InitialStateType = {
   page: number;
@@ -18,15 +17,12 @@ const PaginationSlice = createSlice({
     setPage: (state, { payload }) => {
       state.page = payload;
     },
-  },
-  extraReducers(builder) {
-    builder.addCase(getCategories.fulfilled, (state, { payload }) => {
-      state.number_of_pages = payload.paginationResult.numberOfPages;
-      // console.log(payload.paginationResult.numberOfPages);
-    });
+    setNumberOfPages: (state, { payload }) => {
+      state.number_of_pages = payload;
+    },
   },
 });
 
-export const { setPage } = PaginationSlice.actions;
+export const { setPage, setNumberOfPages } = PaginationSlice.actions;
 
 export default PaginationSlice.reducer;

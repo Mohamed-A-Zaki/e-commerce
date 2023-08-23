@@ -22,9 +22,9 @@ export default function PaginationComp() {
     );
   };
 
-  if (number_of_pages === 0) {
-    return null;
-  }
+  // if (number_of_pages === 0) {
+  //   return null;
+  // }
 
   return (
     <Pagination
