@@ -1,182 +1,284 @@
 import {
   Box,
   FormControl,
-  InputLabel,
+  FormHelperText,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
-import image from "../../../assets/avatar.png";
 import { MenuItemStyle } from "../../../Styles/Styles";
 
+import { Form, Formik } from "formik";
 import MultiSelect from "react-select";
+import { CompactPicker } from "react-color";
 import makeAnimated from "react-select/animated";
 
+import useAddProduct from "../../../Hooks/useAddProduct";
+import DropZone from "../../../utility/DropZone/DropZone";
+import ColorItem from "../../../utility/ColorItem/ColorItem";
 import MainButton from "../../../utility/MainButton/MainButton";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
-import ColorItem from "../../../utility/ColorItem/ColorItem";
 
 const animatedComponents = makeAnimated();
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
-
 export default function AdminAddProduct() {
-  const [category, setCategory] = useState("");
-  const [brand, setBrand] = useState("");
+  const {
+    initialValues,
+    onSubmit,
+    validationSchema,
+    openColorPicker,
+    ToogleColorPicker,
+    categories,
+    brands,
+    handleGetSubCategories,
+    subCategories,
+  } = useAddProduct();
 
-  const handleChangeCat = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+  const render_categories = () => {
+    return categories.map((category) => (
+      <MenuItem key={category._id} sx={MenuItemStyle} value={category._id}>
+        {category.name}
+      </MenuItem>
+    ));
   };
-  const handleChangeBrand = (event: SelectChangeEvent) => {
-    setBrand(event.target.value as string);
+
+  const render_brands = () => {
+    return brands.map((brand) => (
+      <MenuItem key={brand._id} sx={MenuItemStyle} value={brand._id}>
+        {brand.name}
+      </MenuItem>
+    ));
   };
 
   return (
-    <Stack spacing={2} my={2}>
-      <SectionTitle>اضافه تصنيف فرعي جديد</SectionTitle>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({
+        getFieldProps,
+        errors,
+        touched,
+        isSubmitting,
+        setFieldValue,
+        handleBlur,
+        values,
+      }) => (
+        <Form noValidate>
+          <Stack spacing={2} my={2}>
+            <SectionTitle>اضافه تصنيف فرعي جديد</SectionTitle>
 
-      <Typography color={"text.secondary"}>صورة المنتج</Typography>
+            <Typography>صورة المنتج</Typography>
 
-      <Box component={"img"} src={image} width={120} />
+            <Box width={700} maxWidth={"100%"}>
+              <DropZone setFieldValue={setFieldValue} />
 
-      <Stack spacing={2} alignItems={"end"} width={700} maxWidth={"100%"}>
-        <TextField
-          size="small"
-          fullWidth
-          placeholder="اسم المنتج"
-          className="form-input"
-          variant="standard"
-          InputProps={{
-            disableUnderline: true,
-          }}
-          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
-        />
-
-        <TextField
-          multiline
-          minRows={3}
-          fullWidth
-          sx={{ mt: 2 }}
-          placeholder="وصف المنتج"
-        />
-
-        <TextField
-          type="number"
-          size="small"
-          fullWidth
-          placeholder="السعر قبل الخصم"
-          className="form-input"
-          variant="standard"
-          InputProps={{
-            disableUnderline: true,
-          }}
-          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
-        />
-
-        <TextField
-          type="number"
-          size="small"
-          fullWidth
-          placeholder="سعر المنتج"
-          className="form-input"
-          variant="standard"
-          InputProps={{
-            disableUnderline: true,
-          }}
-          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
-        />
-
-        <FormControl
-          size="small"
-          fullWidth
-          sx={{ "& fieldset": { borderRadius: 2 } }}
-        >
-          <InputLabel>التصنيف الرئيسي</InputLabel>
-          <Select
-            value={category}
-            label="التصنيف الرئيسي"
-            onChange={handleChangeCat}
-          >
-            <MenuItem sx={MenuItemStyle} value={"التصنيف الاول"}>
-              التصنيف الاول
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"التصنيف الثاني"}>
-              التصنيف الثاني
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"الصنيف الثالث"}>
-              الصنيف الثالث
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"الصنيف الرابع"}>
-              الصنيف الرابع
-            </MenuItem>
-          </Select>
-        </FormControl>
-
-        <FormControl
-          size="small"
-          fullWidth
-          sx={{ "& fieldset": { borderRadius: 2 } }}
-        >
-          <InputLabel>الماركة</InputLabel>
-          <Select value={brand} label="الماركة" onChange={handleChangeBrand}>
-            <MenuItem sx={MenuItemStyle} value={"التصنيف الاول"}>
-              التصنيف الاول
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"التصنيف الثاني"}>
-              التصنيف الثاني
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"الصنيف الثالث"}>
-              الصنيف الثالث
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"الصنيف الرابع"}>
-              الصنيف الرابع
-            </MenuItem>
-          </Select>
-        </FormControl>
-
-        <MultiSelect
-          className="multi-select"
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          options={options}
-        />
-
-        <Box alignSelf={"flex-start"}>
-          <Typography color={"text.secondary"}>صورة المنتج</Typography>
-
-          <Box display={"flex"} alignItems={"center"} gap={1}>
-            <ColorItem color="#f00" />
-            <ColorItem color="#fff" />
-            <ColorItem color="#000" />
-
-            <Box
-              width={30}
-              height={30}
-              borderRadius={"50%"}
-              border={1}
-              borderColor={"#ddd"}
-              fontSize={30}
-              display={"flex"}
-              justifyContent={"center"}
-              alignItems={"flex-end"}
-              sx={{ cursor: "pointer" }}
-            >
-              +
+              {errors.images && touched.images && (
+                <FormHelperText className="Mui-error">
+                  {errors.images}
+                </FormHelperText>
+              )}
             </Box>
-          </Box>
-        </Box>
 
-        <MainButton>حفظ التعديلات</MainButton>
-      </Stack>
-    </Stack>
+            <Stack spacing={2} alignItems={"end"} width={700} maxWidth={"100%"}>
+              <TextField
+                size="small"
+                fullWidth
+                placeholder="اسم المنتج"
+                className="form-input"
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
+                {...getFieldProps("title")}
+                error={!!(errors.title && touched.title)}
+                helperText={errors.title && touched.title && errors.title}
+              />
+
+              <TextField
+                multiline
+                minRows={3}
+                fullWidth
+                sx={{ mt: 2 }}
+                placeholder="وصف المنتج"
+                {...getFieldProps("description")}
+                error={!!(errors.description && touched.description)}
+                helperText={
+                  errors.description &&
+                  touched.description &&
+                  errors.description
+                }
+              />
+
+              <TextField
+                type="number"
+                size="small"
+                fullWidth
+                placeholder="السعر قبل الخصم"
+                className="form-input"
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
+                {...getFieldProps("price")}
+                error={!!(errors.price && touched.price)}
+                helperText={errors.price && touched.price && errors.price}
+              />
+
+              <TextField
+                type="number"
+                size="small"
+                fullWidth
+                placeholder="سعر المنتج"
+                className="form-input"
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
+                {...getFieldProps("price_after_descount")}
+                error={
+                  !!(
+                    errors.price_after_descount && touched.price_after_descount
+                  )
+                }
+                helperText={
+                  errors.price_after_descount &&
+                  touched.price_after_descount &&
+                  errors.price_after_descount
+                }
+              />
+
+              <TextField
+                type="number"
+                size="small"
+                fullWidth
+                placeholder="الكمية المتاحة"
+                className="form-input"
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
+                {...getFieldProps("quantity")}
+                error={!!(errors.quantity && touched.quantity)}
+                helperText={
+                  errors.quantity && touched.quantity && errors.quantity
+                }
+              />
+
+              <FormControl
+                size="small"
+                fullWidth
+                sx={{ "& fieldset": { borderRadius: 2 } }}
+                error={!!(errors.category && touched.category)}
+              >
+                <Select
+                  displayEmpty
+                  name="category"
+                  value={values.category}
+                  onChange={(e) => {
+                    setFieldValue("category", e.target.value);
+                    handleGetSubCategories(e.target.value);
+                  }}
+                  onBlur={handleBlur}
+                >
+                  <MenuItem sx={MenuItemStyle} value={""}>
+                    اختر تصنيف
+                  </MenuItem>
+                  {render_categories()}
+                </Select>
+                {errors.category && touched.category && (
+                  <FormHelperText>{errors.category}</FormHelperText>
+                )}
+              </FormControl>
+
+              <FormControl
+                size="small"
+                fullWidth
+                sx={{ "& fieldset": { borderRadius: 2 } }}
+                error={!!(errors.brand && touched.brand)}
+              >
+                <Select displayEmpty {...getFieldProps("brand")}>
+                  <MenuItem sx={MenuItemStyle} value={""}>
+                    اختر ماركة
+                  </MenuItem>
+                  {render_brands()}
+                </Select>
+                {errors.brand && touched.brand && (
+                  <FormHelperText>{errors.brand}</FormHelperText>
+                )}
+              </FormControl>
+
+              <>
+                <MultiSelect
+                  className="multi-select"
+                  closeMenuOnSelect={false}
+                  components={animatedComponents}
+                  isMulti
+                  options={subCategories.map((ele) => {
+                    return { value: ele._id, label: ele.name };
+                  })}
+                  placeholder="اختار تصنيف فرعي"
+                  required
+                  blurInputOnSelect
+                  onChange={(selectedOptions) => {
+                    setFieldValue("subcategory", selectedOptions);
+                  }}
+                />
+                {errors.subcategory && touched.subcategory && (
+                  <FormHelperText className="Mui-error">
+                    {errors.subcategory.toString()}
+                  </FormHelperText>
+                )}
+              </>
+
+              <Box alignSelf={"flex-start"}>
+                <Typography>صورة المنتج</Typography>
+
+                <Box display={"flex"} alignItems={"center"} gap={1} my={2}>
+                  {values.colors.map((value, index) => {
+                    return <ColorItem key={index} color={value} />;
+                  })}
+
+                  <Box
+                    width={30}
+                    height={30}
+                    borderRadius={"50%"}
+                    border={1}
+                    borderColor={"#ddd"}
+                    fontSize={30}
+                    display={"flex"}
+                    justifyContent={"center"}
+                    alignItems={"flex-end"}
+                    sx={{ cursor: "pointer" }}
+                    onClick={ToogleColorPicker}
+                  >
+                    +
+                  </Box>
+
+                  {openColorPicker && (
+                    <CompactPicker
+                      onChangeComplete={(color) => {
+                        setFieldValue("colors", [...values.colors, color.hex]);
+                      }}
+                    />
+                  )}
+                </Box>
+              </Box>
+
+              <MainButton type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "جاري التحميل" : "حفظ التعديلات"}
+              </MainButton>
+            </Stack>
+          </Stack>
+        </Form>
+      )}
+    </Formik>
   );
 }

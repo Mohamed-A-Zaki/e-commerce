@@ -1,7 +1,8 @@
 import * as yup from "yup";
-import BaseURL from "../Api/BaseURL";
 import { toast } from "react-toastify";
 import { FormikHelpers } from "formik";
+import { useAppDispatch } from "../store/hooks";
+import { createSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
 
 type InitialValuesType = {
   name: string;
@@ -9,6 +10,8 @@ type InitialValuesType = {
 };
 
 const useAddSubCategory = () => {
+  const dispatch = useAppDispatch();
+
   const initialValues: InitialValuesType = {
     name: "",
     category: "",
@@ -21,17 +24,26 @@ const useAddSubCategory = () => {
 
   const onSubmit = async (
     values: InitialValuesType,
-    { setFieldValue, setTouched }: FormikHelpers<InitialValuesType>
+    {
+      setFieldValue,
+      setTouched,
+      setSubmitting,
+    }: FormikHelpers<InitialValuesType>
   ) => {
-    try {
-      await BaseURL.post("api/v1/subcategories", values);
-      toast.success("تمت الاضافة بنجاح");
-      setFieldValue("name", "");
-      setFieldValue("category", "");
-      setTouched({ name: false, category: false });
-    } catch (error) {
-      toast.error("يوجد خطا ما...");
-    }
+    dispatch(createSubCategory(values))
+      .unwrap()
+      .then(() => {
+        toast.success("تمت الاضافة بنجاح");
+        setFieldValue("name", "");
+        setFieldValue("category", "");
+        setTouched({ name: false, category: false });
+      })
+      .catch(() => {
+        toast.error("يوجد خطا ما...");
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return { initialValues, onSubmit, validationSchema };
