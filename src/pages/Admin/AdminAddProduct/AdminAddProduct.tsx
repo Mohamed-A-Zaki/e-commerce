@@ -239,11 +239,22 @@ export default function AdminAddProduct() {
               </>
 
               <Box alignSelf={"flex-start"}>
-                <Typography>صورة المنتج</Typography>
+                <Typography>الوان المنتج</Typography>
 
                 <Box display={"flex"} alignItems={"center"} gap={1} my={2}>
                   {values.colors.map((value, index) => {
-                    return <ColorItem key={index} color={value} />;
+                    return (
+                      <ColorItem
+                        key={index}
+                        color={value}
+                        onClick={() => {
+                          setFieldValue(
+                            "colors",
+                            values.colors.filter((ele) => ele !== value)
+                          );
+                        }}
+                      />
+                    );
                   })}
 
                   <Box
