@@ -23,7 +23,7 @@ const initialState: InitialStateType = {
 export const getBrands = createAsyncThunk(
   "Brand/getBrands",
   async (page: number) => {
-    const url = `api/v1/brands?limit=4&page=${page}`;
+    const url = `api/v1/brands?limit=18&page=${page}`;
     const { data } = await BaseURL.get<GetBrandResponseType>(url);
     return data;
   }
