@@ -31,7 +31,11 @@ const useAddBrand = () => {
 
   const onSubmit = (
     values: InitialValuesType,
-    { setSubmitting, setFieldValue }: FormikHelpers<InitialValuesType>
+    {
+      setSubmitting,
+      setFieldValue,
+      setTouched,
+    }: FormikHelpers<InitialValuesType>
   ) => {
     const formData = new FormData();
 
@@ -44,6 +48,7 @@ const useAddBrand = () => {
         toast.success("تمت الاضافة بنجاح");
         setImage(avatar);
         setFieldValue("name", "");
+        setTouched({ name: false, image: false });
       })
       .catch(() => toast.error("يوجد خطا ما..."))
       .finally(() => setSubmitting(false));

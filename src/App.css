@@ -49,8 +49,11 @@ a {
   border-color: #000;
   border-width: 2px;
 }
-.Mui-error {
+/* .Mui-error {
   align-self: flex-start;
+} */
+p.Mui-error {
+  margin-inline: 0;
 }
 
 fieldset {

@@ -1,65 +1,83 @@
 import {
   FormControl,
+  FormHelperText,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Stack,
   TextField,
 } from "@mui/material";
-import { useState } from "react";
 
 import { MenuItemStyle } from "../../../Styles/Styles";
-
 import MainButton from "../../../utility/MainButton/MainButton";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 
-export default function AdminAddSubCategory() {
-  const [category, setCategory] = useState("التصنيف الاول");
+import { Form, Formik } from "formik";
+import { useAppSelector } from "../../../store/hooks";
+import useAddSubCategory from "../../../Hooks/useAddSubCategory";
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setCategory(event.target.value as string);
+export default function AdminAddSubCategory() {
+  const { categories } = useAppSelector((state) => state.Categories);
+  const { initialValues, onSubmit, validationSchema } = useAddSubCategory();
+
+  const render_categories = () => {
+    return categories.map((category) => (
+      <MenuItem key={category._id} sx={MenuItemStyle} value={category._id}>
+        {category.name}
+      </MenuItem>
+    ));
   };
 
   return (
-    <Stack spacing={2} my={2}>
-      <SectionTitle>اضافه تصنيف فرعي جديد</SectionTitle>
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
+      {({ getFieldProps, touched, errors, isSubmitting }) => (
+        <Form>
+          <Stack spacing={2} my={2}>
+            <SectionTitle>اضافه تصنيف فرعي جديد</SectionTitle>
 
-      <Stack spacing={2} alignItems={"end"} width={700} maxWidth={"100%"}>
-        <TextField
-          size="small"
-          fullWidth
-          placeholder="اسم التصنيف الفرعي"
-          className="form-input"
-          variant="standard"
-          InputProps={{
-            disableUnderline: true,
-          }}
-          sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
-        />
+            <Stack spacing={2} alignItems={"end"} width={700} maxWidth={"100%"}>
+              <TextField
+                size="small"
+                fullWidth
+                placeholder="اسم التصنيف الفرعي"
+                className="form-input"
+                variant="standard"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                sx={{ "& input": { textAlign: "right", bgcolor: "#f1f1f1" } }}
+                {...getFieldProps("name")}
+                error={!!(errors.name && touched.name)}
+                helperText={errors.name && touched.name && errors.name}
+              />
 
-        <FormControl
-          size="small"
-          fullWidth
-          sx={{ "& fieldset": { borderRadius: 2 } }}
-        >
-          <Select value={category} onChange={handleChange}>
-            <MenuItem sx={MenuItemStyle} value={"التصنيف الاول"}>
-              التصنيف الاول
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"التصنيف الثاني"}>
-              التصنيف الثاني
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"الصنيف الثالث"}>
-              الصنيف الثالث
-            </MenuItem>
-            <MenuItem sx={MenuItemStyle} value={"الصنيف الرابع"}>
-              الصنيف الرابع
-            </MenuItem>
-          </Select>
-        </FormControl>
+              <FormControl
+                size="small"
+                fullWidth
+                sx={{ "& fieldset": { borderRadius: 2 } }}
+                error={!!(errors.category && touched.category)}
+              >
+                <Select displayEmpty {...getFieldProps("category")}>
+                  <MenuItem sx={MenuItemStyle} value={""}>
+                    اختر تصنيف
+                  </MenuItem>
+                  {render_categories()}
+                </Select>
 
-        <MainButton>حفظ التعديلات</MainButton>
-      </Stack>
-    </Stack>
+                {errors.category && touched.category && (
+                  <FormHelperText>{errors.category}</FormHelperText>
+                )}
+              </FormControl>
+              <MainButton type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "جاري التحميل" : "حفظ التعديلات"}
+              </MainButton>
+            </Stack>
+          </Stack>
+        </Form>
+      )}
+    </Formik>
   );
 }
