@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { getCategories } from "./store/CategorySlice/CategorySlice";
 import { ToastContainer } from "react-toastify";
 import { getBrands } from "./store/BrandSlice/BrandSlice";
+import { getProducts } from "./store/ProductSlice/ProductSlice";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getCategories(page));
     dispatch(getBrands(page));
+    dispatch(getProducts(page));
   }, [dispatch, page]);
 
   return (

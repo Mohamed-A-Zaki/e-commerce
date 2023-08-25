@@ -4,8 +4,9 @@ import { useState } from "react";
 import * as yup from "yup";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
-// import { FormikHelpers } from "formik";
-// import { useAppDispatch } from "../store/hooks";
+import { createProduct } from "../store/ProductSlice/ProductSlice";
+import { toast } from "react-toastify";
+import { FormikHelpers } from "formik";
 
 export type ProductInitialValuesType = {
   title: string;
@@ -23,7 +24,6 @@ export type ProductInitialValuesType = {
 
 const useAddProduct = () => {
   const [openColorPicker, setOpenColorPicker] = useState(false);
-
 
   const dispatch = useAppDispatch();
   const { brands } = useAppSelector((state) => state.Brands);
@@ -54,30 +54,59 @@ const useAddProduct = () => {
 
   const validationSchema = yup.object({
     title: yup.string().required("هذا الحقل مطلوب"),
-    // imageCover: yup.string().required("هذا الحقل مطلوب"),
     category: yup.string().required("هذا الحقل مطلوب"),
     brand: yup.string().required("هذا الحقل مطلوب"),
     description: yup.string().required("هذا الحقل مطلوب"),
     quantity: yup.number().required("هذا الحقل مطلوب"),
     price: yup.number().required("هذا الحقل مطلوب"),
     price_after_descount: yup.number().required("هذا الحقل مطلوب"),
-    images: yup.array().required().min(2, "يجب اختيار صورتين علي الاقل"),
-    subcategory: yup
-      .array()
-      .required("هذا الحقل مطلوب")
-      .min(1, "يجب اختيار تصنيف فرعي واحد علي الاقل"),
+    images: yup.array().required().min(1, "يجب اختيار صورة واحدة علي الاقل"),
+    subcategory: yup.array().optional(),
     colors: yup.array().optional(),
   });
 
   const onSubmit = (
-    values: ProductInitialValuesType
-    // { setSubmitting }: FormikHelpers<InitialValuesType>
+    values: ProductInitialValuesType,
+    { setSubmitting, setFieldValue }: FormikHelpers<ProductInitialValuesType>
   ) => {
-    // const formData = new FormData();
-    console.log(values);
+    const formData = new FormData();
+
+    formData.append("title", values.title);
+    formData.append("imageCover", values.images[0]);
+    formData.append("category", values.category);
+    formData.append("description", values.description);
+    formData.append("quantity", values.quantity);
+    formData.append("price", values.price);
+    formData.append("price_after_descount", values.price_after_descount);
+
+    for (let i = 0; i < values.colors.length; i++) {
+      formData.append("colors", values.colors[i]);
+    }
+    for (let i = 0; i < values.images.length; i++) {
+      formData.append("images", values.images[i]);
+    }
+    for (let i = 0; i < values.subcategory.length; i++) {
+      formData.append("subcategory", values.subcategory[i].value);
+    }
+
+    dispatch(createProduct(formData))
+      .unwrap()
+      .then(() => {
+        toast.success("تمت الاضافة بنجاح");
+        setFieldValue("name", "");
+        setFieldValue("category", "");
+        // setTouched({ name: false, category: false });
+      })
+      .catch(() => {
+        toast.error("يوجد خطا ما...");
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
+
+    // console.log(formData);
   };
 
-  
   return {
     initialValues,
     onSubmit,

@@ -134,7 +134,7 @@ export default function AdminAddProduct() {
                 type="number"
                 size="small"
                 fullWidth
-                placeholder="سعر المنتج"
+                placeholder="السعر بعد الخصم"
                 className="form-input"
                 variant="standard"
                 InputProps={{

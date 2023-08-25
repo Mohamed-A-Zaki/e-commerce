@@ -85,7 +85,6 @@ export default function DropZone({ setFieldValue }: Props) {
           })
         );
         setFiles(file_list);
-        console.log(file_list);
         setFieldValue("images", file_list);
       },
     });
