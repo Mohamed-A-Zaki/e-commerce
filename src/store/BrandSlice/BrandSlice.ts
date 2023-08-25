@@ -8,6 +8,7 @@ import {
 
 type InitialStateType = {
   brands: BrandType[];
+  specificBrand: BrandType | null;
   loading: boolean;
   error: string;
   number_of_pages: number;
@@ -15,6 +16,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   brands: [],
+  specificBrand: null,
   loading: true,
   error: "",
   number_of_pages: 0,
@@ -25,6 +27,15 @@ export const getBrands = createAsyncThunk(
   async (page: number) => {
     const url = `api/v1/brands?limit=18&page=${page}`;
     const { data } = await BaseURL.get<GetBrandResponseType>(url);
+    return data;
+  }
+);
+
+export const getSpescificBrand = createAsyncThunk(
+  "Category/getSpescificBrand",
+  async (brand_id: string) => {
+    const url = `api/v1/brands/${brand_id}`;
+    const { data } = await BaseURL.get<CreateBrandResponseType>(url);
     return data;
   }
 );
@@ -53,6 +64,18 @@ const BrandSlice = createSlice({
         state.number_of_pages = payload.paginationResult.numberOfPages;
       })
       .addCase(getBrands.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
+
+      .addCase(getSpescificBrand.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getSpescificBrand.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.specificBrand = payload.data;
+      })
+      .addCase(getSpescificBrand.rejected, (state, { error }) => {
         state.loading = false;
         state.error = error.message as string;
       })

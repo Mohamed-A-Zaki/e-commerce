@@ -12,6 +12,7 @@ type Props = {
 
 export default function ProductDetailsSection({ spescificProduct }: Props) {
   const { specificCategoty } = useAppSelector((state) => state.Categories);
+  const { specificBrand } = useAppSelector((state) => state.Brands);
 
   return (
     <Box p={3} borderRadius={3}>
@@ -21,8 +22,10 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
         </Typography>
 
         <Typography fontSize={14} mt={2}>
-          {/* آيفون XR بذاكرة سعة 128 جيجابايت ويدعم تقنية 4G LTE مع تطبيق فيس تايم
-          (برودكت) أحمر */}
+          {/* 
+          آيفون XR بذاكرة سعة 128 جيجابايت ويدعم تقنية 4G LTE مع تطبيق فيس تايم
+          (برودكت) أحمر 
+          */}
           {spescificProduct?.title}
         </Typography>
 
@@ -42,7 +45,7 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
           </Typography>
 
           <Typography fontWeight={"bold"} fontSize={20}>
-            الماركة - Brand
+            {specificBrand?.name}
           </Typography>
         </Box>
 
@@ -59,7 +62,8 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
         </Typography>
 
         <Typography fontSize={14} mt={2}>
-          {/* يتميز بوجود بطاقة SIM مزدوجة بطاقة فعلية وبطاقة e-SIM يمكنك فتح قفل
+          {/* 
+          يتميز بوجود بطاقة SIM مزدوجة بطاقة فعلية وبطاقة e-SIM يمكنك فتح قفل
           هاتفك الآيفون وتسجيل الدخول إلى التطبيقات والحسابات وغيرها بسهولة،
           وتعدّ خاصية معرَف الوجه الأسرع والأكثر أماناً للمصادقة عن طريق بصمة
           الوجه يتميز بشريحة A12 بايونيك والتي تعد أذكى وأقوى شريحة في الهواتف
@@ -67,7 +71,8 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
           الفوتوغرافي حيث يعمل جهاز الاستشعار الابتكاري بخاصية ISP والمحرك
           العصبي، ما يمكّنك من التقاط صور لم يسبق لها مثيل كاميرا بعدسة واحدة
           تجعل الأشخاص الموجودين في الأمام في نطاق تركيز دقيق على عكس نطاق
-          الخلفية غير الواضح نظرة عامة */}
+          الخلفية غير الواضح نظرة عامة 
+          */}
           {spescificProduct?.description}
         </Typography>
       </Box>

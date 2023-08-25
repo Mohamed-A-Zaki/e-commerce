@@ -81,6 +81,7 @@ const useAddProduct = () => {
     formData.append("description", values.description);
     formData.append("quantity", values.quantity);
     formData.append("price", values.price);
+    formData.append("brand", values.brand);
     formData.append("price_after_descount", values.price_after_descount);
 
     for (let i = 0; i < values.availableColors.length; i++) {

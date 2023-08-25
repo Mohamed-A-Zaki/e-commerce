@@ -7,6 +7,7 @@ export type ProductType = {
   quantity: number;
   sold: number;
   price: number;
+  brand : string;
   availableColors: string[];
   imageCover: string;
   images: string[];

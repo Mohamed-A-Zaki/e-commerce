@@ -10,6 +10,7 @@ import {
   getSpescificProduct,
 } from "./../../../store/ProductSlice/ProductSlice";
 import { getSpescificCategory } from "../../../store/CategorySlice/CategorySlice";
+import { getSpescificBrand } from "../../../store/BrandSlice/BrandSlice";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -18,6 +19,7 @@ export default function ProductDetails() {
   const { similerProducts, spescificProduct } = useAppSelector(
     (state) => state.Products
   );
+  // const { specificBrand } = useAppSelector((state) => state.Brands);
 
   useEffect(() => {
     // get similer products
@@ -28,7 +30,11 @@ export default function ProductDetails() {
     // get category details
     spescificProduct?.category &&
       dispatch(getSpescificCategory(spescificProduct.category));
-  }, [dispatch, id, spescificProduct?._id, spescificProduct?.category]);
+    // get brand details
+    spescificProduct?.brand &&
+      dispatch(getSpescificBrand(spescificProduct.brand));
+    console.log("dwfiehfe");
+  }, [dispatch, id, spescificProduct?.brand, spescificProduct?.category]);
 
   return (
     <>
