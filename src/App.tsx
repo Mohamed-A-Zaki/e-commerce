@@ -7,10 +7,7 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { getCategories } from "./store/CategorySlice/CategorySlice";
 import { ToastContainer } from "react-toastify";
 import { getBrands } from "./store/BrandSlice/BrandSlice";
-import {
-  getBestSellerProducts,
-  getProducts,
-} from "./store/ProductSlice/ProductSlice";
+import { getProducts } from "./store/ProductSlice/ProductSlice";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -20,8 +17,6 @@ const App = () => {
     dispatch(getCategories(page));
     dispatch(getBrands(page));
     dispatch(getProducts(page));
-    dispatch(getBestSellerProducts());
-    // dispatch(getModernProducts());
   }, [dispatch, page]);
 
   return (

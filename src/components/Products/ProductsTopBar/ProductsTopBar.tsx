@@ -2,8 +2,11 @@ import { Container } from "@mui/material";
 
 import DropdowmMenu from "../DropdowmMenu/DropdowmMenu";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
+import { useAppSelector } from "../../../store/hooks";
 
 export default function ProductsTopBar() {
+  const { products } = useAppSelector((state) => state.Products);
+
   return (
     <Container
       sx={{
@@ -13,7 +16,7 @@ export default function ProductsTopBar() {
         justifyContent: "space-between",
       }}
     >
-      <SectionTitle>400 نتجية بحث</SectionTitle>
+      <SectionTitle>{products?.length} نتجية بحث</SectionTitle>
       <DropdowmMenu />
     </Container>
   );

@@ -11,6 +11,7 @@ type InitialStateType = {
   similerProducts: ProductType[];
   bestSellerProducts: ProductType[];
   // modernProducts: ProductType[];
+  spescificProduct: ProductType | null;
   loading: boolean;
   error: string;
 };
@@ -20,6 +21,7 @@ const initialState: InitialStateType = {
   similerProducts: [],
   bestSellerProducts: [],
   // modernProducts: [],
+  spescificProduct: null,
   loading: true,
   error: "",
 };
@@ -36,7 +38,7 @@ export const getProducts = createAsyncThunk(
 export const getSimilerProducts = createAsyncThunk(
   "Product/getSimilerProducts",
   async (cat_id: string) => {
-    const url = `/api/v1/products?limit=4&category[in][]=${cat_id}`;
+    const url = `api/v1/products?limit=4&category[in][]=${cat_id}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -45,7 +47,7 @@ export const getSimilerProducts = createAsyncThunk(
 export const getBestSellerProducts = createAsyncThunk(
   "Product/getBestSellerProducts",
   async () => {
-    const url = `/api/v1/products?limit=4&sort=-price`;
+    const url = `api/v1/products?limit=4&sort=-price`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -59,6 +61,15 @@ export const getBestSellerProducts = createAsyncThunk(
 //     return data;
 //   }
 // );
+
+export const getSpescificProduct = createAsyncThunk(
+  "Product/getSpescificProduct",
+  async (prod_id: string) => {
+    const url = `api/v1/products/${prod_id}`;
+    const { data } = await BaseURL.get<CreateProductResponseType>(url);
+    return data;
+  }
+);
 
 export const createProduct = createAsyncThunk(
   "Product/createProduct",
@@ -125,6 +136,18 @@ const ProductSlice = createSlice({
       //   state.loading = false;
       //   state.error = error.message as string;
       // })
+
+      .addCase(getSpescificProduct.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getSpescificProduct.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.spescificProduct = payload.data;
+      })
+      .addCase(getSpescificProduct.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
 
       .addCase(createProduct.fulfilled, (state, { payload }) => {
         state.products.unshift(payload);

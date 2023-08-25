@@ -5,10 +5,12 @@ import StarIcon from "@mui/icons-material/Star";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ProductType } from "../../../types/Product/Product.type";
 
-export default function ProductCard({ imageCover }: ProductType) {
+export default function ProductCard(props: ProductType) {
+  const { _id, imageCover, ratingsQuantity, title, price } = props;
+
   return (
     <Card>
-      <Link to="/products/id">
+      <Link to={`/products/${_id}`}>
         <CardMedia
           component="img"
           image={imageCover}
@@ -22,7 +24,8 @@ export default function ProductCard({ imageCover }: ProductType) {
         <FavoriteBorderIcon sx={{ mr: "auto", display: "block" }} />
 
         <Typography my={1} component="div">
-          سود كربون ساعة يد ذكية بيب إس أسود كربون
+          {/* سود كربون ساعة يد ذكية بيب إس أسود كربون */}
+          {title}
         </Typography>
 
         <Stack
@@ -31,10 +34,10 @@ export default function ProductCard({ imageCover }: ProductType) {
           justifyContent={"space-between"}
         >
           <Typography sx={{ display: "flex", gap: 0.5, color: "#FFC107" }}>
-            <StarIcon /> 4.5
+            <StarIcon /> {ratingsQuantity}
           </Typography>
           <Typography fontWeight={"bold"} fontSize={20}>
-            880 جنيه
+            {price} جنيه
           </Typography>
         </Stack>
       </CardContent>

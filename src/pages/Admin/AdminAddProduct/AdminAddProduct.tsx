@@ -242,15 +242,15 @@ export default function AdminAddProduct() {
                 <Typography>الوان المنتج</Typography>
 
                 <Box display={"flex"} alignItems={"center"} gap={1} my={2}>
-                  {values.colors.map((value, index) => {
+                  {values.availableColors.map((value, index) => {
                     return (
                       <ColorItem
                         key={index}
                         color={value}
                         onClick={() => {
                           setFieldValue(
-                            "colors",
-                            values.colors.filter((ele) => ele !== value)
+                            "availableColors",
+                            values.availableColors.filter((ele) => ele !== value)
                           );
                         }}
                       />
@@ -276,7 +276,7 @@ export default function AdminAddProduct() {
                   {openColorPicker && (
                     <CompactPicker
                       onChangeComplete={(color) => {
-                        setFieldValue("colors", [...values.colors, color.hex]);
+                        setFieldValue("availableColors", [...values.availableColors, color.hex]);
                       }}
                     />
                   )}

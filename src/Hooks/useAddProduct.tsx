@@ -17,7 +17,7 @@ export type ProductInitialValuesType = {
   price: string;
   price_after_descount: string;
   subcategory: { value: string; label: string }[];
-  colors: string[];
+  availableColors: string[];
 };
 
 const useAddProduct = () => {
@@ -46,7 +46,7 @@ const useAddProduct = () => {
     price: "",
     price_after_descount: "",
     subcategory: [],
-    colors: [],
+    availableColors: [],
   };
 
   const validationSchema = yup.object({
@@ -58,7 +58,7 @@ const useAddProduct = () => {
     price: yup.number().required("هذا الحقل مطلوب"),
     images: yup.array().required().min(1, "يجب اختيار صورة واحدة علي الاقل"),
     subcategory: yup.array().optional(),
-    colors: yup.array().optional(),
+    availableColors: yup.array().optional(),
     price_after_descount: yup
       .number()
       .optional()
@@ -83,8 +83,8 @@ const useAddProduct = () => {
     formData.append("price", values.price);
     formData.append("price_after_descount", values.price_after_descount);
 
-    for (let i = 0; i < values.colors.length; i++) {
-      formData.append("colors", values.colors[i]);
+    for (let i = 0; i < values.availableColors.length; i++) {
+      formData.append("availableColors", values.availableColors[i]);
     }
     for (let i = 0; i < values.images.length; i++) {
       formData.append("images", values.images[i]);
@@ -104,7 +104,7 @@ const useAddProduct = () => {
         setFieldValue("price", "");
         setFieldValue("price_after_descount", "");
         setFieldValue("images", []);
-        setFieldValue("colors", []);
+        setFieldValue("availableColors", []);
         setFieldValue("subcategory", []);
         setFieldValue("brand", "");
 
@@ -117,7 +117,7 @@ const useAddProduct = () => {
           price: false,
           price_after_descount: false,
           images: false,
-          colors: false,
+          availableColors: false,
           subcategory: [],
         });
       })
