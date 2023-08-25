@@ -1,16 +1,14 @@
-// import { toast } from "react-toastify";
-
-import { useState } from "react";
 import * as yup from "yup";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
-import { createProduct } from "../store/ProductSlice/ProductSlice";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { FormikHelpers } from "formik";
 
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { createProduct } from "../store/ProductSlice/ProductSlice";
+import { getSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
+
 export type ProductInitialValuesType = {
   title: string;
-  // imageCover: string;
   category: string;
   brand: string;
   images: string[];
@@ -40,7 +38,6 @@ const useAddProduct = () => {
 
   const initialValues: ProductInitialValuesType = {
     title: "",
-    // imageCover: "",
     category: "",
     brand: "",
     images: [],
@@ -59,15 +56,22 @@ const useAddProduct = () => {
     description: yup.string().required("هذا الحقل مطلوب"),
     quantity: yup.number().required("هذا الحقل مطلوب"),
     price: yup.number().required("هذا الحقل مطلوب"),
-    price_after_descount: yup.number().required("هذا الحقل مطلوب"),
     images: yup.array().required().min(1, "يجب اختيار صورة واحدة علي الاقل"),
     subcategory: yup.array().optional(),
     colors: yup.array().optional(),
+    price_after_descount: yup
+      .number()
+      .optional()
+      .lessThan(yup.ref("price"), "السعر يجب ان يكون اقل من السعر قبل الخصم"),
   });
 
   const onSubmit = (
     values: ProductInitialValuesType,
-    { setSubmitting, setFieldValue }: FormikHelpers<ProductInitialValuesType>
+    {
+      setSubmitting,
+      setFieldValue,
+      setTouched,
+    }: FormikHelpers<ProductInitialValuesType>
   ) => {
     const formData = new FormData();
 
@@ -93,9 +97,29 @@ const useAddProduct = () => {
       .unwrap()
       .then(() => {
         toast.success("تمت الاضافة بنجاح");
-        setFieldValue("name", "");
+        setFieldValue("title", "");
         setFieldValue("category", "");
-        // setTouched({ name: false, category: false });
+        setFieldValue("description", "");
+        setFieldValue("quantity", "");
+        setFieldValue("price", "");
+        setFieldValue("price_after_descount", "");
+        setFieldValue("images", []);
+        setFieldValue("colors", []);
+        setFieldValue("subcategory", []);
+        setFieldValue("brand", "");
+
+        setTouched({
+          title: false,
+          category: false,
+          brand: false,
+          description: false,
+          quantity: false,
+          price: false,
+          price_after_descount: false,
+          images: false,
+          colors: false,
+          subcategory: [],
+        });
       })
       .catch(() => {
         toast.error("يوجد خطا ما...");
@@ -103,8 +127,6 @@ const useAddProduct = () => {
       .finally(() => {
         setSubmitting(false);
       });
-
-    // console.log(formData);
   };
 
   return {

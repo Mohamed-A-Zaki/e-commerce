@@ -1,21 +1,20 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 
-import img from "../../../assets/item.png";
-
 import StarIcon from "@mui/icons-material/Star";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { ProductType } from "../../../types/Product/Product.type";
 
-export default function ProductCard() {
+export default function ProductCard({ imageCover }: ProductType) {
   return (
     <Card>
       <Link to="/products/id">
         <CardMedia
           component="img"
-          image={img}
+          image={imageCover}
           alt=""
           height={200}
-          sx={{ objectFit: "fill" }}
+          sx={{ objectFit: "contain", mt: 2 }}
         />
       </Link>
 
