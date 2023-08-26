@@ -103,6 +103,18 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const updateProduct = createAsyncThunk(
+  "Product/updateProduct",
+  async ({ id, formData }: { id: string; formData: FormData }) => {
+    const url = `api/v1/products/${id}`;
+    const { data } = await BaseURL.put<CreateProductResponseType>(
+      url,
+      formData
+    );
+    return data.data;
+  }
+);
+
 const ProductSlice = createSlice({
   name: "Product",
   initialState,

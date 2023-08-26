@@ -5,17 +5,17 @@ import { FormikHelpers } from "formik";
 
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
-  createProduct,
   getSpescificProduct,
+  updateProduct,
 } from "../store/ProductSlice/ProductSlice";
 import { getSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export type ProductInitialValuesType = {
   title: string;
   category: string;
   brand: string;
-  images: string[];
+  images: string[] | File[];
   description: string;
   quantity: string;
   price: string;
@@ -26,6 +26,7 @@ export type ProductInitialValuesType = {
 
 const useEditProduct = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [openColorPicker, setOpenColorPicker] = useState(false);
 
   const dispatch = useAppDispatch();
@@ -81,11 +82,7 @@ const useEditProduct = () => {
 
   const onSubmit = (
     values: ProductInitialValuesType,
-    {
-      setSubmitting,
-      setFieldValue,
-      setTouched,
-    }: FormikHelpers<ProductInitialValuesType>
+    { setSubmitting }: FormikHelpers<ProductInitialValuesType>
   ) => {
     const formData = new FormData();
 
@@ -108,35 +105,11 @@ const useEditProduct = () => {
       formData.append("subcategory", values.subcategory[i].value);
     }
 
-    console.log(formData);
-
-    dispatch(createProduct(formData))
+    dispatch(updateProduct({ id: spescificProduct?._id as string, formData }))
       .unwrap()
       .then(() => {
         toast.success("تمت الاضافة بنجاح");
-        setFieldValue("title", "");
-        setFieldValue("category", "");
-        setFieldValue("description", "");
-        setFieldValue("quantity", "");
-        setFieldValue("price", "");
-        setFieldValue("price_after_descount", "");
-        setFieldValue("images", []);
-        setFieldValue("availableColors", []);
-        setFieldValue("subcategory", []);
-        setFieldValue("brand", "");
-
-        setTouched({
-          title: false,
-          category: false,
-          brand: false,
-          description: false,
-          quantity: false,
-          price: false,
-          price_after_descount: false,
-          images: false,
-          availableColors: false,
-          subcategory: [],
-        });
+        navigate(`/products/${spescificProduct?._id}`);
       })
       .catch(() => {
         toast.error("يوجد خطا ما...");

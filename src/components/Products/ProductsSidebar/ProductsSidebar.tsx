@@ -6,8 +6,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { useAppSelector } from "../../../store/hooks";
 
 export default function ProductsSidebar() {
+  const { brands } = useAppSelector((state) => state.Brands);
+  const { categories } = useAppSelector((state) => state.Categories);
+
   return (
     <Box width={150} flexShrink={0}>
       <FormGroup sx={{ "& span": { fontSize: 12, padding: 0.5 } }}>
@@ -19,26 +23,13 @@ export default function ProductsSidebar() {
           sx={{ marginRight: 0 }}
           label="الكل"
         />
-        <FormControlLabel
-          control={<Checkbox />}
-          sx={{ marginRight: 0 }}
-          label="اجهزة منزلية"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          sx={{ marginRight: 0 }}
-          label="اجهزة منزلية"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          sx={{ marginRight: 0 }}
-          label="اجهزة منزلية"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          sx={{ marginRight: 0 }}
-          label="اجهزة منزلية"
-        />
+        {categories.map((ele) => (
+          <FormControlLabel
+            control={<Checkbox />}
+            sx={{ marginRight: 0 }}
+            label={ele.name}
+          />
+        ))}
       </FormGroup>
 
       <FormGroup sx={{ "& span": { fontSize: 12, padding: 0.5 } }}>
@@ -50,16 +41,13 @@ export default function ProductsSidebar() {
           sx={{ marginRight: 0 }}
           label="الكل"
         />
-        <FormControlLabel
-          control={<Checkbox />}
-          sx={{ marginRight: 0 }}
-          label="ابل"
-        />
-        <FormControlLabel
-          control={<Checkbox />}
-          sx={{ marginRight: 0 }}
-          label="سامسونج"
-        />
+        {brands.map((ele) => (
+          <FormControlLabel
+            control={<Checkbox />}
+            sx={{ marginRight: 0 }}
+            label={ele.name}
+          />
+        ))}
       </FormGroup>
 
       <Box>

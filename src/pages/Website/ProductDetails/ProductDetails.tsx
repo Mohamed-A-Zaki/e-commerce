@@ -33,7 +33,6 @@ export default function ProductDetails() {
     // get brand details
     spescificProduct?.brand &&
       dispatch(getSpescificBrand(spescificProduct.brand));
-    console.log("dwfiehfe");
   }, [dispatch, id, spescificProduct?.brand, spescificProduct?.category]);
 
   return (
