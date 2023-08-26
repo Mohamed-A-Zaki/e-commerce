@@ -31,7 +31,7 @@ const initialState: InitialStateType = {
 export const getProducts = createAsyncThunk(
   "Product/getProducts",
   async (page: number) => {
-    const url = `api/v1/products?limit=4&page=${page}`;
+    const url = `api/v1/products?limit=8&page=${page}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
