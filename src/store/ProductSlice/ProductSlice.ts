@@ -94,6 +94,15 @@ export const createProduct = createAsyncThunk(
   }
 );
 
+export const deleteProduct = createAsyncThunk(
+  "Product/deleteProduct",
+  async (id: string) => {
+    const url = `api/v1/products/${id}`;
+    await BaseURL.delete(url);
+    return id;
+  }
+);
+
 const ProductSlice = createSlice({
   name: "Product",
   initialState,
@@ -172,6 +181,12 @@ const ProductSlice = createSlice({
       .addCase(getCategoryProducts.rejected, (state, { error }) => {
         state.loading = false;
         state.error = error.message as string;
+      })
+
+      .addCase(deleteProduct.fulfilled, (state, { payload }) => {
+        state.products = state.products.filter(
+          (product) => product._id !== payload
+        );
       })
 
       .addCase(createProduct.fulfilled, (state, { payload }) => {

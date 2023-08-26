@@ -12,14 +12,27 @@ import { Link } from "react-router-dom";
 import StarIcon from "@mui/icons-material/Star";
 import { ProductType } from "../../../types/Product/Product.type";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useAppDispatch } from "../../../store/hooks";
+import {
+  openModal,
+  setProductId,
+} from "../../../store/DeleteModalSlice/DeleteModalSlice";
 
 export default function AdminProductCard(props: ProductType) {
   const { _id, imageCover, ratingsQuantity, title, price } = props;
+  const dispatch = useAppDispatch();
 
   return (
     <Card>
       <CardActions sx={{ justifyContent: "space-between" }}>
-        <Button>ازالة</Button>
+        <Button
+          onClick={() => {
+            dispatch(openModal());
+            dispatch(setProductId(_id));
+          }}
+        >
+          ازالة
+        </Button>
         <Button>تعديل</Button>
       </CardActions>
 

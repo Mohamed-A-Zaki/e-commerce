@@ -4,6 +4,7 @@ import BrandReducer from "./BrandSlice/BrandSlice";
 import ProductReducer from "./ProductSlice/ProductSlice";
 import PaginationReducer from "./PaginationSlice/PaginationSlice";
 import SubCategoryReducder from "./SubCategorySlice/SubCategorySlice";
+import DeleteModalReducer from "./DeleteModalSlice/DeleteModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     Categories: CategoryReducer,
     Pagination: PaginationReducer,
     Subcategory: SubCategoryReducder,
+    DeleteModal: DeleteModalReducer,
   },
 });
 
