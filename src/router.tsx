@@ -26,6 +26,7 @@ import AllBrand from "./pages/Website/AllBrand/AllBrand";
 import AllCategory from "./pages/Website/AllCategory/AllCategory";
 import Products from "./pages/Website/Products/Products";
 import PaymentMethod from "./pages/Website/PaymentMethod/PaymentMethod";
+import AdminEditProduct from "./pages/Admin/AdminEditProduct/AdminEditProduct";
 
 const router = createHashRouter([
   {
@@ -99,6 +100,10 @@ const router = createHashRouter([
           {
             path: "addproduct",
             element: <AdminAddProduct />,
+          },
+          {
+            path: "editproduct/:id",
+            element: <AdminEditProduct />,
           },
         ],
       },

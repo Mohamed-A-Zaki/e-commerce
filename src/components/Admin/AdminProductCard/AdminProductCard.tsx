@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import StarIcon from "@mui/icons-material/Star";
 import { ProductType } from "../../../types/Product/Product.type";
@@ -21,6 +21,7 @@ import {
 export default function AdminProductCard(props: ProductType) {
   const { _id, imageCover, ratingsQuantity, title, price } = props;
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   return (
     <Card>
@@ -33,7 +34,13 @@ export default function AdminProductCard(props: ProductType) {
         >
           ازالة
         </Button>
-        <Button>تعديل</Button>
+        <Button
+          onClick={() => {
+            navigate(`/admin/editproduct/${_id}`);
+          }}
+        >
+          تعديل
+        </Button>
       </CardActions>
 
       <Link to={`/products/${_id}`}>
