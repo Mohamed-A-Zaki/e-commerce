@@ -12,12 +12,13 @@ import { getProducts } from "./store/ProductSlice/ProductSlice";
 const App = () => {
   const dispatch = useAppDispatch();
   const { page } = useAppSelector((state) => state.Pagination);
+  const { number_of_pages } = useAppSelector((state) => state.Categories);
 
   useEffect(() => {
-    dispatch(getCategories(page));
+    dispatch(getCategories(page <= number_of_pages ? page : 1));
     dispatch(getBrands(page));
     dispatch(getProducts(page));
-  }, [dispatch, page]);
+  }, [dispatch, number_of_pages, page]);
 
   return (
     <>

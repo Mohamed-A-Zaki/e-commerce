@@ -6,22 +6,33 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import useCategoryNavbar from "../../../Hooks/useCategoryNavbar";
 
-export default function CategoryNavbar() {
+/**
+ * Renders the category navigation bar component.
+ *
+ * @return {JSX.Element} The rendered category navigation bar component.
+ */
+export default function CategoryNavbar(): JSX.Element {
+  const { categories, handle_all_cat, handle_cat } = useCategoryNavbar();
+
   return (
     <AppBar position="static" sx={{ bgcolor: "#fff", color: "#888" }}>
       <Container fixed>
         <Toolbar disableGutters sx={ToolbarStyle}>
-          <Typography fontSize={14}>الكل</Typography>
-          <Typography fontSize={14}>الكترونيات</Typography>
-          <Typography fontSize={14}>ملابس</Typography>
-          <Typography fontSize={14}>كهربية</Typography>
-          <Typography fontSize={14}>تخفيضات</Typography>
-          <Typography fontSize={14}>تخفيضات</Typography>
-          <Typography fontSize={14}>تخفيضات</Typography>
-          <Typography fontSize={14}>تخفيضات</Typography>
-          <Typography fontSize={14}>تخفيضات</Typography>
-          <Typography fontSize={14}>المزيد</Typography>
+          <Typography fontSize={14} onClick={handle_all_cat}>
+            الكل
+          </Typography>
+
+          {categories.map((category) => (
+            <Typography
+              key={category._id}
+              fontSize={14}
+              onClick={() => handle_cat(category._id)}
+            >
+              {category.name}
+            </Typography>
+          ))}
         </Toolbar>
       </Container>
     </AppBar>

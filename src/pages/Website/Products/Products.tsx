@@ -8,8 +8,9 @@ import { useAppSelector } from "../../../store/hooks";
 import usePagination from "../../../Hooks/usePagination";
 
 export default function Products() {
-  const { products } = useAppSelector((state) => state.Products);
-  const { number_of_pages } = useAppSelector((state) => state.Categories);
+  const { products, number_of_pages } = useAppSelector(
+    (state) => state.Products
+  );
 
   usePagination(number_of_pages);
 

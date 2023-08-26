@@ -14,6 +14,7 @@ type InitialStateType = {
   spescificProduct: ProductType | null;
   loading: boolean;
   error: string;
+  number_of_pages: number;
 };
 
 const initialState: InitialStateType = {
@@ -24,12 +25,13 @@ const initialState: InitialStateType = {
   spescificProduct: null,
   loading: true,
   error: "",
+  number_of_pages: 0,
 };
 
 export const getProducts = createAsyncThunk(
   "Product/getProducts",
   async (page: number) => {
-    const url = `api/v1/products?limit=5&page=${page}`;
+    const url = `api/v1/products?limit=4&page=${page}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -39,6 +41,15 @@ export const getSimilerProducts = createAsyncThunk(
   "Product/getSimilerProducts",
   async (cat_id: string) => {
     const url = `api/v1/products?limit=4&category[in][]=${cat_id}`;
+    const { data } = await BaseURL.get<GetProductsResponseType>(url);
+    return data;
+  }
+);
+
+export const getCategoryProducts = createAsyncThunk(
+  "Product/getCategoryProducts",
+  async (cat_id: string) => {
+    const url = `api/v1/products?category[in][]=${cat_id}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -95,6 +106,7 @@ const ProductSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.products = payload.data;
+        state.number_of_pages = payload.paginationResult.numberOfPages;
       })
       .addCase(getProducts.rejected, (state, { error }) => {
         state.loading = false;
@@ -145,6 +157,19 @@ const ProductSlice = createSlice({
         state.spescificProduct = payload.data;
       })
       .addCase(getSpescificProduct.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
+
+      .addCase(getCategoryProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getCategoryProducts.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.products = payload.data;
+        state.number_of_pages = payload.paginationResult.numberOfPages;
+      })
+      .addCase(getCategoryProducts.rejected, (state, { error }) => {
         state.loading = false;
         state.error = error.message as string;
       })
