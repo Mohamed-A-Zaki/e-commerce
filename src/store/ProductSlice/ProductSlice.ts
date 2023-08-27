@@ -5,9 +5,11 @@ import {
   GetProductsResponseType,
   ProductType,
 } from "../../types/Product/Product.type";
+import { filterProductObjectType } from "../FilterProductObjectSlice/FilterProductObjectSlice";
 
 type InitialStateType = {
   products: ProductType[];
+  results_count: number;
   similerProducts: ProductType[];
   bestSellerProducts: ProductType[];
   // modernProducts: ProductType[];
@@ -19,6 +21,7 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   products: [],
+  results_count: 0,
   similerProducts: [],
   bestSellerProducts: [],
   // modernProducts: [],
@@ -32,6 +35,33 @@ export const getProducts = createAsyncThunk(
   "Product/getProducts",
   async (page: number) => {
     const url = `api/v1/products?limit=8&page=${page}`;
+    const { data } = await BaseURL.get<GetProductsResponseType>(url);
+    return data;
+  }
+);
+
+export const filterProducts = createAsyncThunk(
+  "Product/filterProducts",
+  async ({
+    page,
+    sort,
+    category,
+    brand,
+    keyword,
+  }: filterProductObjectType & { page: number }) => {
+    const brand_param = brand
+      .map((item) => {
+        return `brand[in][]=${item}`;
+      })
+      .join("&");
+
+    const category_param = category
+      .map((item) => {
+        return `category[in][]=${item}`;
+      })
+      .join("&");
+
+    const url = `api/v1/products?limit=8&page=${page}&sort=${sort}&keyword=${keyword}&${category_param}&${brand_param}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -127,9 +157,24 @@ const ProductSlice = createSlice({
       .addCase(getProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.products = payload.data;
+        state.results_count = payload.results;
         state.number_of_pages = payload.paginationResult.numberOfPages;
       })
       .addCase(getProducts.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
+
+      .addCase(filterProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(filterProducts.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.products = payload.data;
+        state.results_count = payload.results;
+        state.number_of_pages = payload.paginationResult.numberOfPages;
+      })
+      .addCase(filterProducts.rejected, (state, { error }) => {
         state.loading = false;
         state.error = error.message as string;
       })
@@ -188,6 +233,7 @@ const ProductSlice = createSlice({
       .addCase(getCategoryProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.products = payload.data;
+        state.results_count = payload.results;
         state.number_of_pages = payload.paginationResult.numberOfPages;
       })
       .addCase(getCategoryProducts.rejected, (state, { error }) => {

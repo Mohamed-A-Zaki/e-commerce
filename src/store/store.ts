@@ -5,6 +5,7 @@ import ProductReducer from "./ProductSlice/ProductSlice";
 import PaginationReducer from "./PaginationSlice/PaginationSlice";
 import SubCategoryReducder from "./SubCategorySlice/SubCategorySlice";
 import DeleteModalReducer from "./DeleteModalSlice/DeleteModalSlice";
+import FilterProductObjectReducer from "./FilterProductObjectSlice/FilterProductObjectSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     Pagination: PaginationReducer,
     Subcategory: SubCategoryReducder,
     DeleteModal: DeleteModalReducer,
+    FilterProductObject: FilterProductObjectReducer,
   },
 });
 

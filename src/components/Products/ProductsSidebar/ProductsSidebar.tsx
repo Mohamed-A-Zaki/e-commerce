@@ -6,11 +6,11 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useAppSelector } from "../../../store/hooks";
+import useProductSlidebar from "../../../Hooks/useProductSlidebar";
 
 export default function ProductsSidebar() {
-  const { brands } = useAppSelector((state) => state.Brands);
-  const { categories } = useAppSelector((state) => state.Categories);
+  const { brands, categories, handleBrandChange, handleCategoryChange } =
+    useProductSlidebar();
 
   return (
     <Box width={150} flexShrink={0}>
@@ -25,9 +25,12 @@ export default function ProductsSidebar() {
         />
         {categories.map((ele) => (
           <FormControlLabel
-            control={<Checkbox />}
+            key={ele._id}
             sx={{ marginRight: 0 }}
             label={ele.name}
+            control={
+              <Checkbox onChange={(e) => handleCategoryChange(e, ele)} />
+            }
           />
         ))}
       </FormGroup>
@@ -43,9 +46,10 @@ export default function ProductsSidebar() {
         />
         {brands.map((ele) => (
           <FormControlLabel
-            control={<Checkbox />}
+            key={ele._id}
             sx={{ marginRight: 0 }}
             label={ele.name}
+            control={<Checkbox onChange={(e) => handleBrandChange(e, ele)} />}
           />
         ))}
       </FormGroup>

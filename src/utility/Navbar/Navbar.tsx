@@ -15,23 +15,16 @@ import {
 
 import logo from "../../assets/logo.png";
 
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import useNavbar from "../../Hooks/useNavbar";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function Navbar() {
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const { anchorElNav, handleChange, handleCloseNavMenu, handleOpenNavMenu } =
+    useNavbar();
 
   return (
     <AppBar position="sticky" sx={{ bgcolor: "#000", py: 1 }}>
@@ -46,6 +39,7 @@ export default function Navbar() {
             placeholder="ابحث..."
             size="small"
             sx={SearchStyle}
+            onChange={handleChange}
           />
 
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
