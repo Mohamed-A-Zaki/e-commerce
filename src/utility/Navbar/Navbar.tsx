@@ -23,7 +23,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 export default function Navbar() {
-  const { anchorElNav, handleChange, handleCloseNavMenu, handleOpenNavMenu } =
+  const { anchorElNav, handleBlur, handleCloseNavMenu, handleOpenNavMenu } =
     useNavbar();
 
   return (
@@ -39,7 +39,7 @@ export default function Navbar() {
             placeholder="ابحث..."
             size="small"
             sx={SearchStyle}
-            onChange={handleChange}
+            onBlur={handleBlur}
           />
 
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

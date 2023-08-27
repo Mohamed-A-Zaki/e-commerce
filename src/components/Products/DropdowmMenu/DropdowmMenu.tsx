@@ -1,19 +1,11 @@
-import { useEffect } from "react";
 import { MenuItemStyle } from "../../../Styles/Styles";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { setSort } from "../../../store/FilterProductObjectSlice/FilterProductObjectSlice";
-import { filterProducts } from "../../../store/ProductSlice/ProductSlice";
 
 export default function DropdowmMenu() {
   const dispatch = useAppDispatch();
   const { sort } = useAppSelector((state) => state.FilterProductObject);
-  const filter_object = useAppSelector((state) => state.FilterProductObject);
-  const { page } = useAppSelector((state) => state.Pagination);
-
-  useEffect(() => {
-    dispatch(filterProducts({...filter_object, page}));
-  }, [dispatch, filter_object, page]);
 
   return (
     <FormControl sx={{ width: 230 }} size="small">

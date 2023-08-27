@@ -48,20 +48,31 @@ export const filterProducts = createAsyncThunk(
     category,
     brand,
     keyword,
+    priceFrom,
+    priceTo,
   }: filterProductObjectType & { page: number }) => {
-    const brand_param = brand
+    let brand_param = brand
       .map((item) => {
         return `brand[in][]=${item}`;
       })
       .join("&");
 
-    const category_param = category
+    let category_param = category
       .map((item) => {
         return `category[in][]=${item}`;
       })
       .join("&");
 
-    const url = `api/v1/products?limit=8&page=${page}&sort=${sort}&keyword=${keyword}&${category_param}&${brand_param}`;
+    const priceParam = priceFrom
+      ? priceTo
+        ? `price[gt]=${priceFrom}&price[lt]=${priceTo}`
+        : `price[gt]=${priceFrom}`
+      : "";
+
+    brand_param = brand_param ? `&${brand_param}` : "";
+    category_param = category_param ? `&${category_param}` : "";
+
+    const url = `api/v1/products?limit=8&page=${page}&sort=${sort}&keyword=${keyword}${category_param}${brand_param}&${priceParam}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }

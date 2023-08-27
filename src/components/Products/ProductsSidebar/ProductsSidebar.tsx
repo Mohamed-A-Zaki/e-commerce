@@ -6,11 +6,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import useProductSlidebar from "../../../Hooks/useProductSlidebar";
+import useProductSlidebar from "../../../Hooks/useProductSidebar";
 
 export default function ProductsSidebar() {
-  const { brands, categories, handleBrandChange, handleCategoryChange } =
-    useProductSlidebar();
+  const {
+    brands,
+    categories,
+    handleBrandChange,
+    handleCategoryChange,
+    handleGetAllProducts,
+    handlePriceToBlur,
+    handlePriceFromBlur,
+  } = useProductSlidebar();
 
   return (
     <Box width={150} flexShrink={0}>
@@ -19,7 +26,7 @@ export default function ProductsSidebar() {
           الفئة
         </Typography>
         <FormControlLabel
-          control={<Checkbox />}
+          control={<Checkbox onChange={handleGetAllProducts} />}
           sx={{ marginRight: 0 }}
           label="الكل"
         />
@@ -40,7 +47,7 @@ export default function ProductsSidebar() {
           الماركة
         </Typography>
         <FormControlLabel
-          control={<Checkbox />}
+          control={<Checkbox onChange={handleGetAllProducts} />}
           sx={{ marginRight: 0 }}
           label="الكل"
         />
@@ -65,6 +72,7 @@ export default function ProductsSidebar() {
             type="number"
             size="small"
             sx={{ "& input": { width: 75, height: 10 } }}
+            onBlur={handlePriceFromBlur}
           />
         </Box>
 
@@ -74,6 +82,7 @@ export default function ProductsSidebar() {
             type="number"
             size="small"
             sx={{ "& input": { width: 75, height: 10 } }}
+            onBlur={handlePriceToBlur}
           />
         </Box>
       </Box>
