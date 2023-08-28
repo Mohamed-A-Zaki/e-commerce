@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { setKeyword } from "../store/FilterProductObjectSlice/FilterProductObjectSlice";
 // import { filterProducts } from "../store/ProductSlice/ProductSlice";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../store/AuthSlice/AuthSlice";
 
 const useNavbar = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const open = Boolean(anchorEl);
+
+  const { token, user } = useAppSelector((state) => state.Auth);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -25,7 +31,31 @@ const useNavbar = () => {
     dispatch(setKeyword(e.target.value));
   };
 
-  return { anchorElNav, handleBlur, handleCloseNavMenu, handleOpenNavMenu };
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setAnchorEl(null);
+  };
+
+  return {
+    anchorElNav,
+    handleBlur,
+    handleCloseNavMenu,
+    handleOpenNavMenu,
+    anchorEl,
+    handleClick,
+    handleClose,
+    open,
+    token,
+    user,
+    handleLogout,
+  };
 };
 
 export default useNavbar;

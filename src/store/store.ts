@@ -6,6 +6,7 @@ import PaginationReducer from "./PaginationSlice/PaginationSlice";
 import SubCategoryReducder from "./SubCategorySlice/SubCategorySlice";
 import DeleteModalReducer from "./DeleteModalSlice/DeleteModalSlice";
 import FilterProductObjectReducer from "./FilterProductObjectSlice/FilterProductObjectSlice";
+import AuthReducer from "./AuthSlice/AuthSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     Subcategory: SubCategoryReducder,
     DeleteModal: DeleteModalReducer,
     FilterProductObject: FilterProductObjectReducer,
+    Auth: AuthReducer,
   },
 });
 

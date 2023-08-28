@@ -49,9 +49,6 @@ a {
   border-color: #000;
   border-width: 2px;
 }
-/* .Mui-error {
-  align-self: flex-start;
-} */
 p.Mui-error {
   margin-inline: 0;
 }
@@ -70,7 +67,7 @@ fieldset {
   border-radius: 12px !important;
   padding: 8px !important;
 }
-.submit-btn:hover {
+.submit-btn:disabled {
   color: #888 !important;
 }
 /* end form */
