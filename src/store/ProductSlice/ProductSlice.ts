@@ -31,6 +31,8 @@ const initialState: InitialStateType = {
   number_of_pages: 0,
 };
 
+const token = localStorage.getItem("token");
+
 export const getProducts = createAsyncThunk(
   "Product/getProducts",
   async (page: number) => {
@@ -129,7 +131,8 @@ export const createProduct = createAsyncThunk(
     const url = "api/v1/products";
     const { data } = await BaseURL.post<CreateProductResponseType>(
       url,
-      formData
+      formData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
     return data.data;
   }
@@ -139,7 +142,9 @@ export const deleteProduct = createAsyncThunk(
   "Product/deleteProduct",
   async (id: string) => {
     const url = `api/v1/products/${id}`;
-    await BaseURL.delete(url);
+    await BaseURL.delete(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     return id;
   }
 );
@@ -150,7 +155,8 @@ export const updateProduct = createAsyncThunk(
     const url = `api/v1/products/${id}`;
     const { data } = await BaseURL.put<CreateProductResponseType>(
       url,
-      formData
+      formData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
     return data.data;
   }

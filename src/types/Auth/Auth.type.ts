@@ -17,6 +17,10 @@ export type LoginFormDataType = {
   password: string;
 };
 
+export type ForgetPasswordFormDataType = {
+  email: string;
+};
+
 export type RegisterFormDataType = {
   name: string;
   email: string;

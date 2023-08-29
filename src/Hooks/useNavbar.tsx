@@ -41,6 +41,7 @@ const useNavbar = () => {
   const handleLogout = () => {
     dispatch(logout());
     setAnchorEl(null);
+    navigate("/login");
   };
 
   return {

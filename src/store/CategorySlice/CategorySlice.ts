@@ -23,6 +23,8 @@ const initialState: InitialStateType = {
   number_of_pages: 0,
 };
 
+const token = localStorage.getItem("token");
+
 export const getCategories = createAsyncThunk(
   "Category/getCategories",
   async (page: number) => {
@@ -47,7 +49,8 @@ export const createCategory = createAsyncThunk(
     const url = "api/v1/categories";
     const { data } = await BaseURL.post<CreateCategoryResponseType>(
       url,
-      formData
+      formData,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
     return data.data;
   }

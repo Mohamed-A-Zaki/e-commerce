@@ -76,6 +76,16 @@ export default function Login() {
               </Typography>
             </Stack>
 
+            <Box
+              component={Link}
+              to="/forget-password"
+              color="error.main"
+              display={"block"}
+              my={3}
+            >
+              نسيت كلمة السر؟
+            </Box>
+
             <Box my={5} display={"flex"} gap={3}>
               <Link to="/admin/allproducts">الدخول ادمن</Link>
               <Link to="/user/allorders">الدخول مستخدم</Link>

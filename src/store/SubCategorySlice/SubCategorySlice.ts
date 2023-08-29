@@ -14,6 +14,8 @@ const initialState: InitialStateType = {
   subCategories: [],
 };
 
+const token = localStorage.getItem("token");
+
 export const getSubCategory = createAsyncThunk(
   "SubCategory/getSubCategory",
   async (cat_id: string) => {
@@ -29,7 +31,8 @@ export const createSubCategory = createAsyncThunk(
     const url = "api/v1/subcategories";
     const { data } = await BaseURL.post<CreateSubCategoryResponseType>(
       url,
-      values
+      values,
+      { headers: { Authorization: `Bearer ${token}` } }
     );
     return data.data;
   }

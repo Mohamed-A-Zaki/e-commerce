@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import BaseURL from "../../Api/BaseURL";
 import {
   AuthResponseType,
+  ForgetPasswordFormDataType,
   LoginFormDataType,
   RegisterFormDataType,
   UserType,
@@ -33,6 +34,15 @@ export const login = createAsyncThunk(
     const url = "api/v1/auth/login";
     const { data } = await BaseURL.post<AuthResponseType>(url, login_data);
     return data;
+  }
+);
+
+export const sendCode = createAsyncThunk(
+  "Auth/sendCode",
+  async (values: ForgetPasswordFormDataType) => {
+    const url = "api/v1/auth/forgotPasswords";
+    await BaseURL.post(url, values);
+    return;
   }
 );
 

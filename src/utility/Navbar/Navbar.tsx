@@ -20,6 +20,7 @@ import useNavbar from "../../Hooks/useNavbar";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
+import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
@@ -167,14 +168,28 @@ export default function Navbar() {
                   sx={{ display: { xs: "none", md: "block" } }}
                   MenuListProps={{ "aria-labelledby": "basic-button" }}
                 >
-                  <MenuItem onClick={handleClose}>
-                    <Link to="/user/profile">
-                      <Typography sx={MenuItemStyle}>
-                        <AccountCircleIcon />
-                        الملف الشخصي
-                      </Typography>
-                    </Link>
-                  </MenuItem>
+                  {user.role === "user" && (
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/user/profile">
+                        <Typography sx={MenuItemStyle}>
+                          <AccountCircleIcon />
+                          الملف الشخصي
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                  )}
+
+                  {user.role === "admin" && (
+                    <MenuItem onClick={handleClose}>
+                      <Link to="/admin/allproducts">
+                        <Typography sx={MenuItemStyle}>
+                          <DashboardIcon />
+                          لوحة التحكم
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                  )}
+
                   <MenuItem
                     onClick={() => {
                       handleCloseNavMenu();

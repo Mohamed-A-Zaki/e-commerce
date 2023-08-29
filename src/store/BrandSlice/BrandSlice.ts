@@ -22,6 +22,8 @@ const initialState: InitialStateType = {
   number_of_pages: 0,
 };
 
+const token = localStorage.getItem("token");
+
 export const getBrands = createAsyncThunk(
   "Brand/getBrands",
   async (page: number) => {
@@ -44,7 +46,11 @@ export const createBrand = createAsyncThunk(
   "Category/createBrand",
   async (formData: FormData) => {
     const url = "api/v1/brands";
-    const { data } = await BaseURL.post<CreateBrandResponseType>(url, formData);
+    const { data } = await BaseURL.post<CreateBrandResponseType>(
+      url,
+      formData,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
     return data.data;
   }
 );
