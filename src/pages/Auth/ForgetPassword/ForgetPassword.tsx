@@ -7,8 +7,8 @@ import {
   Typography,
 } from "@mui/material";
 import { Formik, Form } from "formik";
-// import { Link } from "react-router-dom";
-import useForgetPasssword from "../../../Hooks/useForgetPasssword";
+import useForgetPasssword from "../../../Hooks/Auth/useForgetPasssword";
+
 
 export default function ForgetPassword() {
   const { initialValues, validationSchema, onSubmit } = useForgetPasssword();

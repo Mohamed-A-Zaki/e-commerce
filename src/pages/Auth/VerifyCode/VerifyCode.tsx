@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Form, Formik } from "formik";
-import useVerifyCode from "../../../Hooks/useVerifyCode";
+import useVerifyCode from "../../../Hooks/Auth/useVerifyCode";
 
 export default function VerifyCode() {
   const { validationSchema, initialValues, onSubmit } = useVerifyCode();

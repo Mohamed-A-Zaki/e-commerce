@@ -6,7 +6,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import useProductSlidebar from "../../../Hooks/useProductSidebar";
+import useProductSidebar from "../../../Hooks/Product/useProductSidebar";
 
 export default function ProductsSidebar() {
   const {
@@ -17,7 +17,7 @@ export default function ProductsSidebar() {
     handleGetAllProducts,
     handlePriceToBlur,
     handlePriceFromBlur,
-  } = useProductSlidebar();
+  } = useProductSidebar();
 
   return (
     <Box width={150} flexShrink={0}>

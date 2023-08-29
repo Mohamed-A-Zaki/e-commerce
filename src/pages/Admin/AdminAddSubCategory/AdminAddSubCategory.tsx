@@ -13,7 +13,7 @@ import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 
 import { Form, Formik } from "formik";
 import { useAppSelector } from "../../../store/hooks";
-import useAddSubCategory from "../../../Hooks/useAddSubCategory";
+import useAddSubCategory from "../../../Hooks/Category/useAddSubCategory";
 
 export default function AdminAddSubCategory() {
   const { categories } = useAppSelector((state) => state.Categories);

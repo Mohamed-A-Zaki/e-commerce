@@ -1,10 +1,10 @@
 import { Stack } from "@mui/material";
 
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
-import useAdminAllProducts from "../../../Hooks/useAdminAllProducts";
 import PaginationComp from "../../../utility/PaginationComp/PaginationComp";
 import AdminProductList from "../../../components/Admin/AdminProductList/AdminProductList";
 import DeleteModal from "../../../utility/DeleteModal/DeleteModal";
+import useAdminAllProducts from "../../../Hooks/Product/useAdminAllProducts";
 
 export default function AdminAllProducts() {
   const products = useAdminAllProducts();

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Form, Formik } from "formik";
-import useResetPassword from "../../../Hooks/useResetPassword";
+import useResetPassword from "../../../Hooks/Auth/useResetPassword";
 
 export default function ResetPassword() {
   const { initialValues, validationSchema, onSubmit } = useResetPassword();

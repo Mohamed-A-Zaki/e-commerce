@@ -4,7 +4,7 @@ import ProductsTopBar from "../../../components/Products/ProductsTopBar/Products
 import ProductsSidebar from "../../../components/Products/ProductsSidebar/ProductsSidebar";
 import ProductList from "../../../utility/Product/ProductList/ProductList";
 import PaginationComp from "../../../utility/PaginationComp/PaginationComp";
-import useProductsPage from "../../../Hooks/useProductsPage";
+import useProductsPage from "../../../Hooks/Product/useProductsPage";
 
 export default function Products() {
   const products = useProductsPage();

@@ -8,7 +8,8 @@ import {
 } from "@mui/material";
 import { Form, Formik } from "formik";
 import { Link } from "react-router-dom";
-import useRegister from "../../../Hooks/useRegister";
+import useRegister from "../../../Hooks/Auth/useRegister";
+
 
 export default function Register() {
   const { initialValues, validationSchema, onSubmit } = useRegister();

@@ -6,7 +6,7 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import useCategoryNavbar from "../../../Hooks/useCategoryNavbar";
+import useCategoryNavbar from "../../../Hooks/Category/useCategoryNavbar";
 
 /**
  * Renders the category navigation bar component.
