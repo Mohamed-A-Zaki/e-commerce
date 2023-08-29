@@ -21,6 +21,16 @@ export type ForgetPasswordFormDataType = {
   email: string;
 };
 
+export type VerifyCodeFormDataType = {
+  resetCode: string;
+};
+
+export type ResetFormDataType = {
+  email: string,
+  newPassword: string,
+  passwrdConfirm: string,
+};
+
 export type RegisterFormDataType = {
   name: string;
   email: string;

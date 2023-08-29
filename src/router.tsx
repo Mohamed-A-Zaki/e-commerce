@@ -28,6 +28,8 @@ import Products from "./pages/Website/Products/Products";
 import PaymentMethod from "./pages/Website/PaymentMethod/PaymentMethod";
 import AdminEditProduct from "./pages/Admin/AdminEditProduct/AdminEditProduct";
 import ForgetPassword from "./pages/Auth/ForgetPassword/ForgetPassword";
+import VerifyCode from "./pages/Auth/VerifyCode/VerifyCode";
+import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
 
 const router = createHashRouter([
   {
@@ -49,6 +51,14 @@ const router = createHashRouter([
       {
         path: "forget-password",
         element: <ForgetPassword />,
+      },
+      {
+        path: "verify-code",
+        element: <VerifyCode />,
+      },
+      {
+        path: "reset-password",
+        element: <ResetPassword />,
       },
       {
         path: "cart",

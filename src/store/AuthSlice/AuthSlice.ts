@@ -6,7 +6,9 @@ import {
   ForgetPasswordFormDataType,
   LoginFormDataType,
   RegisterFormDataType,
+  ResetFormDataType,
   UserType,
+  VerifyCodeFormDataType,
 } from "../../types/Auth/Auth.type";
 
 type InitialStateType = {
@@ -41,6 +43,24 @@ export const sendCode = createAsyncThunk(
   "Auth/sendCode",
   async (values: ForgetPasswordFormDataType) => {
     const url = "api/v1/auth/forgotPasswords";
+    await BaseURL.post(url, values);
+    return;
+  }
+);
+
+export const verifyCode = createAsyncThunk(
+  "Auth/verifyCode",
+  async (values: VerifyCodeFormDataType) => {
+    const url = "api/v1/auth/verifyResetCode";
+    await BaseURL.post(url, values);
+    return;
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "Auth/resetPassword",
+  async (values: ResetFormDataType) => {
+    const url = "api/v1/auth/resetPassword";
     await BaseURL.post(url, values);
     return;
   }
