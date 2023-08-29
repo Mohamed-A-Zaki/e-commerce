@@ -5,14 +5,14 @@ import {
   removeCategory,
   setPriceFrom,
   setPriceTo,
-} from "../store/FilterProductObjectSlice/FilterProductObjectSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { BrandType } from "../types/Brand/Brand.type";
-import { CategoryType } from "../types/Category/Category.type";
+} from "../../store/FilterProductObjectSlice/FilterProductObjectSlice";
 import {
   filterProducts,
   getProducts,
-} from "../store/ProductSlice/ProductSlice";
+} from "../../store/ProductSlice/ProductSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { BrandType } from "../../types/Brand/Brand.type";
+import { CategoryType } from "../../types/Category/Category.type";
 
 const useProductSidebar = () => {
   const dispatch = useAppDispatch();
@@ -50,10 +50,14 @@ const useProductSidebar = () => {
     }
   };
 
-  const handlePriceFromBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+  const handlePriceFromBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
+  ) => {
     dispatch(setPriceFrom(e.target.value));
   };
-  const handlePriceToBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>) => {
+  const handlePriceToBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement, Element>
+  ) => {
     dispatch(setPriceTo(e.target.value));
   };
 
@@ -65,7 +69,7 @@ const useProductSidebar = () => {
     handleGetAllProducts,
     handlePriceToBlur,
     handlePriceFromBlur,
-    filter_object
+    filter_object,
   };
 };
 

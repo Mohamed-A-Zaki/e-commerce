@@ -1,10 +1,10 @@
 import { toast } from "react-toastify";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   closeModal,
   setProductId,
-} from "../store/DeleteModalSlice/DeleteModalSlice";
-import { deleteProduct } from "../store/ProductSlice/ProductSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+} from "../../store/DeleteModalSlice/DeleteModalSlice";
+import { deleteProduct } from "../../store/ProductSlice/ProductSlice";
 
 const useDeleteProductModal = () => {
   const dispatch = useAppDispatch();

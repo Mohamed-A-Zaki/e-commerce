@@ -1,7 +1,7 @@
-import { filterProducts } from "../store/ProductSlice/ProductSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import usePagination from "./usePagination";
 import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { filterProducts } from "../../store/ProductSlice/ProductSlice";
+import usePagination from "../Pagination/usePagination";
 
 const useProductsPage = () => {
   const { products, number_of_pages } = useAppSelector(

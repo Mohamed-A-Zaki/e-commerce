@@ -1,10 +1,10 @@
 import * as yup from "yup";
-import { useAppDispatch } from "../store/hooks";
-import { register } from "../store/AuthSlice/AuthSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FormikHelpers } from "formik";
-import { RegisterFormDataType } from "../types/Auth/Auth.type";
+import { useAppDispatch } from "../../store/hooks";
+import { RegisterFormDataType } from "../../types/Auth/Auth.type";
+import { register } from "../../store/AuthSlice/AuthSlice";
 
 const useRegister = () => {
   const dispatch = useAppDispatch();

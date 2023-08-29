@@ -16,11 +16,11 @@ import {
 import logo from "../../assets/logo.png";
 
 import { Link } from "react-router-dom";
-import useNavbar from "../../Hooks/useNavbar";
+import useNavbar from "../../Hooks/Navbar/useNavbar";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import LogoutIcon from "@mui/icons-material/Logout";
-import DashboardIcon from '@mui/icons-material/Dashboard';
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 

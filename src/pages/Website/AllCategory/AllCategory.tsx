@@ -1,5 +1,5 @@
-import {useAppSelector } from "../../../store/hooks";
-import usePagination from "../../../Hooks/usePagination";
+import { useAppSelector } from "../../../store/hooks";
+import usePagination from "../../../Hooks/Pagination/usePagination";
 
 import MainSection from "../../../utility/MainSection/MainSection";
 import PaginationComp from "../../../utility/PaginationComp/PaginationComp";

@@ -1,10 +1,10 @@
 import * as yup from "yup";
-import { useAppDispatch } from "../store/hooks";
-import { login } from "../store/AuthSlice/AuthSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { login } from "../../store/AuthSlice/AuthSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FormikHelpers } from "formik";
-import { LoginFormDataType } from "../types/Auth/Auth.type";
+import { LoginFormDataType } from "../../types/Auth/Auth.type";
 
 const useLogin = () => {
   const dispatch = useAppDispatch();

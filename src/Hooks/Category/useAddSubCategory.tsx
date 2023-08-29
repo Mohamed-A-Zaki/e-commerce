@@ -1,8 +1,8 @@
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { FormikHelpers } from "formik";
-import { useAppDispatch } from "../store/hooks";
-import { createSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
+import { useAppDispatch } from "../../store/hooks";
+import { createSubCategory } from "../../store/SubCategorySlice/SubCategorySlice";
 
 type InitialValuesType = {
   name: string;

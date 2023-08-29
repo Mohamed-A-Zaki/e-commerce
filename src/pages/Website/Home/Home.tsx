@@ -1,4 +1,4 @@
-import usePagination from "../../../Hooks/usePagination";
+import usePagination from "../../../Hooks/Pagination/usePagination";
 import BrandSection from "../../../components/Home/BrandSection/BrandSection";
 import CategorySection from "../../../components/Home/CategorySection/CategorySection";
 import Discount from "../../../components/Home/Discount/Discount";

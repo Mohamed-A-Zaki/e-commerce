@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { setKeyword } from "../store/FilterProductObjectSlice/FilterProductObjectSlice";
-// import { filterProducts } from "../store/ProductSlice/ProductSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { setKeyword } from "../../store/FilterProductObjectSlice/FilterProductObjectSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useNavigate } from "react-router-dom";
-import { logout } from "../store/AuthSlice/AuthSlice";
+import { logout } from "../../store/AuthSlice/AuthSlice";
 
 const useNavbar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

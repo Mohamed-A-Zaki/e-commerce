@@ -1,7 +1,7 @@
 import { Form, Formik } from "formik";
 import { Box, Stack, TextField, Typography } from "@mui/material";
 
-import useAddBrand from "../../../Hooks/useAddBrand";
+import useAddBrand from "../../../Hooks/Brand/useAddBrand";
 import MainButton from "../../../utility/MainButton/MainButton";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 

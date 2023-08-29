@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 import {
   setNumberOfPages,
   setPage,
-} from "../store/PaginationSlice/PaginationSlice";
+} from "../../store/PaginationSlice/PaginationSlice";
 
 const usePagination = (numberOfPages: number) => {
   const dispatch = useAppDispatch();

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
-
-import usePagination from "./usePagination";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { getProducts } from "../store/ProductSlice/ProductSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getProducts } from "../../store/ProductSlice/ProductSlice";
+import usePagination from "../Pagination/usePagination";
 
 const useAdminAllProducts = () => {
   const dispatch = useAppDispatch();

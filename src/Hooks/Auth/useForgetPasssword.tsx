@@ -1,10 +1,10 @@
 import * as yup from "yup";
-import { useAppDispatch } from "../store/hooks";
-import { sendCode } from "../store/AuthSlice/AuthSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FormikHelpers } from "formik";
-import { ForgetPasswordFormDataType } from "../types/Auth/Auth.type";
+import { useAppDispatch } from "../../store/hooks";
+import { ForgetPasswordFormDataType } from "../../types/Auth/Auth.type";
+import { sendCode } from "../../store/AuthSlice/AuthSlice";
 
 const useForgetPasssword = () => {
   const dispatch = useAppDispatch();

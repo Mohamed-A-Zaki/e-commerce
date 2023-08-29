@@ -15,7 +15,7 @@ import MultiSelect from "react-select";
 import { CompactPicker } from "react-color";
 import makeAnimated from "react-select/animated";
 
-import useAddProduct from "../../../Hooks/useAddProduct";
+import useAddProduct from "../../../Hooks/Product/useAddProduct";
 import DropZone from "../../../utility/DropZone/DropZone";
 import ColorItem from "../../../utility/ColorItem/ColorItem";
 import MainButton from "../../../utility/MainButton/MainButton";
@@ -250,7 +250,9 @@ export default function AdminAddProduct() {
                         onClick={() => {
                           setFieldValue(
                             "availableColors",
-                            values.availableColors.filter((ele) => ele !== value)
+                            values.availableColors.filter(
+                              (ele) => ele !== value
+                            )
                           );
                         }}
                       />
@@ -276,7 +278,10 @@ export default function AdminAddProduct() {
                   {openColorPicker && (
                     <CompactPicker
                       onChangeComplete={(color) => {
-                        setFieldValue("availableColors", [...values.availableColors, color.hex]);
+                        setFieldValue("availableColors", [
+                          ...values.availableColors,
+                          color.hex,
+                        ]);
                       }}
                     />
                   )}

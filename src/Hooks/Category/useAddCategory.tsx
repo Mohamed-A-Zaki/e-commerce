@@ -3,10 +3,10 @@ import { useRef, useState } from "react";
 
 import * as yup from "yup";
 import { FormikHelpers } from "formik";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch } from "../../store/hooks";
 
-import avatar from "../assets/avatar.png";
-import { createCategory } from "../store/CategorySlice/CategorySlice";
+import avatar from "../../assets/avatar.png";
+import { createCategory } from "../../store/CategorySlice/CategorySlice";
 
 type InitialValuesType = {
   name: string;

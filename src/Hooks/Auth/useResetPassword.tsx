@@ -1,10 +1,11 @@
 import * as yup from "yup";
-import { useAppDispatch } from "../store/hooks";
-import { resetPassword } from "../store/AuthSlice/AuthSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FormikHelpers } from "formik";
-import { ResetFormDataType } from "../types/Auth/Auth.type";
+import { useAppDispatch } from "../../store/hooks";
+import { ResetFormDataType } from "../../types/Auth/Auth.type";
+import { resetPassword } from "../../store/AuthSlice/AuthSlice";
+
 
 const useResetPassword = () => {
   const dispatch = useAppDispatch();

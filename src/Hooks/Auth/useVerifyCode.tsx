@@ -1,10 +1,10 @@
 import { FormikHelpers } from "formik";
 import { toast } from "react-toastify";
 import * as yup from "yup";
-import { useAppDispatch } from "../store/hooks";
 import { useNavigate } from "react-router-dom";
-import { VerifyCodeFormDataType } from "../types/Auth/Auth.type";
-import { verifyCode } from "../store/AuthSlice/AuthSlice";
+import { useAppDispatch } from "../../store/hooks";
+import { VerifyCodeFormDataType } from "../../types/Auth/Auth.type";
+import { verifyCode } from "../../store/AuthSlice/AuthSlice";
 
 const useVerifyCode = () => {
   const dispatch = useAppDispatch();

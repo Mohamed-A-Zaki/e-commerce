@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import { FormikErrors } from "formik";
-import { ProductInitialValuesType } from "../../Hooks/useAddProduct";
+import { ProductInitialValuesType } from "../../Hooks/Product/useAddProduct";
 
 const thumbsContainer: React.CSSProperties = {
   display: "flex",

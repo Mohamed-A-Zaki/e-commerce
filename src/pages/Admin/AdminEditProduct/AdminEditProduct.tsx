@@ -19,7 +19,7 @@ import DropZone from "../../../utility/DropZone/DropZone";
 import ColorItem from "../../../utility/ColorItem/ColorItem";
 import MainButton from "../../../utility/MainButton/MainButton";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
-import useEditProduct from "../../../Hooks/useEditProduct";
+import useEditProduct from "../../../Hooks/Product/useEditProduct";
 const animatedComponents = makeAnimated();
 
 export default function AdminEditProduct() {

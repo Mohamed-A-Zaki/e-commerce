@@ -1,17 +1,18 @@
 import * as yup from "yup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { FormikHelpers } from "formik";
 
-import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { createProduct } from "../store/ProductSlice/ProductSlice";
-import { getSubCategory } from "../store/SubCategorySlice/SubCategorySlice";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getSpescificProduct, updateProduct } from "../../store/ProductSlice/ProductSlice";
+import { getSubCategory } from "../../store/SubCategorySlice/SubCategorySlice";
 
 export type ProductInitialValuesType = {
   title: string;
   category: string;
   brand: string;
-  images: string[];
+  images: string[] | File[];
   description: string;
   quantity: string;
   price: string;
@@ -20,13 +21,20 @@ export type ProductInitialValuesType = {
   availableColors: string[];
 };
 
-const useAddProduct = () => {
+const useEditProduct = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [openColorPicker, setOpenColorPicker] = useState(false);
 
   const dispatch = useAppDispatch();
   const { brands } = useAppSelector((state) => state.Brands);
   const { categories } = useAppSelector((state) => state.Categories);
   const { subCategories } = useAppSelector((state) => state.Subcategory);
+  const { spescificProduct } = useAppSelector((state) => state.Products);
+
+  useEffect(() => {
+    dispatch(getSpescificProduct(id as string));
+  }, [dispatch, id]);
 
   const ToogleColorPicker = () => {
     setOpenColorPicker(!openColorPicker);
@@ -37,16 +45,20 @@ const useAddProduct = () => {
   };
 
   const initialValues: ProductInitialValuesType = {
-    title: "",
-    category: "",
-    brand: "",
+    title: spescificProduct?.title || "",
+    category: spescificProduct?.category || "",
+    brand: spescificProduct?.brand || "",
     images: [],
-    description: "",
-    quantity: "",
-    price: "",
+    description: spescificProduct?.description || "",
+    quantity: (spescificProduct?.quantity || 0).toString(),
+    price: (spescificProduct?.price || 0).toString(),
+    subcategory: [
+      ...((spescificProduct?.subcategory || []).map((ele) => {
+        return { value: ele, label: ele };
+      }) as { value: string; label: string }[]),
+    ],
     price_after_descount: "",
-    subcategory: [],
-    availableColors: [],
+    availableColors: spescificProduct?.availableColors || [],
   };
 
   const validationSchema = yup.object({
@@ -67,11 +79,7 @@ const useAddProduct = () => {
 
   const onSubmit = (
     values: ProductInitialValuesType,
-    {
-      setSubmitting,
-      setFieldValue,
-      setTouched,
-    }: FormikHelpers<ProductInitialValuesType>
+    { setSubmitting }: FormikHelpers<ProductInitialValuesType>
   ) => {
     const formData = new FormData();
 
@@ -94,33 +102,11 @@ const useAddProduct = () => {
       formData.append("subcategory", values.subcategory[i].value);
     }
 
-    dispatch(createProduct(formData))
+    dispatch(updateProduct({ id: spescificProduct?._id as string, formData }))
       .unwrap()
       .then(() => {
         toast.success("تمت الاضافة بنجاح");
-        setFieldValue("title", "");
-        setFieldValue("category", "");
-        setFieldValue("description", "");
-        setFieldValue("quantity", "");
-        setFieldValue("price", "");
-        setFieldValue("price_after_descount", "");
-        setFieldValue("images", []);
-        setFieldValue("availableColors", []);
-        setFieldValue("subcategory", []);
-        setFieldValue("brand", "");
-
-        setTouched({
-          title: false,
-          category: false,
-          brand: false,
-          description: false,
-          quantity: false,
-          price: false,
-          price_after_descount: false,
-          images: false,
-          availableColors: false,
-          subcategory: [],
-        });
+        navigate(`/products/${spescificProduct?._id}`);
       })
       .catch(() => {
         toast.error("يوجد خطا ما...");
@@ -143,4 +129,4 @@ const useAddProduct = () => {
   };
 };
 
-export default useAddProduct;
+export default useEditProduct;

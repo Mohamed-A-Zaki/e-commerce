@@ -1,9 +1,9 @@
-import { setPage } from "../store/PaginationSlice/PaginationSlice";
+import { setPage } from "../../store/PaginationSlice/PaginationSlice";
 import {
   getCategoryProducts,
   getProducts,
-} from "../store/ProductSlice/ProductSlice";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
+} from "../../store/ProductSlice/ProductSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const useCategoryNavbar = () => {
   const dispatch = useAppDispatch();

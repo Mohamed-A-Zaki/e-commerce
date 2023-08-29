@@ -4,7 +4,7 @@ import AddComment from "../AddComment/AddComment";
 import CommentList from "../CommentList/CommentList";
 import RateSectionHeading from "../RateSectionHeading/RateSectionHeading";
 import PaginationComp from "../../../utility/PaginationComp/PaginationComp";
-import usePagination from "../../../Hooks/usePagination";
+import usePagination from "../../../Hooks/Pagination/usePagination";
 import { useAppSelector } from "../../../store/hooks";
 
 export default function RatesSection() {
