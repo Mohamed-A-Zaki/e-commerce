@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   closeModal,
   setProductId,
-} from "../../store/DeleteModalSlice/DeleteModalSlice";
+} from "../../store/DeleteProductModalSlice/DeleteProductModalSlice";
 import { deleteProduct } from "../../store/ProductSlice/ProductSlice";
 
 const useDeleteProductModal = () => {

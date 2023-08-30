@@ -6,6 +6,7 @@ import RateSectionHeading from "../RateSectionHeading/RateSectionHeading";
 import PaginationComp from "../../../utility/PaginationComp/PaginationComp";
 import usePagination from "../../../Hooks/Pagination/usePagination";
 import { useAppSelector } from "../../../store/hooks";
+import DeleteReviewModal from "../../../utility/DeleteReviewModal/DeleteReviewModal";
 
 export default function RatesSection() {
   const { number_of_pages } = useAppSelector((state) => state.Categories);
@@ -20,6 +21,7 @@ export default function RatesSection() {
         <CommentList />
         <PaginationComp />
       </Card>
+      <DeleteReviewModal />
     </Container>
   );
 }

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { setPage } from "../../store/PaginationSlice/PaginationSlice";
 import {
   getCategoryProducts,
@@ -6,6 +7,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const useCategoryNavbar = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { categories } = useAppSelector((state) => state.Categories);
 
@@ -15,6 +17,7 @@ const useCategoryNavbar = () => {
   };
 
   const handle_cat = (id: string) => {
+    navigate("/products");
     dispatch(getCategoryProducts(id));
   };
 

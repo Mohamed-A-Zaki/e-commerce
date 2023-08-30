@@ -1,4 +1,5 @@
 import { PaginationResultType } from "../PaginationResult/PaginationResult.type";
+import { ReviewType } from "../Rating/Rating";
 
 export type ProductType = {
   title: string;
@@ -7,7 +8,7 @@ export type ProductType = {
   quantity: number;
   sold: number;
   price: number;
-  brand : string;
+  brand: string;
   availableColors: string[];
   imageCover: string;
   images: string[];
@@ -15,6 +16,8 @@ export type ProductType = {
   subcategory: string[];
   ratingsQuantity: number;
   _id: string;
+  ratingsAverage: number;
+  reviews: ReviewType[];
   createdAt: string;
   updatedAt: string;
 };

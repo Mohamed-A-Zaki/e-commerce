@@ -16,7 +16,7 @@ import { useAppDispatch } from "../../../store/hooks";
 import {
   openModal,
   setProductId,
-} from "../../../store/DeleteModalSlice/DeleteModalSlice";
+} from "../../../store/DeleteProductModalSlice/DeleteProductModalSlice";
 
 export default function AdminProductCard(props: ProductType) {
   const { _id, imageCover, ratingsQuantity, title, price } = props;

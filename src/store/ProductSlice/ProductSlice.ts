@@ -6,6 +6,7 @@ import {
   ProductType,
 } from "../../types/Product/Product.type";
 import { filterProductObjectType } from "../FilterProductObjectSlice/FilterProductObjectSlice";
+import { createReviw, deleteReview } from "../RatingSlice/RatingSlice";
 
 type InitialStateType = {
   products: ProductType[];
@@ -168,6 +169,7 @@ const ProductSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      // get products
       .addCase(getProducts.pending, (state) => {
         state.loading = true;
       })
@@ -181,7 +183,7 @@ const ProductSlice = createSlice({
         state.loading = false;
         state.error = error.message as string;
       })
-
+      // filter products
       .addCase(filterProducts.pending, (state) => {
         state.loading = true;
       })
@@ -195,7 +197,7 @@ const ProductSlice = createSlice({
         state.loading = false;
         state.error = error.message as string;
       })
-
+      // get dimiller products
       .addCase(getSimilerProducts.pending, (state) => {
         state.loading = true;
       })
@@ -207,7 +209,7 @@ const ProductSlice = createSlice({
         state.loading = false;
         state.error = error.message as string;
       })
-
+      // get best seller products
       .addCase(getBestSellerProducts.pending, (state) => {
         state.loading = true;
       })
@@ -232,6 +234,7 @@ const ProductSlice = createSlice({
       //   state.error = error.message as string;
       // })
 
+      // get one product
       .addCase(getSpescificProduct.pending, (state) => {
         state.loading = true;
       })
@@ -243,7 +246,7 @@ const ProductSlice = createSlice({
         state.loading = false;
         state.error = error.message as string;
       })
-
+      // get category products
       .addCase(getCategoryProducts.pending, (state) => {
         state.loading = true;
       })
@@ -257,15 +260,26 @@ const ProductSlice = createSlice({
         state.loading = false;
         state.error = error.message as string;
       })
-
+      // delete product
       .addCase(deleteProduct.fulfilled, (state, { payload }) => {
         state.products = state.products.filter(
           (product) => product._id !== payload
         );
       })
-
+      // create product
       .addCase(createProduct.fulfilled, (state, { payload }) => {
         state.products.unshift(payload);
+      })
+      // add new rating to state
+      .addCase(createReviw.fulfilled, (state, { payload }) => {
+        state.spescificProduct?.reviews.unshift(payload);
+      })
+      // delete review
+      .addCase(deleteReview.fulfilled, (state, { payload }) => {
+        if (state.spescificProduct?.reviews) {
+          state.spescificProduct.reviews =
+            state.spescificProduct.reviews.filter((ele) => ele._id !== payload);
+        }
       });
   },
 });

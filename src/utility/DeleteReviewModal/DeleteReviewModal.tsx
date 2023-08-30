@@ -6,11 +6,10 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import useDeleteProductModal from "../../Hooks/Product/useDeleteProductModal";
+import useDeleteReviewModal from "../../Hooks/Review/useDeleteReviewModal";
 
-
-export default function DeleteModal() {
-  const { open, handleClose, handleDeleteProduct } = useDeleteProductModal();
+export default function DeleteReviewModal() {
+  const { open, handleClose, handleDeleteReview } = useDeleteReviewModal();
 
   return (
     <Dialog
@@ -19,15 +18,15 @@ export default function DeleteModal() {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">حذف منتج</DialogTitle>
+      <DialogTitle id="alert-dialog-title">حذف تقييم</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          هل انت متاكد من عملية حذف المنتج؟
+          هل انت متاكد من عملية حذف التقييم؟
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>الغاء</Button>
-        <Button onClick={handleDeleteProduct} autoFocus>
+        <Button onClick={handleDeleteReview} autoFocus>
           حذف
         </Button>
       </DialogActions>

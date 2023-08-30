@@ -5,8 +5,8 @@ const initialState = {
   productId: "",
 };
 
-const DeleteModalSlice = createSlice({
-  name: "DeleteModal",
+const DeleteProductModalSlice = createSlice({
+  name: "DeleteProductModal",
   initialState,
   reducers: {
     openModal: (state) => {
@@ -21,6 +21,6 @@ const DeleteModalSlice = createSlice({
   },
 });
 
-export const { openModal, closeModal, setProductId } = DeleteModalSlice.actions;
+export const { openModal, closeModal, setProductId } = DeleteProductModalSlice.actions;
 
-export default DeleteModalSlice.reducer;
+export default DeleteProductModalSlice.reducer;
