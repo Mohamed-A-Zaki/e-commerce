@@ -1,10 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { setPage } from "../../store/PaginationSlice/PaginationSlice";
-import {
-  getCategoryProducts,
-  getProducts,
-} from "../../store/ProductSlice/ProductSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { getCategoryProducts, getProducts } from "../../store/products/ProductSlice/ProductSlice";
 
 const useCategoryNavbar = () => {
   const navigate = useNavigate();

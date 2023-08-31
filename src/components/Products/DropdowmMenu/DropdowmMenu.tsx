@@ -1,7 +1,7 @@
 import { MenuItemStyle } from "../../../Styles/Styles";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { setSort } from "../../../store/FilterProductObjectSlice/FilterProductObjectSlice";
+import { setSort } from "../../../store/products/FilterProductObjectSlice/FilterProductObjectSlice";
 
 export default function DropdowmMenu() {
   const dispatch = useAppDispatch();

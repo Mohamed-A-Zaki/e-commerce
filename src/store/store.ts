@@ -1,14 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CategoryReducer from "./CategorySlice/CategorySlice";
 import BrandReducer from "./BrandSlice/BrandSlice";
-import ProductReducer from "./ProductSlice/ProductSlice";
 import PaginationReducer from "./PaginationSlice/PaginationSlice";
 import SubCategoryReducder from "./SubCategorySlice/SubCategorySlice";
-import DeleteModalReducer from "./DeleteProductModalSlice/DeleteProductModalSlice";
-import FilterProductObjectReducer from "./FilterProductObjectSlice/FilterProductObjectSlice";
+import DeleteModalReducer from "./products/DeleteProductModalSlice/DeleteProductModalSlice";
 import AuthReducer from "./AuthSlice/AuthSlice";
 import RatingReducer from "./RatingSlice/RatingSlice";
 import DeleteReviewModalReducer from "./DeleteReviewModalSlice/DeleteReviewModalSlice";
+import EditReviewModalReducer from "./EditReviewModalSlice/EditReviewModalSlice";
+import ProductReducer from "./products/ProductSlice/ProductSlice";
+import FilterProductObjectReducer from "./products/FilterProductObjectSlice/FilterProductObjectSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,7 +19,8 @@ export const store = configureStore({
     Pagination: PaginationReducer,
     Subcategory: SubCategoryReducder,
     DeleteModal: DeleteModalReducer,
-    DeleteReview : DeleteReviewModalReducer,
+    DeleteReview: DeleteReviewModalReducer,
+    EditReview: EditReviewModalReducer,
     FilterProductObject: FilterProductObjectReducer,
     Auth: AuthReducer,
     Rating: RatingReducer,

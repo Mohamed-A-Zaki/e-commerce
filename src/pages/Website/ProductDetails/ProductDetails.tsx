@@ -5,12 +5,9 @@ import ProductDetailsContainer from "../../../components/ProductDetails/ProductD
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import {
-  getSimilerProducts,
-  getSpescificProduct,
-} from "./../../../store/ProductSlice/ProductSlice";
 import { getSpescificCategory } from "../../../store/CategorySlice/CategorySlice";
 import { getSpescificBrand } from "../../../store/BrandSlice/BrandSlice";
+import { getSimilerProducts, getSpescificProduct } from "../../../store/products/ProductSlice/ProductSlice";
 
 export default function ProductDetails() {
   const { id } = useParams();

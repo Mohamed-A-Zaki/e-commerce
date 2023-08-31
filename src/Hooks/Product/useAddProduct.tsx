@@ -4,8 +4,8 @@ import { toast } from "react-toastify";
 import { FormikHelpers } from "formik";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { createProduct } from "../../store/ProductSlice/ProductSlice";
 import { getSubCategory } from "../../store/SubCategorySlice/SubCategorySlice";
+import { createProduct } from "../../store/products/ProductSlice/ProductSlice";
 
 export type ProductInitialValuesType = {
   title: string;

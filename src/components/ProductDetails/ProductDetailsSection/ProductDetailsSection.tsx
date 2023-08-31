@@ -1,10 +1,12 @@
 import { Box, Typography } from "@mui/material";
 
+import StarIcon from "@mui/icons-material/Star";
+import { useAppSelector } from "../../../store/hooks";
+
 import ColorItem from "../../../utility/ColorItem/ColorItem";
 import MainButton from "../../../utility/MainButton/MainButton";
 import PriceButton from "../../../utility/PriceButton/PriceButton";
 import { ProductType } from "../../../types/Product/Product.type";
-import { useAppSelector } from "../../../store/hooks";
 
 type Props = {
   spescificProduct: ProductType | null;
@@ -29,8 +31,8 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
           {spescificProduct?.title}
         </Typography>
 
-        <Typography color={"#FFC107"} mt={1}>
-          {spescificProduct?.ratingsQuantity}
+        <Typography color={"#FFC107"} mt={1} display={"flex"} gap={0.5}>
+          <StarIcon /> {spescificProduct?.ratingsAverage || 0}
         </Typography>
       </Box>
 

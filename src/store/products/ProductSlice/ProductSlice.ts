@@ -1,12 +1,8 @@
+import BaseURL from "../../../Api/BaseURL";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import BaseURL from "../../Api/BaseURL";
-import {
-  CreateProductResponseType,
-  GetProductsResponseType,
-  ProductType,
-} from "../../types/Product/Product.type";
+import { CreateProductResponseType, GetProductsResponseType, ProductType } from "../../../types/Product/Product.type";
 import { filterProductObjectType } from "../FilterProductObjectSlice/FilterProductObjectSlice";
-import { createReviw, deleteReview } from "../RatingSlice/RatingSlice";
+import { createReviw, deleteReview, editReview } from "../../RatingSlice/RatingSlice";
 
 type InitialStateType = {
   products: ProductType[];
@@ -270,7 +266,7 @@ const ProductSlice = createSlice({
       .addCase(createProduct.fulfilled, (state, { payload }) => {
         state.products.unshift(payload);
       })
-      // add new rating to state
+      // add new review to state
       .addCase(createReviw.fulfilled, (state, { payload }) => {
         state.spescificProduct?.reviews.unshift(payload);
       })
@@ -279,6 +275,14 @@ const ProductSlice = createSlice({
         if (state.spescificProduct?.reviews) {
           state.spescificProduct.reviews =
             state.spescificProduct.reviews.filter((ele) => ele._id !== payload);
+        }
+      })
+      // edit review
+      .addCase(editReview.fulfilled, (state, { payload }) => {
+        if (state.spescificProduct?.reviews) {
+          state.spescificProduct.reviews = state.spescificProduct.reviews.map(
+            (ele) => (ele._id === payload._id ? payload : ele)
+          );
         }
       });
   },

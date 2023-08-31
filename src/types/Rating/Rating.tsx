@@ -23,6 +23,11 @@ export type CreateRatingProps = {
   values: RatingFormDataType;
 };
 
+export type EditRatingProps = {
+  rate_id: string;
+  values: RatingFormDataType;
+};
+
 export type CreateReviewResponeType = {
   data: ReviewType;
 };

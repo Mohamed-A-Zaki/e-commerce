@@ -11,7 +11,7 @@ export default function CommentList() {
   }
 
   return (
-    <Box borderTop={1} borderColor={"#ddd"}>
+    <Box>
       {spescificProduct?.reviews.map((review) => {
         return <CommentItem key={review._id} {...review} />;
       })}

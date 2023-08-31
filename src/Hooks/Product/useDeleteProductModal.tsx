@@ -3,8 +3,8 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   closeModal,
   setProductId,
-} from "../../store/DeleteProductModalSlice/DeleteProductModalSlice";
-import { deleteProduct } from "../../store/ProductSlice/ProductSlice";
+} from "../../store/products/DeleteProductModalSlice/DeleteProductModalSlice";
+import { deleteProduct } from "../../store/products/ProductSlice/ProductSlice";
 
 const useDeleteProductModal = () => {
   const dispatch = useAppDispatch();

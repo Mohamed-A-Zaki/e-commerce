@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { getCategories } from "./store/CategorySlice/CategorySlice";
 import { ToastContainer } from "react-toastify";
 import { getBrands } from "./store/BrandSlice/BrandSlice";
-import { getProducts } from "./store/ProductSlice/ProductSlice";
+import { getProducts } from "./store/products/ProductSlice/ProductSlice";
 
 const App = () => {
   const dispatch = useAppDispatch();

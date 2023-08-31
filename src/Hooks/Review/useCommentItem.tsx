@@ -1,7 +1,11 @@
 import {
   openDeleteReviewModal,
-  setReviewId,
+  setDeleteReviewId,
 } from "../../store/DeleteReviewModalSlice/DeleteReviewModalSlice";
+import {
+  openEditReviewModal,
+  setEditReviewId,
+} from "../../store/EditReviewModalSlice/EditReviewModalSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 const useCommentItem = (id: string) => {
@@ -10,10 +14,15 @@ const useCommentItem = (id: string) => {
 
   const handleDeleteButton = () => {
     dispatch(openDeleteReviewModal());
-    dispatch(setReviewId(id));
+    dispatch(setDeleteReviewId(id));
   };
 
-  return { handleDeleteButton, auth };
+  const handleEditButton = () => {
+    dispatch(openEditReviewModal());
+    dispatch(setEditReviewId(id));
+  };
+
+  return { handleDeleteButton, handleEditButton, auth };
 };
 
 export default useCommentItem;

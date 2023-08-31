@@ -9,7 +9,8 @@ import {
 import useDeleteReviewModal from "../../Hooks/Review/useDeleteReviewModal";
 
 export default function DeleteReviewModal() {
-  const { open, handleClose, handleDeleteReview } = useDeleteReviewModal();
+  const { open, handleClose, handleDeleteReview, loading } =
+    useDeleteReviewModal();
 
   return (
     <Dialog
@@ -26,8 +27,8 @@ export default function DeleteReviewModal() {
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>الغاء</Button>
-        <Button onClick={handleDeleteReview} autoFocus>
-          حذف
+        <Button onClick={handleDeleteReview} autoFocus disabled={loading}>
+          {loading ? "جاري الحذف" : "حذف"}
         </Button>
       </DialogActions>
     </Dialog>

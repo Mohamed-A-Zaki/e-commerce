@@ -15,13 +15,13 @@ const DeleteProductModalSlice = createSlice({
     closeDeleteReviewModal: (state) => {
       state.open = false;
     },
-    setReviewId: (state, { payload }) => {
+    setDeleteReviewId: (state, { payload }) => {
       state.reviewId = payload;
     },
   },
 });
 
-export const { openDeleteReviewModal, closeDeleteReviewModal, setReviewId } =
+export const { openDeleteReviewModal, closeDeleteReviewModal, setDeleteReviewId } =
   DeleteProductModalSlice.actions;
 
 export default DeleteProductModalSlice.reducer;

@@ -1,16 +1,6 @@
-import {
-  addBrand,
-  addCategory,
-  removeBrand,
-  removeCategory,
-  setPriceFrom,
-  setPriceTo,
-} from "../../store/FilterProductObjectSlice/FilterProductObjectSlice";
-import {
-  filterProducts,
-  getProducts,
-} from "../../store/ProductSlice/ProductSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { addBrand, addCategory, removeBrand, removeCategory, setPriceFrom, setPriceTo } from "../../store/products/FilterProductObjectSlice/FilterProductObjectSlice";
+import { filterProducts, getProducts } from "../../store/products/ProductSlice/ProductSlice";
 import { BrandType } from "../../types/Brand/Brand.type";
 import { CategoryType } from "../../types/Category/Category.type";
 

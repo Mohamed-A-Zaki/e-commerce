@@ -5,8 +5,8 @@ import { FormikHelpers } from "formik";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { getSpescificProduct, updateProduct } from "../../store/ProductSlice/ProductSlice";
 import { getSubCategory } from "../../store/SubCategorySlice/SubCategorySlice";
+import { getSpescificProduct, updateProduct } from "../../store/products/ProductSlice/ProductSlice";
 
 export type ProductInitialValuesType = {
   title: string;

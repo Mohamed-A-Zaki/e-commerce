@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { setKeyword } from "../../store/FilterProductObjectSlice/FilterProductObjectSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../store/AuthSlice/AuthSlice";
+import { setKeyword } from "../../store/products/FilterProductObjectSlice/FilterProductObjectSlice";
 
 const useNavbar = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

@@ -7,10 +7,16 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function CommentItem({ user, review, rating, _id }: ReviewType) {
-  const { auth, handleDeleteButton } = useCommentItem(_id);
+  const { auth, handleDeleteButton, handleEditButton } = useCommentItem(_id);
 
   return (
-    <Box px={3} py={2} borderBottom={1} borderColor={"#ddd"}>
+    <Box
+      px={3}
+      py={2}
+      borderBottom={1}
+      borderColor={"#ddd"}
+      sx={{ "&:last-child": { borderBottom: 0 } }}
+    >
       <Stack
         direction={"row"}
         alignItems={"center"}
@@ -29,7 +35,12 @@ export default function CommentItem({ user, review, rating, _id }: ReviewType) {
 
         {(typeof user === "string" ? user : user._id) === auth.user._id && (
           <Box>
-            <IconButton color="secondary" aria-label="edit" size="small">
+            <IconButton
+              color="secondary"
+              aria-label="edit"
+              size="small"
+              onClick={handleEditButton}
+            >
               <EditIcon />
             </IconButton>
 

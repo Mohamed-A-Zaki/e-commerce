@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   CreateRatingProps,
   CreateReviewResponeType,
+  EditRatingProps,
 } from "../../types/Rating/Rating";
 import BaseURL from "../../Api/BaseURL";
 
@@ -33,14 +34,33 @@ export const deleteReview = createAsyncThunk(
   }
 );
 
+export const editReview = createAsyncThunk(
+  "Rating/editReview",
+  async ({ rate_id, values }: EditRatingProps) => {
+    const token = localStorage.getItem("token");
+    const url = `api/v1/reviews/${rate_id}`;
+    const { data } = await BaseURL.put(url, values, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data.data;
+  }
+);
+
 const RatingSlice = createSlice({
   name: "Rating",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(createReviw.rejected, (state, { error }) => {
-      state.error = error.message as string;
-    })
+    builder
+      .addCase(createReviw.rejected, (state, { error }) => {
+        state.error = error.message as string;
+      })
+      .addCase(deleteReview.rejected, (state, { error }) => {
+        state.error = error.message as string;
+      })
+      .addCase(editReview.rejected, (state, { error }) => {
+        state.error = error.message as string;
+      });
   },
 });
 

@@ -6,7 +6,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { ProductType } from "../../../types/Product/Product.type";
 
 export default function ProductCard(props: ProductType) {
-  const { _id, imageCover, ratingsQuantity, title, price } = props;
+  const { _id, imageCover, title, price, ratingsAverage } = props;
 
   return (
     <Card>
@@ -34,7 +34,7 @@ export default function ProductCard(props: ProductType) {
           justifyContent={"space-between"}
         >
           <Typography sx={{ display: "flex", gap: 0.5, color: "#FFC107" }}>
-            <StarIcon /> {ratingsQuantity}
+            <StarIcon /> {ratingsAverage || 0}
           </Typography>
           <Typography fontWeight={"bold"} fontSize={20}>
             {price} جنيه
