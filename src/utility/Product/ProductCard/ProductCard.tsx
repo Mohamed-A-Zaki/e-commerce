@@ -1,12 +1,26 @@
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  CardMedia,
+  Stack,
+  SxProps,
+  Typography,
+  Theme,
+} from "@mui/material";
 
 import StarIcon from "@mui/icons-material/Star";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+
 import { ProductType } from "../../../types/Product/Product.type";
+import useProductCard from "../../../Hooks/Product/useProductCard";
 
 export default function ProductCard(props: ProductType) {
   const { _id, imageCover, title, price, ratingsAverage } = props;
+
+  const { handleAddToWishList, handleRemoveFromWishList, wish_list_ids } =
+    useProductCard(_id);
 
   return (
     <Card>
@@ -21,7 +35,14 @@ export default function ProductCard(props: ProductType) {
       </Link>
 
       <CardContent>
-        <FavoriteBorderIcon sx={{ mr: "auto", display: "block" }} />
+        {wish_list_ids.includes(_id) ? (
+          <FavoriteIcon
+            sx={{ ...iconStyle, color: "error.main" }}
+            onClick={handleRemoveFromWishList}
+          />
+        ) : (
+          <FavoriteBorderIcon sx={iconStyle} onClick={handleAddToWishList} />
+        )}
 
         <Typography my={1} component="div">
           {/* سود كربون ساعة يد ذكية بيب إس أسود كربون */}
@@ -44,3 +65,9 @@ export default function ProductCard(props: ProductType) {
     </Card>
   );
 }
+
+const iconStyle: SxProps<Theme> = {
+  mr: "auto",
+  display: "block",
+  cursor: "pointer",
+};

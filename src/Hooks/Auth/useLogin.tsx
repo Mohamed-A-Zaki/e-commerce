@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FormikHelpers } from "formik";
 import { LoginFormDataType } from "../../types/Auth/Auth.type";
+import { getWishList } from "../../store/WishList/WishListSlice";
 
 const useLogin = () => {
   const dispatch = useAppDispatch();
@@ -32,6 +33,7 @@ const useLogin = () => {
       .then(() => {
         toast.success("تم تسجيل الدخول بنجاح");
         navigate("/");
+        dispatch(getWishList());
       })
       .catch(() => {
         toast.error("يوجد خطا ما");

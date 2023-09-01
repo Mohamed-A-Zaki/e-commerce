@@ -10,6 +10,7 @@ import DeleteReviewModalReducer from "./DeleteReviewModalSlice/DeleteReviewModal
 import EditReviewModalReducer from "./EditReviewModalSlice/EditReviewModalSlice";
 import ProductReducer from "./products/ProductSlice/ProductSlice";
 import FilterProductObjectReducer from "./products/FilterProductObjectSlice/FilterProductObjectSlice";
+import WishListReducer from "./WishList/WishListSlice";
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     FilterProductObject: FilterProductObjectReducer,
     Auth: AuthReducer,
     Rating: RatingReducer,
+    WishList: WishListReducer,
   },
 });
 

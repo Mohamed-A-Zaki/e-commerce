@@ -14,10 +14,10 @@ export default function AddressCard() {
         </Box>
         <Typography>القاهرة مدينه نصر شارع التسعين عماره ١٤</Typography>
 
-        <Typography sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+        <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
           رقم الهاتف :
           <Typography color={"text.secondary"}>0021313432423</Typography>
-        </Typography>
+        </Box>
       </CardContent>
     </Card>
   );

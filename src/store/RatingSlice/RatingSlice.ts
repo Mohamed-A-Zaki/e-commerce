@@ -25,7 +25,7 @@ const initialState: InitialState = {
 export const getReviews = createAsyncThunk(
   "Rating/getReviews",
   async ({ prod_id, page }: { prod_id: string; page: number }) => {
-    const url = `api/v1/products/${prod_id}/reviews?limit=2&page=${page}`;
+    const url = `api/v1/products/${prod_id}/reviews?limit=5&page=${page}`;
     const { data } = await BaseURL.get<GetReviewsResponseType>(url);
     return data;
   }
