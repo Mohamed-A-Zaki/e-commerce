@@ -3,12 +3,33 @@ import {
   CreateRatingProps,
   CreateReviewResponeType,
   EditRatingProps,
+  GetReviewsResponseType,
+  ReviewType,
 } from "../../types/Rating/Rating";
 import BaseURL from "../../Api/BaseURL";
 
-const initialState = {
-  error: "",
+type InitialState = {
+  reviews: ReviewType[];
+  loading: boolean;
+  error: string;
+  number_of_pages: number;
 };
+
+const initialState: InitialState = {
+  reviews: [],
+  loading: false,
+  error: "",
+  number_of_pages: 0,
+};
+
+export const getReviews = createAsyncThunk(
+  "Rating/getReviews",
+  async ({ prod_id, page }: { prod_id: string; page: number }) => {
+    const url = `api/v1/products/${prod_id}/reviews?limit=2&page=${page}`;
+    const { data } = await BaseURL.get<GetReviewsResponseType>(url);
+    return data;
+  }
+);
 
 export const createReviw = createAsyncThunk(
   "Rating/createReviw",
@@ -52,11 +73,48 @@ const RatingSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      /**
+       * get reviews
+       */
+      .addCase(getReviews.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getReviews.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.reviews = payload.data;
+        state.number_of_pages = payload.paginationResult.numberOfPages;
+      })
+      .addCase(getReviews.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
+      /**
+       * add new review
+       */
+      .addCase(createReviw.fulfilled, (state, { payload }) => {
+        state.reviews.unshift(payload);
+      })
       .addCase(createReviw.rejected, (state, { error }) => {
         state.error = error.message as string;
       })
+      /**
+       *  delete review
+       */
+      .addCase(deleteReview.fulfilled, (state, { payload }) => {
+        state.reviews = state.reviews.filter(
+          (review) => review._id !== payload
+        );
+      })
       .addCase(deleteReview.rejected, (state, { error }) => {
         state.error = error.message as string;
+      })
+      /**
+       * edit review
+       */
+      .addCase(editReview.fulfilled, (state, { payload }) => {
+        state.reviews = state.reviews.map((review) =>
+          review._id === payload._id ? payload : review
+        );
       })
       .addCase(editReview.rejected, (state, { error }) => {
         state.error = error.message as string;

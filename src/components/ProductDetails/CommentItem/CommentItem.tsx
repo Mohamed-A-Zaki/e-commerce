@@ -13,9 +13,12 @@ export default function CommentItem({ user, review, rating, _id }: ReviewType) {
     <Box
       px={3}
       py={2}
-      borderBottom={1}
-      borderColor={"#ddd"}
-      sx={{ "&:last-child": { borderBottom: 0 } }}
+      boxShadow={3}
+      my={1.5}
+      borderRadius={1.5}
+      // borderBottom={1}
+      // borderColor={"#ddd"}
+      // sx={{ "&:last-child": { borderBottom: 0 } }}
     >
       <Stack
         direction={"row"}

@@ -3,14 +3,14 @@ import { Card, Container } from "@mui/material";
 import AddComment from "../AddComment/AddComment";
 import CommentList from "../CommentList/CommentList";
 import RateSectionHeading from "../RateSectionHeading/RateSectionHeading";
-// import PaginationComp from "../../../utility/PaginationComp/PaginationComp";
+import PaginationComp from "../../../utility/PaginationComp/PaginationComp";
 // import usePagination from "../../../Hooks/Pagination/usePagination";
 // import { useAppSelector } from "../../../store/hooks";
 import DeleteReviewModal from "../../../utility/DeleteReviewModal/DeleteReviewModal";
 import EditReviewModal from "../../../utility/EditReviewModal/EditReviewModal";
 
 export default function RatesSection() {
-  // const { number_of_pages } = useAppSelector((state) => state.Categories);
+  // const { number_of_pages } = useAppSelector((state) => state.Rating);
   // usePagination(number_of_pages);
 
   return (
@@ -19,7 +19,7 @@ export default function RatesSection() {
         <RateSectionHeading />
         <AddComment />
         <CommentList />
-        {/* <PaginationComp /> */}
+        <PaginationComp />
       </Card>
       <DeleteReviewModal />
       <EditReviewModal />

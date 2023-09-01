@@ -1,3 +1,5 @@
+import { PaginationResultType } from "../PaginationResult/PaginationResult.type";
+
 export type ReviewType = {
   _id: string;
   review: string;
@@ -16,6 +18,12 @@ export type ReviewType = {
 export type RatingFormDataType = {
   review: string;
   rating: string;
+};
+
+export type GetReviewsResponseType = {
+  results: number;
+  paginationResult: PaginationResultType;
+  data: ReviewType[];
 };
 
 export type CreateRatingProps = {
