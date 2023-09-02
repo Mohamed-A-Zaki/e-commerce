@@ -7,7 +7,7 @@ import useAdminCoupon from "../../../Hooks/Coupon/useAdminCoupon";
 
 export default function AdminCoupon(props: CouponType) {
   const { _id, name, expire, discount } = props;
-  const { handleDeletCoupon } = useAdminCoupon(_id);
+  const { handleDeletButton, handleEditButton } = useAdminCoupon(_id);
 
   return (
     <Card sx={{ borderRadius: 3, position: "relative" }}>
@@ -33,7 +33,7 @@ export default function AdminCoupon(props: CouponType) {
             color="secondary"
             aria-label="edit"
             size="small"
-            // onClick={handleEditButton}
+            onClick={handleEditButton}
           >
             <EditIcon />
           </IconButton>
@@ -42,7 +42,7 @@ export default function AdminCoupon(props: CouponType) {
             color="error"
             aria-label="delete"
             size="small"
-            onClick={handleDeletCoupon}
+            onClick={handleDeletButton}
           >
             <DeleteIcon />
           </IconButton>

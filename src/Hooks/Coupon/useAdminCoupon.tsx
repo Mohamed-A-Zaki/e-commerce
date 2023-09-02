@@ -1,22 +1,24 @@
-import { toast } from "react-toastify";
-import { deleteCoupon } from "../../store/CouponSlice/CouponSlice";
 import { useAppDispatch } from "../../store/hooks";
+import {
+  openDeleteCouponModal,
+  setDeleteCouponID,
+} from "../../store/DeleteCouponModalSlice/DeleteCouponModalSlice";
+import { useNavigate } from "react-router-dom";
 
 const useAdminCoupon = (id: string) => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleDeletCoupon = () => {
-    dispatch(deleteCoupon(id))
-      .unwrap()
-      .then(() => {
-        toast.success("تم الحذف بنجاح");
-      })
-      .catch(() => {
-        toast.error("يوجد خطا ما");
-      });
+  const handleDeletButton = () => {
+    dispatch(openDeleteCouponModal());
+    dispatch(setDeleteCouponID(id));
   };
 
-  return { handleDeletCoupon };
+  const handleEditButton = () => {
+    navigate(`/admin/editcoupon/${id}`);
+  };
+
+  return { handleDeletButton, handleEditButton };
 };
 
 export default useAdminCoupon;

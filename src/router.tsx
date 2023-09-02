@@ -31,6 +31,7 @@ import ForgetPassword from "./pages/Auth/ForgetPassword/ForgetPassword";
 import VerifyCode from "./pages/Auth/VerifyCode/VerifyCode";
 import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
 import AdminAddCoupon from "./pages/Admin/AdminAddCoupon/AdminAddCoupon";
+import AdminEditCoupon from "./pages/Admin/AdminEditCoupon/AdminEditCoupon";
 
 const router = createHashRouter([
   {
@@ -116,6 +117,10 @@ const router = createHashRouter([
           {
             path: "addcoupon",
             element: <AdminAddCoupon />,
+          },
+          {
+            path: "editcoupon/:id",
+            element: <AdminEditCoupon />,
           },
           {
             path: "addproduct",

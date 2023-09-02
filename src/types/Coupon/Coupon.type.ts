@@ -24,3 +24,4 @@ export type GetCouponsResponseType = {
   paginationResult: PaginationResultType;
   data: CouponType[];
 };
+
