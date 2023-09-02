@@ -8,6 +8,7 @@ export default function AdminSidebar() {
     { id: 4, text: "اضف تصنيف", to: "addcategory" },
     { id: 5, text: "اضف تصنيف فرعي", to: "addsubcategory" },
     { id: 6, text: "اضف منتج", to: "addproduct" },
+    { id: 7, text: "اضف كوبون", to: "addcoupon" },
   ];
 
   return <SidebarList list={list} />;

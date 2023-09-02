@@ -11,6 +11,7 @@ import EditReviewModalReducer from "./EditReviewModalSlice/EditReviewModalSlice"
 import ProductReducer from "./products/ProductSlice/ProductSlice";
 import FilterProductObjectReducer from "./products/FilterProductObjectSlice/FilterProductObjectSlice";
 import WishListReducer from "./WishList/WishListSlice";
+import CouponReducer from "./CouponSlice/CouponSlice";
 
 export const store = configureStore({
   reducer: {
@@ -26,6 +27,7 @@ export const store = configureStore({
     Auth: AuthReducer,
     Rating: RatingReducer,
     WishList: WishListReducer,
+    Coupon: CouponReducer,
   },
 });
 

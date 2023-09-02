@@ -30,6 +30,7 @@ import AdminEditProduct from "./pages/Admin/AdminEditProduct/AdminEditProduct";
 import ForgetPassword from "./pages/Auth/ForgetPassword/ForgetPassword";
 import VerifyCode from "./pages/Auth/VerifyCode/VerifyCode";
 import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
+import AdminAddCoupon from "./pages/Admin/AdminAddCoupon/AdminAddCoupon";
 
 const router = createHashRouter([
   {
@@ -111,6 +112,10 @@ const router = createHashRouter([
           {
             path: "addsubcategory",
             element: <AdminAddSubCategory />,
+          },
+          {
+            path: "addcoupon",
+            element: <AdminAddCoupon />,
           },
           {
             path: "addproduct",
