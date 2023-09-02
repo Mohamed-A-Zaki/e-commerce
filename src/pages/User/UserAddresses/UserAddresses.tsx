@@ -1,21 +1,21 @@
 import { Box, Stack } from "@mui/material";
-import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
-import AddressList from "../../../components/User/AddressList/AddressList";
 import MainButton from "../../../utility/MainButton/MainButton";
-import { useNavigate } from "react-router-dom";
+import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
+import useUserAddresses from "../../../Hooks/Address/useUserAddresses";
+import AddressList from "../../../components/User/AddressList/AddressList";
+import DeleteAddressModal from "../../../utility/DeleteAddressModal/DeleteAddressModal";
 
 export default function UserAddresses() {
-  const navigate = useNavigate();
+  const { handleClick } = useUserAddresses();
 
   return (
     <Stack spacing={2} my={2}>
       <SectionTitle>دفتر العنوانين</SectionTitle>
       <AddressList />
       <Box textAlign={"center"}>
-        <MainButton onClick={() => navigate("/user/add-address")}>
-          اضف عنوان جديد
-        </MainButton>
+        <MainButton onClick={handleClick}>اضف عنوان جديد</MainButton>
       </Box>
+      <DeleteAddressModal />
     </Stack>
   );
 }

@@ -1,7 +1,10 @@
+import { useAppSelector } from "../../../store/hooks";
 import AddressCard from "../AddressCard/AddressCard";
 
 export default function AddressList() {
-  return [...Array(3)].map((_ele, indx) => {
-    return <AddressCard key={indx} />;
-  });
+  const { addresses } = useAppSelector((state) => state.Address);
+
+  return addresses.map((address) => {
+    return <AddressCard key={address._id} {...address} />;
+  })
 }

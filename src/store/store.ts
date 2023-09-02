@@ -13,6 +13,8 @@ import FilterProductObjectReducer from "./products/FilterProductObjectSlice/Filt
 import WishListReducer from "./WishList/WishListSlice";
 import CouponReducer from "./CouponSlice/CouponSlice";
 import DeleteCouponModalReducer from "./DeleteCouponModalSlice/DeleteCouponModalSlice";
+import AddressReducer from "./AddressSlice/AddressSlice";
+import DeleteAddressModalReducer from "./DeleteAddressModalSlice/DeleteAddressModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -29,7 +31,9 @@ export const store = configureStore({
     Rating: RatingReducer,
     WishList: WishListReducer,
     Coupon: CouponReducer,
-    DeleteCouponModal : DeleteCouponModalReducer
+    DeleteCouponModal: DeleteCouponModalReducer,
+    Address: AddressReducer,
+    DeleteAddressModal : DeleteAddressModalReducer
   },
 });
 

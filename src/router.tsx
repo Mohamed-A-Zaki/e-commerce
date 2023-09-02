@@ -153,7 +153,7 @@ const router = createHashRouter([
             element: <AddNewAddress />,
           },
           {
-            path: "edit-address",
+            path: "edit-address/:id",
             element: <EditAddress />,
           },
           {

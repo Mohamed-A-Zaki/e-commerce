@@ -1,22 +1,25 @@
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { AddressType } from "../../../types/Address/Address.type";
+import useAddressCard from "./../../../Hooks/Address/useAddressCard";
 
-export default function AddressCard() {
-  const navigate = useNavigate();
+export default function AddressCard(props: AddressType) {
+  const { _id, alias, details, phone } = props;
+  const { handleDeleteButton, handleEditButton } = useAddressCard(_id);
 
   return (
-    <Card sx={{ borderRadius: 3 }}>
+    <Card sx={{ borderRadius: 3, position: "relative" }}>
       <CardContent sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-        <Box display={"flex"} alignItems={"center"}>
-          <Typography sx={{ flexGrow: 1 }}>المنزل</Typography>
-          <Button onClick={() => navigate("/user/edit-address")}>تعديل</Button>
-          <Button>حذف</Button>
+        <Typography sx={{ flexGrow: 1 }}>{alias}</Typography>
+
+        <Box position={"absolute"} top={15} left={15}>
+          <Button onClick={handleEditButton}>تعديل</Button>
+          <Button onClick={handleDeleteButton}>حذف</Button>
         </Box>
-        <Typography>القاهرة مدينه نصر شارع التسعين عماره ١٤</Typography>
+
+        <Typography>{details}</Typography>
 
         <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-          رقم الهاتف :
-          <Typography color={"text.secondary"}>0021313432423</Typography>
+          رقم الهاتف :<Typography>{phone}</Typography>
         </Box>
       </CardContent>
     </Card>
