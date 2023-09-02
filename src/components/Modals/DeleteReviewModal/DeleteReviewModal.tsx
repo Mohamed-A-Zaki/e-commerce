@@ -6,11 +6,11 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import useDeleteAddressModal from "../../Hooks/Address/useDeleteAddressModal";
+import useDeleteReviewModal from "../../../Hooks/Review/useDeleteReviewModal";
 
-export default function DeleteAddressModal() {
-  const { open, handleClose, handleDeleteCoupon, loading } =
-    useDeleteAddressModal();
+export default function DeleteReviewModal() {
+  const { open, handleClose, handleDeleteReview, loading } =
+    useDeleteReviewModal();
 
   return (
     <Dialog
@@ -22,12 +22,12 @@ export default function DeleteAddressModal() {
       <DialogTitle id="alert-dialog-title">حذف تقييم</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          هل انت متاكد من عملية حذف العنوان؟
+          هل انت متاكد من عملية حذف التقييم؟
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>الغاء</Button>
-        <Button onClick={handleDeleteCoupon} autoFocus disabled={loading}>
+        <Button onClick={handleDeleteReview} autoFocus disabled={loading}>
           {loading ? "جاري الحذف" : "حذف"}
         </Button>
       </DialogActions>

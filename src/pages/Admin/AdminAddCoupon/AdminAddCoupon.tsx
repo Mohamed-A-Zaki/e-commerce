@@ -1,7 +1,7 @@
-import AdminAddCouponForm from "../../../components/Admin/AdminAddCouponForm/AdminAddCouponForm";
-import AdminCouponList from "../../../components/Admin/AdminCouponList/AdminCouponList";
 import { useAppSelector } from "../../../store/hooks";
-import DeleteCouponModal from "../../../utility/DeleteCouponModal/DeleteCouponModal";
+import AdminCouponList from "../../../components/Admin/AdminCouponList/AdminCouponList";
+import DeleteCouponModal from "../../../components/Modals/DeleteCouponModal/DeleteCouponModal";
+import AdminAddCouponForm from "../../../components/Admin/AdminAddCouponForm/AdminAddCouponForm";
 
 export default function AdminAddCoupon() {
   const { coupons } = useAppSelector((state) => state.Coupon);

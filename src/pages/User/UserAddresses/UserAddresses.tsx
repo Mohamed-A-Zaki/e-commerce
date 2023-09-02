@@ -3,7 +3,7 @@ import MainButton from "../../../utility/MainButton/MainButton";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 import useUserAddresses from "../../../Hooks/Address/useUserAddresses";
 import AddressList from "../../../components/User/AddressList/AddressList";
-import DeleteAddressModal from "../../../utility/DeleteAddressModal/DeleteAddressModal";
+import DeleteAddressModal from "../../../components/Modals/DeleteAddressModal/DeleteAddressModal";
 
 export default function UserAddresses() {
   const { handleClick } = useUserAddresses();

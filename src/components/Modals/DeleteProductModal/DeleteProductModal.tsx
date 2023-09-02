@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import useDeleteProductModal from "../../Hooks/Product/useDeleteProductModal";
+import useDeleteProductModal from "../../../Hooks/Product/useDeleteProductModal";
 
 export default function DeleteProductModal() {
   const { open, handleClose, handleDeleteProduct } = useDeleteProductModal();

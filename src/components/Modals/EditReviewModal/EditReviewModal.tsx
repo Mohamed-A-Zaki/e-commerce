@@ -8,7 +8,7 @@ import {
   Rating,
   TextField,
 } from "@mui/material";
-import useEditReviewModal from "../../Hooks/Review/useEditReviewModal";
+import useEditReviewModal from "../../../Hooks/Review/useEditReviewModal";
 import { Form, Formik } from "formik";
 
 export default function EditReviewModal() {

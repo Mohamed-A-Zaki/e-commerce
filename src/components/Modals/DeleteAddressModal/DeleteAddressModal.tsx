@@ -6,11 +6,11 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import useDeleteCouponModal from "../../Hooks/Coupon/useDeleteCouponModal";
+import useDeleteAddressModal from "../../../Hooks/Address/useDeleteAddressModal";
 
-export default function DeleteCouponModal() {
+export default function DeleteAddressModal() {
   const { open, handleClose, handleDeleteCoupon, loading } =
-    useDeleteCouponModal();
+    useDeleteAddressModal();
 
   return (
     <Dialog
@@ -22,7 +22,7 @@ export default function DeleteCouponModal() {
       <DialogTitle id="alert-dialog-title">حذف تقييم</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          هل انت متاكد من عملية حذف الكوبون؟
+          هل انت متاكد من عملية حذف العنوان؟
         </DialogContentText>
       </DialogContent>
       <DialogActions>
