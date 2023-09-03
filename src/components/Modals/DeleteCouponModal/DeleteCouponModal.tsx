@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -8,6 +7,8 @@ import {
   Slide,
 } from "@mui/material";
 import useDeleteCouponModal from "../../../Hooks/Coupon/useDeleteCouponModal";
+import ModalCancelButton from "../../../utility/Modal/ModalCancelButton/ModalCancelButton";
+import ModalDeleteButton from "../../../utility/Modal/ModalDeleteButton/ModalDeleteButton";
 
 export default function DeleteCouponModal() {
   const { open, handleClose, handleDeleteCoupon, loading } =
@@ -23,25 +24,15 @@ export default function DeleteCouponModal() {
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle id="alert-dialog-title">حذف تقييم</DialogTitle>
+      <DialogTitle id="alert-dialog-title">حذف كوبون</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           هل انت متاكد من عملية حذف الكوبون؟
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ gap: 1 }}>
-        <Button onClick={handleClose} variant="contained" color="success">
-          الغاء
-        </Button>
-        <Button
-          onClick={handleDeleteCoupon}
-          variant="contained"
-          color="error"
-          autoFocus
-          disabled={loading}
-        >
-          {loading ? "جاري الحذف" : "حذف"}
-        </Button>
+        <ModalCancelButton onClick={handleClose} />
+        <ModalDeleteButton onClick={handleDeleteCoupon} disabled={loading} />
       </DialogActions>
     </Dialog>
   );

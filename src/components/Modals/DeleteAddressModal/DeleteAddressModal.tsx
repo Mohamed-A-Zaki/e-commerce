@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -8,9 +7,11 @@ import {
   Slide,
 } from "@mui/material";
 import useDeleteAddressModal from "../../../Hooks/Address/useDeleteAddressModal";
+import ModalCancelButton from "../../../utility/Modal/ModalCancelButton/ModalCancelButton";
+import ModalDeleteButton from "../../../utility/Modal/ModalDeleteButton/ModalDeleteButton";
 
 export default function DeleteAddressModal() {
-  const { open, handleClose, handleDeleteCoupon, loading } =
+  const { open, handleClose, handleDeleteAddress, loading } =
     useDeleteAddressModal();
 
   return (
@@ -30,18 +31,8 @@ export default function DeleteAddressModal() {
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ gap: 1 }}>
-        <Button onClick={handleClose} variant="contained" color="success">
-          الغاء
-        </Button>
-        <Button
-          onClick={handleDeleteCoupon}
-          variant="contained"
-          color="error"
-          autoFocus
-          disabled={loading}
-        >
-          {loading ? "جاري الحذف" : "حذف"}
-        </Button>
+        <ModalCancelButton onClick={handleClose} />
+        <ModalDeleteButton onClick={handleDeleteAddress} disabled={loading} />
       </DialogActions>
     </Dialog>
   );

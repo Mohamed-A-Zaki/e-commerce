@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -8,6 +7,8 @@ import {
   Slide,
 } from "@mui/material";
 import useDeleteProductModal from "../../../Hooks/Product/useDeleteProductModal";
+import ModalCancelButton from "../../../utility/Modal/ModalCancelButton/ModalCancelButton";
+import ModalDeleteButton from "../../../utility/Modal/ModalDeleteButton/ModalDeleteButton";
 
 export default function DeleteProductModal() {
   const { open, handleClose, handleDeleteProduct, loading } =
@@ -30,18 +31,8 @@ export default function DeleteProductModal() {
         </DialogContentText>
       </DialogContent>
       <DialogActions sx={{ gap: 1 }}>
-        <Button onClick={handleClose} variant="contained" color="success">
-          الغاء
-        </Button>
-        <Button
-          onClick={handleDeleteProduct}
-          variant="contained"
-          color="error"
-          autoFocus
-          disabled={loading}
-        >
-          {loading ? "جاري الحذف" : "حذف"}
-        </Button>
+        <ModalCancelButton onClick={handleClose} />
+        <ModalDeleteButton onClick={handleDeleteProduct} disabled={loading} />
       </DialogActions>
     </Dialog>
   );

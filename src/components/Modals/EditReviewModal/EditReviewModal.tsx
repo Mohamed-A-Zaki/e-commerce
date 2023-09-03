@@ -1,5 +1,4 @@
 import {
-  Button,
   Dialog,
   DialogActions,
   DialogContent,
@@ -11,6 +10,8 @@ import {
 } from "@mui/material";
 import useEditReviewModal from "../../../Hooks/Review/useEditReviewModal";
 import { Form, Formik } from "formik";
+import ModalCancelButton from "../../../utility/Modal/ModalCancelButton/ModalCancelButton";
+import ModalEditButton from "../../../utility/Modal/ModalEditButton/ModalEditButton";
 
 export default function EditReviewModal() {
   const {
@@ -73,22 +74,8 @@ export default function EditReviewModal() {
                 />
               </DialogContent>
               <DialogActions sx={{ gap: 1 }}>
-                <Button
-                  onClick={handleClose}
-                  variant="contained"
-                  color="success"
-                >
-                  الغاء
-                </Button>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  autoFocus
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? "جاري التعديل" : "تعديل"}
-                </Button>
+                <ModalCancelButton onClick={handleClose} />
+                <ModalEditButton disabled={isSubmitting} />
               </DialogActions>
             </Form>
           </>

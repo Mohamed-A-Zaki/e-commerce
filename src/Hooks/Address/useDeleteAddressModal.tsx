@@ -14,7 +14,7 @@ const useDeleteAddressModal = () => {
     dispatch(closeDeleteAddressModal());
   };
 
-  const handleDeleteCoupon = () => {
+  const handleDeleteAddress = () => {
     dispatch(deleteAddress(addressID))
       .unwrap()
       .then(() => {
@@ -26,7 +26,7 @@ const useDeleteAddressModal = () => {
       });
   };
 
-  return { open, handleClose, handleDeleteCoupon, loading };
+  return { open, handleClose, handleDeleteAddress, loading };
 };
 
 export default useDeleteAddressModal;
