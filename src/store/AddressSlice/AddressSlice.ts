@@ -9,12 +9,14 @@ type InitialState = {
   addresses: AddressType[];
   address: AddressType | null;
   loading: boolean;
+  error: string;
 };
 
 const initialState: InitialState = {
   addresses: [],
   address: null,
   loading: false,
+  error: "",
 };
 
 export const getAddresses = createAsyncThunk(
@@ -83,8 +85,16 @@ const AddressSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(getAddresses.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getAddresses.fulfilled, (state, { payload }) => {
+        state.loading = false;
         state.addresses = payload;
+      })
+      .addCase(getAddresses.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
       })
       .addCase(createAddress.fulfilled, (state, { payload }) => {
         state.addresses.unshift(payload);

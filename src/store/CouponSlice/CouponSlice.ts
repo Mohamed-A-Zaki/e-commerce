@@ -11,12 +11,14 @@ type InitialState = {
   coupons: CouponType[];
   specificCoupon: CouponType | null;
   loading: boolean;
+  error: string;
 };
 
 const initialState: InitialState = {
   coupons: [],
   specificCoupon: null,
   loading: false,
+  error: "",
 };
 
 export const getCoupons = createAsyncThunk("coupon/getCoupons", async () => {
@@ -82,8 +84,16 @@ const CouponSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(getCoupons.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getCoupons.fulfilled, (state, { payload }) => {
+        state.loading = false;
         state.coupons = payload;
+      })
+      .addCase(getCoupons.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
       })
       .addCase(addCoupon.fulfilled, (state, { payload }) => {
         state.coupons.unshift(payload);
@@ -100,7 +110,5 @@ const CouponSlice = createSlice({
       });
   },
 });
-
-// export const {} = CouponSlice.actions
 
 export default CouponSlice.reducer;

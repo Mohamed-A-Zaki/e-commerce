@@ -4,14 +4,33 @@ import { Grid } from "@mui/material";
 import { getWishList } from "../../../store/WishList/WishListSlice";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import ProductCard from "../../../utility/Product/ProductCard/ProductCard";
+import Loading from "../../../utility/Loading/Loading";
+import ErrorMessage from "../../../utility/ErrorMessage/ErrorMessage";
+import EmptyListMessage from "../../../utility/EmptyListMessage/EmptyListMessage";
 
 export default function UserFavoriteList() {
   const dispatch = useAppDispatch();
-  const { wishList } = useAppSelector((state) => state.WishList);
+  const { wishList, loading, error } = useAppSelector(
+    (state) => state.WishList
+  );
 
   useEffect(() => {
     dispatch(getWishList());
   }, [dispatch]);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <ErrorMessage>يوجد خطا ما...</ErrorMessage>;
+  }
+
+  if (wishList.length === 0) {
+    return (
+      <EmptyListMessage>لا يوجد أي منتجات مفضلة حاليا...</EmptyListMessage>
+    );
+  }
 
   return (
     <Grid container spacing={1}>

@@ -6,11 +6,15 @@ import { GetWishListResponseType } from "../../types/WishList/WishList";
 type InitialState = {
   wishList: ProductType[];
   wish_list_ids: string[];
+  loading : boolean;
+  error : string;
 };
 
 const initialState: InitialState = {
   wishList: [],
   wish_list_ids: [],
+  loading : false,
+  error : ""
 };
 
 export const getWishList = createAsyncThunk(
@@ -57,9 +61,17 @@ const WishListSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(getWishList.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getWishList.fulfilled, (state, { payload }) => {
+        state.loading = false;
         state.wishList = payload;
         state.wish_list_ids = payload.map((item) => item._id);
+      })
+      .addCase(getWishList.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
       })
       .addCase(addToWishList.fulfilled, (state, { payload }) => {
         state.wish_list_ids.push(payload);
