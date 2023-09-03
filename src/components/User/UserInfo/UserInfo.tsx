@@ -1,15 +1,17 @@
 import { useAppSelector } from "../../../store/hooks";
-import { Box, Card, CardContent, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
+import { useNavigate } from "react-router-dom";
 
 export default function UserInfo() {
   const { user } = useAppSelector((state) => state.Auth);
+  const navigate = useNavigate();
 
   return (
     <Box width={700} maxWidth={"100%"}>
       <SectionTitle>الصفحه الشخصية</SectionTitle>
 
-      <Card sx={{ borderRadius: 3 }}>
+      <Card sx={{ borderRadius: 3, position: "relative" }}>
         <CardContent sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
           <Box display={"flex"} alignItems={"center"} gap={1}>
             الاسم :<Typography color={"text.secondary"}>{user.name}</Typography>
@@ -24,6 +26,13 @@ export default function UserInfo() {
             الايميل :
             <Typography color={"text.secondary"}>{user.email}</Typography>
           </Box>
+
+          <Button
+            sx={{ position: "absolute", top: 15, left: 15 }}
+            onClick={() => navigate("/user/edit-profile")}
+          >
+            تعديل
+          </Button>
         </CardContent>
       </Card>
     </Box>

@@ -3,6 +3,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import BaseURL from "../../Api/BaseURL";
 import {
   AuthResponseType,
+  ChangePasswordFormDataType,
+  EditProfileFormDataType,
   ForgetPasswordFormDataType,
   LoginFormDataType,
   RegisterFormDataType,
@@ -66,6 +68,30 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
+export const updateProfileData = createAsyncThunk(
+  "Auth/updateProfileData",
+  async (values: EditProfileFormDataType) => {
+    const url = "api/v1/users/updateMe";
+    const token = localStorage.getItem("token");
+    const { data } = await BaseURL.put(url, values, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data.data.user;
+  }
+);
+
+export const changePassword = createAsyncThunk(
+  "Auth/changePassword",
+  async (values: ChangePasswordFormDataType) => {
+    const url = "api/v1/users/changeMyPassword";
+    const token = localStorage.getItem("token");
+    const { data } = await BaseURL.put(url, values, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  }
+);
+
 const AuthSlice = createSlice({
   name: "Auth",
   initialState,
@@ -86,6 +112,16 @@ const AuthSlice = createSlice({
         localStorage.setItem("user", JSON.stringify(payload.data));
       })
       .addCase(login.fulfilled, (state, { payload }) => {
+        state.user = payload.data;
+        state.token = payload.token;
+        localStorage.setItem("token", payload.token);
+        localStorage.setItem("user", JSON.stringify(payload.data));
+      })
+      .addCase(updateProfileData.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        localStorage.setItem("user", JSON.stringify(payload));
+      })
+      .addCase(changePassword.fulfilled, (state, { payload }) => {
         state.user = payload.data;
         state.token = payload.token;
         localStorage.setItem("token", payload.token);

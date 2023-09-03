@@ -26,9 +26,9 @@ export type VerifyCodeFormDataType = {
 };
 
 export type ResetFormDataType = {
-  email: string,
-  newPassword: string,
-  passwrdConfirm: string,
+  email: string;
+  newPassword: string;
+  passwrdConfirm: string;
 };
 
 export type RegisterFormDataType = {
@@ -42,4 +42,22 @@ export type RegisterFormDataType = {
 export type AuthResponseType = {
   data: UserType;
   token: string;
+};
+
+export type EditProfileFormDataType = {
+  name: string;
+  phone: string;
+};
+
+export type EditProfileResponseType = {
+  status: string;
+  data: {
+    user: UserType;
+  };
+};
+
+export type ChangePasswordFormDataType = {
+  currentPassword: string;
+  password: string;
+  passwordConfirm: string;
 };

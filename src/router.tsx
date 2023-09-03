@@ -32,6 +32,7 @@ import VerifyCode from "./pages/Auth/VerifyCode/VerifyCode";
 import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
 import AdminAddCoupon from "./pages/Admin/AdminAddCoupon/AdminAddCoupon";
 import AdminEditCoupon from "./pages/Admin/AdminEditCoupon/AdminEditCoupon";
+import UserEditProfile from "./pages/User/UserEditProfile/UserEditProfile";
 
 const router = createHashRouter([
   {
@@ -159,6 +160,10 @@ const router = createHashRouter([
           {
             path: "profile",
             element: <UserProfile />,
+          },
+          {
+            path: "edit-profile",
+            element: <UserEditProfile />,
           },
         ],
       },
