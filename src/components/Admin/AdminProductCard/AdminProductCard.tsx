@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CardActions,
   CardContent,
@@ -17,44 +16,28 @@ import {
 } from "../../../store/products/DeleteProductModalSlice/DeleteProductModalSlice";
 
 import StarIcon from "@mui/icons-material/Star";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import EditButton from "../../../utility/EditButton/EditButton";
+import DeleteButton from "../../../utility/DeleteButton/DeleteButton";
 
 export default function AdminProductCard(props: ProductType) {
   const { _id, imageCover, title, price, ratingsAverage } = props;
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const handelEdit = () => {
+    navigate(`/admin/editproduct/${_id}`);
+  };
+
+  const handleDelete = () => {
+    dispatch(openModal());
+    dispatch(setProductId(_id));
+  };
+
   return (
     <Card>
       <CardActions sx={{ justifyContent: "space-between" }}>
-        <Button
-          variant="outlined"
-          startIcon={<EditIcon />}
-          color="secondary"
-          aria-label="edit"
-          size="small"
-          onClick={() => {
-            navigate(`/admin/editproduct/${_id}`);
-          }}
-          sx={{ flexDirection: "row-reverse" }}
-        >
-          تعديل
-        </Button>
-        <Button
-          variant="outlined"
-          startIcon={<DeleteIcon />}
-          color="error"
-          aria-label="delete"
-          size="small"
-          onClick={() => {
-            dispatch(openModal());
-            dispatch(setProductId(_id));
-          }}
-          sx={{ flexDirection: "row-reverse" }}
-        >
-          حذف
-        </Button>
+        <EditButton onClick={handelEdit} />
+        <DeleteButton onClick={handleDelete} />
       </CardActions>
 
       <Link to={`/products/${_id}`}>

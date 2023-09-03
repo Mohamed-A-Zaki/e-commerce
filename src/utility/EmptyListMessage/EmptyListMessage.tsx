@@ -5,7 +5,7 @@ export type EmptyListMessageProps = {
 };
 export default function EmptyListMessage({ children }: EmptyListMessageProps) {
   return (
-    <Typography variant="h4" textAlign={"center"} flex={1}>
+    <Typography variant="h6" textAlign={"center"} flex={1}>
       {children}
     </Typography>
   );

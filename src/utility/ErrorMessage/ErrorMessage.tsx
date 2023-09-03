@@ -5,7 +5,7 @@ export type ErrorMessageProps = {
 };
 export default function ErrorMessage({ children }: ErrorMessageProps) {
   return (
-    <Typography variant="h4" textAlign={"center"} flex={1} color={"error.main"}>
+    <Typography variant="h6" textAlign={"center"} flex={1} color={"error.main"}>
       {children}
     </Typography>
   );

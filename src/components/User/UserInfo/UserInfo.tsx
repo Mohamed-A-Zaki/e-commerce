@@ -1,9 +1,10 @@
 import { useAppSelector } from "../../../store/hooks";
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 import { useNavigate } from "react-router-dom";
 
-import EditIcon from "@mui/icons-material/Edit";
+import DeleteEditBtnscontainer from "../../../utility/DeleteEditBtnscontainer/DeleteEditBtnscontainer";
+import EditButton from "../../../utility/EditButton/EditButton";
 
 export default function UserInfo() {
   const { user } = useAppSelector((state) => state.Auth);
@@ -29,22 +30,9 @@ export default function UserInfo() {
             <Typography color={"text.secondary"}>{user.email}</Typography>
           </Box>
 
-          <Button
-            variant="outlined"
-            startIcon={<EditIcon />}
-            color="secondary"
-            aria-label="edit"
-            size="small"
-            onClick={() => navigate("/user/edit-profile")}
-            sx={{
-              flexDirection: "row-reverse",
-              position: "absolute",
-              top: 15,
-              left: 15,
-            }}
-          >
-            تعديل
-          </Button>
+          <DeleteEditBtnscontainer>
+            <EditButton onClick={() => navigate("/user/edit-profile")} />
+          </DeleteEditBtnscontainer>
         </CardContent>
       </Card>
     </Box>
