@@ -5,11 +5,13 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Slide,
 } from "@mui/material";
 import useDeleteProductModal from "../../../Hooks/Product/useDeleteProductModal";
 
 export default function DeleteProductModal() {
-  const { open, handleClose, handleDeleteProduct } = useDeleteProductModal();
+  const { open, handleClose, handleDeleteProduct, loading } =
+    useDeleteProductModal();
 
   return (
     <Dialog
@@ -17,6 +19,9 @@ export default function DeleteProductModal() {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      TransitionComponent={Slide}
+      fullWidth
+      maxWidth="sm"
     >
       <DialogTitle id="alert-dialog-title">حذف منتج</DialogTitle>
       <DialogContent>
@@ -24,10 +29,18 @@ export default function DeleteProductModal() {
           هل انت متاكد من عملية حذف المنتج؟
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>الغاء</Button>
-        <Button onClick={handleDeleteProduct} autoFocus>
-          حذف
+      <DialogActions sx={{ gap: 1 }}>
+        <Button onClick={handleClose} variant="contained" color="success">
+          الغاء
+        </Button>
+        <Button
+          onClick={handleDeleteProduct}
+          variant="contained"
+          color="error"
+          autoFocus
+          disabled={loading}
+        >
+          {loading ? "جاري الحذف" : "حذف"}
         </Button>
       </DialogActions>
     </Dialog>

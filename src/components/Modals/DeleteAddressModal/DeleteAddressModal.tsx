@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Slide,
 } from "@mui/material";
 import useDeleteAddressModal from "../../../Hooks/Address/useDeleteAddressModal";
 
@@ -18,6 +19,9 @@ export default function DeleteAddressModal() {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      TransitionComponent={Slide}
+      fullWidth
+      maxWidth="sm"
     >
       <DialogTitle id="alert-dialog-title">حذف تقييم</DialogTitle>
       <DialogContent>
@@ -25,9 +29,17 @@ export default function DeleteAddressModal() {
           هل انت متاكد من عملية حذف العنوان؟
         </DialogContentText>
       </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>الغاء</Button>
-        <Button onClick={handleDeleteCoupon} autoFocus disabled={loading}>
+      <DialogActions sx={{ gap: 1 }}>
+        <Button onClick={handleClose} variant="contained" color="success">
+          الغاء
+        </Button>
+        <Button
+          onClick={handleDeleteCoupon}
+          variant="contained"
+          color="error"
+          autoFocus
+          disabled={loading}
+        >
           {loading ? "جاري الحذف" : "حذف"}
         </Button>
       </DialogActions>

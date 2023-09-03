@@ -90,3 +90,12 @@ fieldset {
   height: 350px;
 }
 /* end image gallery */
+
+/* start dialog / modal */
+.MuiDialog-container {
+  height: auto !important;
+}
+.MuiDialog-container > div {
+  border-radius: 8px;
+}
+/* start dialog / modal */

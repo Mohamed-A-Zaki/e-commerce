@@ -6,6 +6,7 @@ import {
   DialogTitle,
   FormHelperText,
   Rating,
+  Slide,
   TextField,
 } from "@mui/material";
 import useEditReviewModal from "../../../Hooks/Review/useEditReviewModal";
@@ -26,6 +27,9 @@ export default function EditReviewModal() {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
+      TransitionComponent={Slide}
+      fullWidth
+      maxWidth="sm"
     >
       <Formik
         initialValues={initialValues}
@@ -68,9 +72,21 @@ export default function EditReviewModal() {
                   helperText={errors.review && touched.review && errors.review}
                 />
               </DialogContent>
-              <DialogActions>
-                <Button onClick={handleClose}>الغاء</Button>
-                <Button type="submit" autoFocus disabled={isSubmitting}>
+              <DialogActions sx={{ gap: 1 }}>
+                <Button
+                  onClick={handleClose}
+                  variant="contained"
+                  color="success"
+                >
+                  الغاء
+                </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="primary"
+                  autoFocus
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "جاري التعديل" : "تعديل"}
                 </Button>
               </DialogActions>
