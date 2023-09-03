@@ -3,6 +3,8 @@ import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import SectionTitle from "../../../utility/SectionTitle/SectionTitle";
 import { useNavigate } from "react-router-dom";
 
+import EditIcon from "@mui/icons-material/Edit";
+
 export default function UserInfo() {
   const { user } = useAppSelector((state) => state.Auth);
   const navigate = useNavigate();
@@ -28,8 +30,18 @@ export default function UserInfo() {
           </Box>
 
           <Button
-            sx={{ position: "absolute", top: 15, left: 15 }}
+            variant="outlined"
+            startIcon={<EditIcon />}
+            color="secondary"
+            aria-label="edit"
+            size="small"
             onClick={() => navigate("/user/edit-profile")}
+            sx={{
+              flexDirection: "row-reverse",
+              position: "absolute",
+              top: 15,
+              left: 15,
+            }}
           >
             تعديل
           </Button>

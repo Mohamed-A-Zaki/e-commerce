@@ -1,6 +1,6 @@
 import { ReviewType } from "../../../types/Rating/Rating";
 import useCommentItem from "../../../Hooks/Review/useCommentItem";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 
 import StarIcon from "@mui/icons-material/Star";
 import EditIcon from "@mui/icons-material/Edit";
@@ -16,6 +16,7 @@ export default function CommentItem({ user, review, rating, _id }: ReviewType) {
       boxShadow={3}
       my={1.5}
       borderRadius={1.5}
+      position={"relative"}
     >
       <Stack
         direction={"row"}
@@ -32,29 +33,34 @@ export default function CommentItem({ user, review, rating, _id }: ReviewType) {
             {rating}
           </Typography>
         </Box>
-
-        {(typeof user === "string" ? user : user._id) === auth.user._id && (
-          <Box>
-            <IconButton
-              color="secondary"
-              aria-label="edit"
-              size="small"
-              onClick={handleEditButton}
-            >
-              <EditIcon />
-            </IconButton>
-
-            <IconButton
-              color="error"
-              aria-label="delete"
-              size="small"
-              onClick={handleDeleteButton}
-            >
-              <DeleteIcon />
-            </IconButton>
-          </Box>
-        )}
       </Stack>
+
+      {(typeof user === "string" ? user : user._id) === auth.user._id && (
+        <Box position={"absolute"} top={10} left={10} display={"flex"} gap={1}>
+          <Button
+            variant="outlined"
+            startIcon={<EditIcon />}
+            color="secondary"
+            aria-label="edit"
+            size="small"
+            onClick={handleEditButton}
+            sx={{ flexDirection: "row-reverse" }}
+          >
+            تعديل
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<DeleteIcon />}
+            color="error"
+            aria-label="delete"
+            size="small"
+            onClick={handleDeleteButton}
+            sx={{ flexDirection: "row-reverse" }}
+          >
+            حذف
+          </Button>
+        </Box>
+      )}
 
       <Typography fontSize={14} mt={1}>
         {/* منتج مناسب سعره للوقت الحالي وجه كويس جدا ومعاه دراع زيادة */}

@@ -23,7 +23,7 @@ export default function DeleteAddressModal() {
       fullWidth
       maxWidth="sm"
     >
-      <DialogTitle id="alert-dialog-title">حذف تقييم</DialogTitle>
+      <DialogTitle id="alert-dialog-title">حذف عنوان</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           هل انت متاكد من عملية حذف العنوان؟

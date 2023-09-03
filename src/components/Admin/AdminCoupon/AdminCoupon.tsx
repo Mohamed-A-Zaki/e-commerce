@@ -1,5 +1,5 @@
-import { Box, Card, CardContent, IconButton, Typography } from "@mui/material";
 import { CouponType } from "../../../types/Coupon/Coupon.type";
+import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -28,24 +28,29 @@ export default function AdminCoupon(props: CouponType) {
           <Typography color={"text.secondary"}>{discount}</Typography>
         </Box>
 
-        <Box position={"absolute"} top={15} left={15}>
-          <IconButton
+        <Box position={"absolute"} top={15} left={15} display={"flex"} gap={1}>
+          <Button
+            variant="outlined"
+            startIcon={<EditIcon />}
             color="secondary"
             aria-label="edit"
             size="small"
             onClick={handleEditButton}
+            sx={{ flexDirection: "row-reverse" }}
           >
-            <EditIcon />
-          </IconButton>
-
-          <IconButton
+            تعديل
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<DeleteIcon />}
             color="error"
             aria-label="delete"
             size="small"
             onClick={handleDeletButton}
+            sx={{ flexDirection: "row-reverse" }}
           >
-            <DeleteIcon />
-          </IconButton>
+            حذف
+          </Button>
         </Box>
       </CardContent>
     </Card>
