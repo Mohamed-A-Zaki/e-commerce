@@ -10,8 +10,6 @@ export default function ColorItem({ color, ...rest }: ColorItemProps) {
       height={30}
       bgcolor={color}
       borderRadius={"50%"}
-      border={1}
-      borderColor={"#ddd"}
       sx={{ cursor: "pointer" }}
     ></Box>
   );

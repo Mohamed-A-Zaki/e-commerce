@@ -15,6 +15,8 @@ import CouponReducer from "./CouponSlice/CouponSlice";
 import DeleteCouponModalReducer from "./DeleteCouponModalSlice/DeleteCouponModalSlice";
 import AddressReducer from "./AddressSlice/AddressSlice";
 import DeleteAddressModalReducer from "./DeleteAddressModalSlice/DeleteAddressModalSlice";
+import CartReducer from "./CartSlice/CartSlice";
+import DeleteProductFromCartModalReducer from "./DeleteProductFromCartModalSlice/DeleteProductFromCartModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -33,7 +35,9 @@ export const store = configureStore({
     Coupon: CouponReducer,
     DeleteCouponModal: DeleteCouponModalReducer,
     Address: AddressReducer,
-    DeleteAddressModal : DeleteAddressModalReducer
+    DeleteAddressModal: DeleteAddressModalReducer,
+    Cart: CartReducer,
+    DeleteProductFromCart: DeleteProductFromCartModalReducer,
   },
 });
 

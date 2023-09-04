@@ -1,20 +1,24 @@
 import { Box, Typography } from "@mui/material";
-
 import StarIcon from "@mui/icons-material/Star";
-import { useAppSelector } from "../../../store/hooks";
-
 import ColorItem from "../../../utility/ColorItem/ColorItem";
 import MainButton from "../../../utility/MainButton/MainButton";
 import PriceButton from "../../../utility/PriceButton/PriceButton";
 import { ProductType } from "../../../types/Product/Product.type";
+import useProductDetailsSection from "../../../Hooks/Product/useProductDetailsSection";
 
 type Props = {
   spescificProduct: ProductType | null;
 };
 
 export default function ProductDetailsSection({ spescificProduct }: Props) {
-  const { specificCategoty } = useAppSelector((state) => state.Categories);
-  const { specificBrand } = useAppSelector((state) => state.Brands);
+  const {
+    handleAddToCart,
+    loading,
+    selectedColor,
+    setSelectedColor,
+    specificBrand,
+    specificCategoty,
+  } = useProductDetailsSection(spescificProduct);
 
   return (
     <Box p={3} borderRadius={3}>
@@ -53,7 +57,15 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
 
         <Box display={"flex"} gap={1} mt={2}>
           {spescificProduct?.availableColors.map((color, indx) => {
-            return <ColorItem key={indx} color={color} />;
+            return (
+              <ColorItem
+                key={indx}
+                color={color}
+                onClick={() => setSelectedColor(color)}
+                borderColor={"#000"}
+                border={selectedColor === color ? 2 : 0}
+              />
+            );
           })}
         </Box>
       </Box>
@@ -81,7 +93,9 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
 
       <Box display={"flex"} gap={2}>
         <PriceButton>{spescificProduct?.price}</PriceButton>
-        <MainButton>اضف للعربة</MainButton>
+        <MainButton onClick={handleAddToCart} disabled={loading}>
+          {loading ? "جاري الاضافة" : "اضف الى السلة"}
+        </MainButton>
       </Box>
     </Box>
   );
