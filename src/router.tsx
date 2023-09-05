@@ -1,10 +1,10 @@
 import { createHashRouter } from "react-router-dom";
 
 import App from "./App";
-
 import Cart from "./pages/Website/Cart/Cart";
 import Register from "./pages/Auth/Register/Register";
 import Login from "./pages/Auth/Login/Login";
+import NotFound from "./pages/Website/NotFound/NotFound";
 import ProductDetails from "./pages/Website/ProductDetails/ProductDetails";
 import AdminLayout from "./components/Admin/AdminLayout/AdminLayout";
 import AdminAllOrders from "./pages/Admin/AdminAllOrders/AdminAllOrders";
@@ -33,11 +33,15 @@ import ResetPassword from "./pages/Auth/ResetPassword/ResetPassword";
 import AdminAddCoupon from "./pages/Admin/AdminAddCoupon/AdminAddCoupon";
 import AdminEditCoupon from "./pages/Admin/AdminEditCoupon/AdminEditCoupon";
 import UserEditProfile from "./pages/User/UserEditProfile/UserEditProfile";
+import ProtectedRoutes from "./protected_routes/ProtectedRoutes/ProtectedRoutes";
+import UserProtectedRoutes from "./protected_routes/UserProtectedRoutes/UserProtectedRoutes";
+import AdminProtectedRoutes from "./protected_routes/AdminProtectedRoutes/AdminProtectedRoutes";
 
 const router = createHashRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
@@ -89,7 +93,13 @@ const router = createHashRouter([
       },
       {
         path: "/admin",
-        element: <AdminLayout />,
+        element: (
+          <ProtectedRoutes>
+            <AdminProtectedRoutes>
+              <AdminLayout />
+            </AdminProtectedRoutes>
+          </ProtectedRoutes>
+        ),
         children: [
           {
             path: "allorders",
@@ -135,7 +145,13 @@ const router = createHashRouter([
       },
       {
         path: "/user",
-        element: <UserLayout />,
+        element: (
+          <ProtectedRoutes>
+            <UserProtectedRoutes>
+              <UserLayout />
+            </UserProtectedRoutes>
+          </ProtectedRoutes>
+        ),
         children: [
           {
             path: "allorders",
