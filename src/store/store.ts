@@ -17,6 +17,7 @@ import AddressReducer from "./AddressSlice/AddressSlice";
 import DeleteAddressModalReducer from "./DeleteAddressModalSlice/DeleteAddressModalSlice";
 import CartReducer from "./CartSlice/CartSlice";
 import DeleteProductFromCartModalReducer from "./DeleteProductFromCartModalSlice/DeleteProductFromCartModalSlice";
+import ClearCartModalReducer from "./ClearCartModalSlice/ClearCartModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -38,6 +39,7 @@ export const store = configureStore({
     DeleteAddressModal: DeleteAddressModalReducer,
     Cart: CartReducer,
     DeleteProductFromCart: DeleteProductFromCartModalReducer,
+    ClearCartModal: ClearCartModalReducer,
   },
 });
 

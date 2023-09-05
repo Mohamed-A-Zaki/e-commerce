@@ -3,6 +3,7 @@ import {
   AddProductToCartParamsType,
   CartProductType,
   GetCartProductsResponseType,
+  UpdateQuantityParamsType,
 } from "../../types/Cart/Cart.type";
 import BaseURL from "../../Api/BaseURL";
 
@@ -11,6 +12,7 @@ type InitialState = {
   loading: boolean;
   error: string;
   total_price: number;
+  numOfCartItems: number;
 };
 
 const initialState: InitialState = {
@@ -18,6 +20,7 @@ const initialState: InitialState = {
   loading: false,
   error: "",
   total_price: 0,
+  numOfCartItems: 0,
 };
 
 export const getCartProducts = createAsyncThunk(
@@ -37,10 +40,12 @@ export const addProductToCart = createAsyncThunk(
   async (values: AddProductToCartParamsType) => {
     const url = "api/v1/cart";
     const token = localStorage.getItem("token");
-    await BaseURL.post(url, values, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return;
+    const { data } = await BaseURL.post<GetCartProductsResponseType>(
+      url,
+      values,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return data;
   }
 );
 
@@ -56,6 +61,29 @@ export const deleteProductFromCart = createAsyncThunk(
   }
 );
 
+export const updateQuantity = createAsyncThunk(
+  "cart/updateQuantity",
+  async ({ values, productId }: UpdateQuantityParamsType) => {
+    const url = `api/v1/cart/${productId}`;
+    const token = localStorage.getItem("token");
+    const { data } = await BaseURL.put<GetCartProductsResponseType>(
+      url,
+      values,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return data;
+  }
+);
+
+export const clearCart = createAsyncThunk("cart/clearCart", async () => {
+  const url = "api/v1/cart";
+  const token = localStorage.getItem("token");
+  await BaseURL.delete(url, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return;
+});
+
 const CartSlice = createSlice({
   name: "Cart",
   initialState,
@@ -70,6 +98,7 @@ const CartSlice = createSlice({
         state.loading = false;
         state.cart_products = payload.data.products;
         state.total_price = payload.data.totalCartPrice;
+        state.numOfCartItems = payload.numOfCartItems;
       })
       .addCase(getCartProducts.rejected, (state, { error }) => {
         state.loading = false;
@@ -79,8 +108,9 @@ const CartSlice = createSlice({
       .addCase(addProductToCart.pending, (state) => {
         state.loading = true;
       })
-      .addCase(addProductToCart.fulfilled, (state) => {
+      .addCase(addProductToCart.fulfilled, (state, { payload }) => {
         state.loading = false;
+        state.numOfCartItems = payload.numOfCartItems;
       })
       .addCase(addProductToCart.rejected, (state) => {
         state.loading = false;
@@ -89,6 +119,19 @@ const CartSlice = createSlice({
       .addCase(deleteProductFromCart.fulfilled, (state, { payload }) => {
         state.cart_products = payload.data.products;
         state.total_price = payload.data.totalCartPrice;
+        state.numOfCartItems = payload.numOfCartItems;
+      })
+
+      .addCase(updateQuantity.fulfilled, (state, { payload }) => {
+        state.cart_products = payload.data.products;
+        state.total_price = payload.data.totalCartPrice;
+        state.numOfCartItems = payload.numOfCartItems;
+      })
+
+      .addCase(clearCart.fulfilled, (state) => {
+        state.cart_products = [];
+        state.total_price = 0;
+        state.numOfCartItems = 0;
       });
   },
 });

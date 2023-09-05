@@ -1,22 +1,23 @@
 import StarIcon from "@mui/icons-material/Star";
-import { Stack, Box, Typography, TextField } from "@mui/material";
+import { Stack, Box, Typography, TextField, Button } from "@mui/material";
 
+import useCartItem from "../../../Hooks/Cart/useCartItem";
 import ColorItem from "../../../utility/ColorItem/ColorItem";
 import { CartProductType } from "../../../types/Cart/Cart.type";
 import DeleteButton from "../../../utility/DeleteButton/DeleteButton";
 import DeleteEditBtnscontainer from "../../../utility/DeleteEditBtnscontainer/DeleteEditBtnscontainer";
-import { useAppDispatch } from "../../../store/hooks";
-import { openDeleteProductFromCartModal } from "../../../store/DeleteProductFromCartModalSlice/DeleteProductFromCartModalSlice";
 
 export default function CartItem(props: CartProductType) {
-  const { price, product, color, count , _id} = props;
-  const { imageCover, title, category, ratingsAverage } = product;
+  const { price, product, color, count, _id } = props;
+  const { imageCover, title, category, brand, ratingsAverage } = product;
 
-  const dispatch = useAppDispatch();
-
-  const handleDeleteButton = () => {
-    dispatch(openDeleteProductFromCartModal(_id));
-  };
+  const {
+    quantity,
+    handleChangeQuantity,
+    handleApplyButton,
+    loading,
+    handleDeleteButton,
+  } = useCartItem(_id, count);
 
   return (
     <Stack direction={"row"} bgcolor={"#fff"} p={1} mb={1} borderRadius={3}>
@@ -28,16 +29,14 @@ export default function CartItem(props: CartProductType) {
       />
 
       <Box flexGrow={1} mr={2} position={"relative"}>
-        <Typography>{category.name}</Typography>
+        <Typography>{category?.name}</Typography>
         <DeleteEditBtnscontainer>
           <DeleteButton onClick={handleDeleteButton} />
         </DeleteEditBtnscontainer>
 
         <Stack mt={2}>
           <Stack direction={"row"} gap={1} my={0.5} alignItems={"center"}>
-            <Typography fontSize={14}>
-              آيفون XR بذاكرة سعة 128 جيجابايت ويدعم تقنية 4G LTE مع تطبيق فيس
-            </Typography>
+            <Typography fontSize={14}>{title}</Typography>
             <StarIcon sx={{ color: "#FFC107" }} />
             <Typography color={"#FFC107"}>{ratingsAverage}</Typography>
           </Stack>
@@ -47,7 +46,7 @@ export default function CartItem(props: CartProductType) {
               الماركة:
             </Typography>
             <Typography fontWeight={"bold"} fontSize={20}>
-              {title}
+              {brand?.name}
             </Typography>
           </Stack>
 
@@ -67,9 +66,26 @@ export default function CartItem(props: CartProductType) {
               <TextField
                 type="number"
                 size="small"
-                value={count}
+                value={quantity}
                 sx={{ "& input": { width: 50, height: 10 } }}
+                onChange={handleChangeQuantity}
               />
+              <Button
+                variant="contained"
+                sx={{
+                  bgcolor: "#000",
+                  px: 1,
+                  py: 0.2,
+                  borderRadius: 2,
+                  "&:hover": {
+                    bgcolor: "#000",
+                  },
+                }}
+                onClick={handleApplyButton}
+                disabled={loading}
+              >
+                {loading ? "جاري التعديل" : "تعديل"}
+              </Button>
             </Box>
             <Typography fontSize={20} fontWeight={"bold"}>
               {price} جنية

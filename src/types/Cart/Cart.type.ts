@@ -6,6 +6,9 @@ export type CartProductType = {
     category: {
       name: string;
     };
+    brand: {
+      name: string;
+    };
     ratingsAverage: number;
     id: string;
   };
@@ -28,4 +31,11 @@ export type GetCartProductsResponseType = {
 export type AddProductToCartParamsType = {
   productId: string;
   color: string;
+};
+
+export type UpdateQuantityParamsType = {
+  productId: string;
+  values: {
+    count: number;
+  };
 };

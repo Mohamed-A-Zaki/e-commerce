@@ -11,6 +11,7 @@ const useNavbar = () => {
   const open = Boolean(anchorEl);
 
   const { token, user } = useAppSelector((state) => state.Auth);
+  const { numOfCartItems } = useAppSelector((state) => state.Cart);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -54,6 +55,7 @@ const useNavbar = () => {
     open,
     token,
     user,
+    numOfCartItems,
     handleLogout,
   };
 };

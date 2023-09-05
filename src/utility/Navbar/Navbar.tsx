@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Badge,
   Box,
   Button,
   Container,
@@ -36,6 +37,7 @@ export default function Navbar() {
     open,
     token,
     user,
+    numOfCartItems,
     handleLogout,
   } = useNavbar();
 
@@ -110,8 +112,10 @@ export default function Navbar() {
               <MenuItem onClick={handleCloseNavMenu}>
                 <Link to="/cart">
                   <Typography sx={MenuItemStyle}>
-                    <AddShoppingCartIcon />
-                    العربة
+                    <Badge badgeContent={numOfCartItems} showZero color="primary">
+                      <AddShoppingCartIcon />
+                      العربة
+                    </Badge>
                   </Typography>
                 </Link>
               </MenuItem>
@@ -207,8 +211,10 @@ export default function Navbar() {
 
             <Link to="/cart">
               <Button onClick={handleCloseNavMenu} sx={ButtonStyle}>
-                <AddShoppingCartIcon />
-                العربة
+                <Badge badgeContent={numOfCartItems} showZero color="primary">
+                  <AddShoppingCartIcon />
+                  العربة
+                </Badge>
               </Button>
             </Link>
           </Box>
