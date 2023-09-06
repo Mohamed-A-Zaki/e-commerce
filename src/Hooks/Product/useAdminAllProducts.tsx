@@ -9,9 +9,11 @@ const useAdminAllProducts = () => {
     (state) => state.Products
   );
 
+  const { page } = useAppSelector((state) => state.Pagination);
+
   useEffect(() => {
-    dispatch(getProducts(1));
-  }, [dispatch]);
+    dispatch(getProducts(page));
+  }, [dispatch, page]);
 
   usePagination(number_of_pages);
 

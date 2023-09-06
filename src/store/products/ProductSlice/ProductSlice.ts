@@ -255,7 +255,7 @@ const ProductSlice = createSlice({
       })
       .addCase(getBrandProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.cat_products = payload.data;
+        state.brabd_products = payload.data;
         state.results_count = payload.results;
         state.number_of_pages = payload.paginationResult.numberOfPages;
       })

@@ -19,9 +19,7 @@ export default function BrandProductList() {
   usePagination(number_of_pages);
 
   useEffect(() => {
-    (async function () {
-      await dispatch(getBrandProducts({ brand_id: id as string, page: page }));
-    })();
+    dispatch(getBrandProducts({ brand_id: id as string, page: page }));
   }, [dispatch, id, page]);
 
   return (

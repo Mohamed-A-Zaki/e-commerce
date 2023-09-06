@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "./store/hooks";
 import { getCategories } from "./store/CategorySlice/CategorySlice";
 import { ToastContainer } from "react-toastify";
 import { getBrands } from "./store/BrandSlice/BrandSlice";
-import { getProducts } from "./store/products/ProductSlice/ProductSlice";
+// import { getProducts } from "./store/products/ProductSlice/ProductSlice";
 import { getWishList } from "./store/WishList/WishListSlice";
 import { getCartProducts } from "./store/CartSlice/CartSlice";
 
@@ -19,7 +19,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getCategories(page <= number_of_pages ? page : 1));
     dispatch(getBrands(page));
-    dispatch(getProducts(page));
+    // dispatch(getProducts(page));
     dispatch(getWishList());
     dispatch(getCartProducts());
   }, [dispatch, number_of_pages, page]);
