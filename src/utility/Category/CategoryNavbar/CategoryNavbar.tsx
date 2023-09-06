@@ -24,7 +24,7 @@ export default function CategoryNavbar(): JSX.Element {
             الكل
           </Typography>
 
-          {categories.map((category) => (
+          {categories.slice(0, 6).map((category) => (
             <Typography
               key={category._id}
               fontSize={14}
@@ -33,6 +33,10 @@ export default function CategoryNavbar(): JSX.Element {
               {category.name}
             </Typography>
           ))}
+
+          <Typography fontSize={14} onClick={handle_all_cat}>
+            المزيد
+          </Typography>
         </Toolbar>
       </Container>
     </AppBar>

@@ -25,6 +25,8 @@ export type GetCartProductsResponseType = {
     _id: string;
     products: CartProductType[];
     totalCartPrice: number;
+    coupon: string;
+    totalAfterDiscount: number;
   };
 };
 

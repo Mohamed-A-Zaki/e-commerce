@@ -1,6 +1,10 @@
 import BaseURL from "../../../Api/BaseURL";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CreateProductResponseType, GetProductsResponseType, ProductType } from "../../../types/Product/Product.type";
+import {
+  CreateProductResponseType,
+  GetProductsResponseType,
+  ProductType,
+} from "../../../types/Product/Product.type";
 import { filterProductObjectType } from "../FilterProductObjectSlice/FilterProductObjectSlice";
 
 type InitialStateType = {
@@ -8,7 +12,6 @@ type InitialStateType = {
   results_count: number;
   similerProducts: ProductType[];
   bestSellerProducts: ProductType[];
-  // modernProducts: ProductType[];
   spescificProduct: ProductType | null;
   loading: boolean;
   error: string;
@@ -20,7 +23,6 @@ const initialState: InitialStateType = {
   results_count: 0,
   similerProducts: [],
   bestSellerProducts: [],
-  // modernProducts: [],
   spescificProduct: null,
   loading: true,
   error: "",
@@ -88,7 +90,16 @@ export const getSimilerProducts = createAsyncThunk(
 export const getCategoryProducts = createAsyncThunk(
   "Product/getCategoryProducts",
   async (cat_id: string) => {
-    const url = `api/v1/products?category[in][]=${cat_id}`;
+    const url = `api/v1/products?category=${cat_id}`;
+    const { data } = await BaseURL.get<GetProductsResponseType>(url);
+    return data;
+  }
+);
+
+export const getBrandProducts = createAsyncThunk(
+  "Product/getCategoryProducts",
+  async (brand_id: string) => {
+    const url = `api/v1/products?brand=${brand_id}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -102,15 +113,6 @@ export const getBestSellerProducts = createAsyncThunk(
     return data;
   }
 );
-
-// export const getModernProducts = createAsyncThunk(
-//   "Product/getModernProducts",
-//   async () => {
-//     const url = `api/v1/products?limit=4&keyword=new`;
-//     const { data } = await BaseURL.get<GetProductsResponseType>(url);
-//     return data;
-//   }
-// );
 
 export const getSpescificProduct = createAsyncThunk(
   "Product/getSpescificProduct",
@@ -217,18 +219,6 @@ const ProductSlice = createSlice({
         state.error = error.message as string;
       })
 
-      // .addCase(getModernProducts.pending, (state) => {
-      //   state.loading = true;
-      // })
-      // .addCase(getModernProducts.fulfilled, (state, { payload }) => {
-      //   state.loading = false;
-      //   state.modernProducts = payload.data;
-      // })
-      // .addCase(getModernProducts.rejected, (state, { error }) => {
-      //   state.loading = false;
-      //   state.error = error.message as string;
-      // })
-
       // get one product
       .addCase(getSpescificProduct.pending, (state) => {
         state.loading = true;
@@ -264,7 +254,7 @@ const ProductSlice = createSlice({
       // create product
       .addCase(createProduct.fulfilled, (state, { payload }) => {
         state.products.unshift(payload);
-      })
+      });
   },
 });
 

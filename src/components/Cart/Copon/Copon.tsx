@@ -6,19 +6,38 @@ import useApplyCoupon from "../../../Hooks/Cart/useApplyCoupon";
 import PriceButton from "../../../utility/PriceButton/PriceButton";
 
 export default function Copon() {
-  const { handleDeleteButtton, total_price } = useApplyCoupon();
+  const {
+    handleDeleteButtton,
+    totalAfterDiscount,
+    coupon,
+    couponValue,
+    handleChange,
+    handleApplyCoupon,
+    loading,
+  } = useApplyCoupon();
 
   return (
     <Box bgcolor={"#fff"} p={2} borderRadius={3}>
       <Box display={"flex"}>
-        <TextField size="small" placeholder="كود الخصم" sx={TextFieldStyle} />
-        <Button variant="contained" sx={ButtonStyle}>
-          تطبيق
+        <TextField
+          size="small"
+          placeholder="كود الخصم"
+          value={coupon || couponValue}
+          sx={TextFieldStyle}
+          onChange={handleChange}
+        />
+        <Button
+          variant="contained"
+          sx={ButtonStyle}
+          onClick={handleApplyCoupon}
+          disabled={loading}
+        >
+          {loading ? "جاري التطبيق" : "تطبيق"}
         </Button>
       </Box>
 
       <Box my={1.5}>
-        <PriceButton>{total_price}</PriceButton>
+        <PriceButton>{totalAfterDiscount}</PriceButton>
       </Box>
 
       <Link to={"/order/paymethod"}>

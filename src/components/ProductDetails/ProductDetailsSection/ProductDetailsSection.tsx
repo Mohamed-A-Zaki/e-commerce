@@ -38,9 +38,13 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
         <Typography color={"#FFC107"} mt={1} display={"flex"} gap={0.5}>
           <StarIcon /> {spescificProduct?.ratingsAverage || 0}
         </Typography>
+
+        <Typography mt={1}>
+          الكمية المتاحة : {spescificProduct?.quantity}
+        </Typography>
       </Box>
 
-      <Box my={4}>
+      <Box my={2}>
         <Box display={"flex"} alignItems={"center"} gap={1}>
           <Typography
             fontSize={14}
@@ -51,7 +55,7 @@ export default function ProductDetailsSection({ spescificProduct }: Props) {
           </Typography>
 
           <Typography fontWeight={"bold"} fontSize={20}>
-            {specificBrand?.name}
+            {specificBrand?.name || "-"}
           </Typography>
         </Box>
 
