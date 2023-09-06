@@ -36,6 +36,8 @@ import UserEditProfile from "./pages/User/UserEditProfile/UserEditProfile";
 import ProtectedRoutes from "./protected_routes/ProtectedRoutes/ProtectedRoutes";
 import UserProtectedRoutes from "./protected_routes/UserProtectedRoutes/UserProtectedRoutes";
 import AdminProtectedRoutes from "./protected_routes/AdminProtectedRoutes/AdminProtectedRoutes";
+import CategoryProductList from "./pages/CategoryProductList/CategoryProductList";
+import BrandProductList from "./pages/BrandProductList/BrandProductList";
 
 const router = createHashRouter([
   {
@@ -82,6 +84,14 @@ const router = createHashRouter([
       {
         path: "products",
         element: <Products />,
+      },
+      {
+        path: "products/category/:id",
+        element: <CategoryProductList />,
+      },
+      {
+        path: "products/brand/:id",
+        element: <BrandProductList />,
       },
       {
         path: "products/:id",

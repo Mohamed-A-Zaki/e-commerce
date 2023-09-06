@@ -9,6 +9,8 @@ import { filterProductObjectType } from "../FilterProductObjectSlice/FilterProdu
 
 type InitialStateType = {
   products: ProductType[];
+  cat_products: ProductType[];
+  brabd_products: ProductType[];
   results_count: number;
   similerProducts: ProductType[];
   bestSellerProducts: ProductType[];
@@ -20,6 +22,8 @@ type InitialStateType = {
 
 const initialState: InitialStateType = {
   products: [],
+  cat_products: [],
+  brabd_products: [],
   results_count: 0,
   similerProducts: [],
   bestSellerProducts: [],
@@ -89,17 +93,17 @@ export const getSimilerProducts = createAsyncThunk(
 
 export const getCategoryProducts = createAsyncThunk(
   "Product/getCategoryProducts",
-  async (cat_id: string) => {
-    const url = `api/v1/products?category=${cat_id}`;
+  async ({ cat_id, page }: { cat_id: string; page: number }) => {
+    const url = `api/v1/products?limit=8&page=${page}&category=${cat_id}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
 );
 
 export const getBrandProducts = createAsyncThunk(
-  "Product/getCategoryProducts",
-  async (brand_id: string) => {
-    const url = `api/v1/products?brand=${brand_id}`;
+  "Product/getBrandProducts",
+  async ({ brand_id, page }: { brand_id: string; page: number }) => {
+    const url = `api/v1/products?limit=8page=${page}&brand=${brand_id}`;
     const { data } = await BaseURL.get<GetProductsResponseType>(url);
     return data;
   }
@@ -237,11 +241,25 @@ const ProductSlice = createSlice({
       })
       .addCase(getCategoryProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
-        state.products = payload.data;
+        state.cat_products = payload.data;
         state.results_count = payload.results;
         state.number_of_pages = payload.paginationResult.numberOfPages;
       })
       .addCase(getCategoryProducts.rejected, (state, { error }) => {
+        state.loading = false;
+        state.error = error.message as string;
+      })
+      // get brand products
+      .addCase(getBrandProducts.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(getBrandProducts.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.cat_products = payload.data;
+        state.results_count = payload.results;
+        state.number_of_pages = payload.paginationResult.numberOfPages;
+      })
+      .addCase(getBrandProducts.rejected, (state, { error }) => {
         state.loading = false;
         state.error = error.message as string;
       })
