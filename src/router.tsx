@@ -1,4 +1,4 @@
-import { createHashRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import Cart from "./pages/Website/Cart/Cart";
@@ -39,7 +39,7 @@ import AdminProtectedRoutes from "./protected_routes/AdminProtectedRoutes/AdminP
 import CategoryProductList from "./pages/CategoryProductList/CategoryProductList";
 import BrandProductList from "./pages/BrandProductList/BrandProductList";
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
