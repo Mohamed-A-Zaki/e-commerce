@@ -7,12 +7,19 @@ export default function UserOrderItem(props: OrderProductType) {
   const { imageCover, ratingsQuantity, ratingsAverage, title } = product;
 
   return (
-    <Stack direction={"row"} bgcolor={"#fff"} p={1} mb={1} borderRadius={3}>
+    <Stack
+      direction={"row"}
+      bgcolor={"#fff"}
+      p={1}
+      mb={1}
+      borderBottom={1}
+      borderColor={"#ccc"}
+    >
       <Box
         component={"img"}
         src={`http://127.0.0.1:8000/products/${imageCover}`}
         alt={title}
-        sx={{ width: 120 }}
+        sx={{ width: 120, height: 120, objectFit: "contain" }}
       />
 
       <Box flexGrow={1} mr={2}>
@@ -20,9 +27,8 @@ export default function UserOrderItem(props: OrderProductType) {
           <Typography fontSize={14}>{title}</Typography>
 
           <Stack direction={"row"} gap={1} my={2} alignItems={"center"}>
-            <Typography sx={{ fontSize: 14 }}>
-              <ColorItem color={color} />
-            </Typography>
+            <ColorItem color={color} sx={{ fontSize: 14 }} />
+
             <Typography sx={{ fontSize: 14 }} color={"#FFC107"}>
               {ratingsAverage}
             </Typography>
