@@ -6,6 +6,13 @@ export type GetAllOrdersType = {
   data: OrderType[];
 };
 
+export type UserOrdersType = {
+  _id: string;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 export type OrderType = {
   shippingAddress: {
     details: string;
@@ -14,12 +21,7 @@ export type OrderType = {
     postalCode: string;
   };
   _id: string;
-  user: {
-    _id: string;
-    name: string;
-    email: string;
-    phone: string;
-  };
+  user: UserOrdersType;
   cartItems: OrderProductType[];
   taxPrice: number;
   shippingPrice: number;
