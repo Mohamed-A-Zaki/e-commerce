@@ -1,23 +1,34 @@
-import image from "../../../assets/mobile.png";
+import ColorItem from "../../../utility/ColorItem/ColorItem";
 import { Stack, Box, Typography, TextField } from "@mui/material";
+import { OrderProductType } from "../../../types/Order/Order.type";
 
-export default function UserOrderItem() {
+export default function UserOrderItem(props: OrderProductType) {
+  const { product, count, color } = props;
+  const { imageCover, ratingsQuantity, ratingsAverage, title } = product;
+
   return (
     <Stack direction={"row"} bgcolor={"#fff"} p={1} mb={1} borderRadius={3}>
-      <Box component={"img"} src={image} alt="" sx={{ width: 120 }} />
+      <Box
+        component={"img"}
+        src={`http://127.0.0.1:8000/products/${imageCover}`}
+        alt={title}
+        sx={{ width: 120 }}
+      />
 
       <Box flexGrow={1} mr={2}>
         <Stack mt={2}>
-          <Typography fontSize={14}>
-            آيفون XR بذاكرة سعة 128 جيجابايت ويدعم تقنية 4G LTE مع تطبيق فيس
-          </Typography>
+          <Typography fontSize={14}>{title}</Typography>
 
-          <Stack direction={"row"} gap={1} my={2}>
-            <Typography sx={{ fontSize: 14 }}>احمر</Typography>
-            <Typography sx={{ fontSize: 14 }} color={"#FFC107"}>
-              4.5
+          <Stack direction={"row"} gap={1} my={2} alignItems={"center"}>
+            <Typography sx={{ fontSize: 14 }}>
+              <ColorItem color={color} />
             </Typography>
-            <Typography sx={{ fontSize: 14 }}>(160 تقييم)</Typography>
+            <Typography sx={{ fontSize: 14 }} color={"#FFC107"}>
+              {ratingsAverage}
+            </Typography>
+            <Typography sx={{ fontSize: 14 }}>
+              ({ratingsQuantity} تقييم)
+            </Typography>
           </Stack>
 
           <Box display={"flex"} gap={1} alignItems={"center"}>
@@ -27,6 +38,7 @@ export default function UserOrderItem() {
             <TextField
               type="number"
               size="small"
+              value={count}
               sx={{ "& input": { width: 50, height: 10 } }}
             />
           </Box>

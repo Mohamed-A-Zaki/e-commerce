@@ -8,6 +8,7 @@ import {
 import BaseURL from "../../Api/BaseURL";
 
 type InitialState = {
+  cart_id: string;
   cart_products: CartProductType[];
   loading: boolean;
   error: string;
@@ -18,6 +19,7 @@ type InitialState = {
 };
 
 const initialState: InitialState = {
+  cart_id: "",
   cart_products: [],
   loading: false,
   error: "",
@@ -114,6 +116,7 @@ const CartSlice = createSlice({
       })
       .addCase(getCartProducts.fulfilled, (state, { payload }) => {
         state.loading = false;
+        state.cart_id = payload.data._id;
         state.cart_products = payload.data.products;
         state.total_price = payload.data.totalCartPrice;
         state.numOfCartItems = payload.numOfCartItems;
@@ -138,6 +141,7 @@ const CartSlice = createSlice({
       })
 
       .addCase(deleteProductFromCart.fulfilled, (state, { payload }) => {
+        state.cart_id = payload.data._id;
         state.cart_products = payload.data.products;
         state.total_price = payload.data.totalCartPrice;
         state.numOfCartItems = payload.numOfCartItems;
@@ -147,6 +151,7 @@ const CartSlice = createSlice({
       })
 
       .addCase(updateQuantity.fulfilled, (state, { payload }) => {
+        state.cart_id = payload.data._id;
         state.cart_products = payload.data.products;
         state.total_price = payload.data.totalCartPrice;
         state.numOfCartItems = payload.numOfCartItems;

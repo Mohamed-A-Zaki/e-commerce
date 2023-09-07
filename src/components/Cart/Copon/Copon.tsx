@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Box, Button, SxProps, TextField, Theme } from "@mui/material";
 
 import MainButton from "../../../utility/MainButton/MainButton";
@@ -14,6 +13,7 @@ export default function Copon() {
     handleChange,
     handleApplyCoupon,
     loading,
+    goToPAymentMethod,
   } = useApplyCoupon();
 
   return (
@@ -40,9 +40,9 @@ export default function Copon() {
         <PriceButton>{totalAfterDiscount}</PriceButton>
       </Box>
 
-      <Link to={"/order/paymethod"}>
-        <MainButton fullWidth>اتمام الشراء</MainButton>
-      </Link>
+      <MainButton fullWidth onClick={goToPAymentMethod}>
+        اتمام الشراء
+      </MainButton>
 
       <Box mt={1.5}>
         <MainButton fullWidth onClick={handleDeleteButtton}>

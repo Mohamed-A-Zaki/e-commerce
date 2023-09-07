@@ -1,7 +1,10 @@
 import { Card, CardContent, Stack, Typography } from "@mui/material";
 import UserOrderItem from "../UserOrderItem/UserOrderItem";
+import { OrderType } from "../../../types/Order/Order.type";
 
-export default function UserOrderCard() {
+export default function UserOrderCard(props: OrderType) {
+  const { cartItems, totalOrderPrice, id } = props;
+
   const renderFooter = () => {
     return (
       <Stack direction={"row"} justifyContent={"space-between"}>
@@ -10,7 +13,7 @@ export default function UserOrderCard() {
           <Typography color={"text.secondary"}>قيد التنفيذ</Typography>
         </Typography>
         <Typography fontWeight={"bold"} fontSize={20}>
-          4000 جنية
+          {totalOrderPrice} جنية
         </Typography>
       </Stack>
     );
@@ -19,9 +22,14 @@ export default function UserOrderCard() {
   return (
     <Card>
       <CardContent>
-        <Typography fontWeight={"bold"}>طلب رقم #123</Typography>
-        <UserOrderItem />
-        <UserOrderItem />
+        <Typography fontWeight={"bold"}>طلب رقم # ( {id} )</Typography>
+        {/* <UserOrderItem />
+        <UserOrderItem /> */}
+
+        {cartItems.map((item) => {
+          return <UserOrderItem key={item._id} {...item} />;
+        })}
+
         {renderFooter()}
       </CardContent>
     </Card>
