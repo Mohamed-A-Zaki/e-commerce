@@ -23,7 +23,7 @@ export default function CartItem(props: CartProductType) {
     <Stack direction={"row"} bgcolor={"#fff"} p={1} mb={1} borderRadius={3}>
       <Box
         component={"img"}
-        src={`http://127.0.0.1:8000/products/${imageCover}`}
+        src={`https://e-commerce-backend-b89n.onrender.com/products/${imageCover}`}
         alt=""
         sx={{ width: 120 }}
       />

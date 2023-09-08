@@ -17,7 +17,7 @@ export default function UserOrderItem(props: OrderProductType) {
     >
       <Box
         component={"img"}
-        src={`http://127.0.0.1:8000/products/${imageCover}`}
+        src={`https://e-commerce-backend-b89n.onrender.com/products/${imageCover}`}
         alt={title}
         sx={{ width: 120, height: 120, objectFit: "contain" }}
       />
