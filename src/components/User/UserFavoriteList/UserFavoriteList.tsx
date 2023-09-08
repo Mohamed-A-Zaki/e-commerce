@@ -35,7 +35,7 @@ export default function UserFavoriteList() {
   return (
     <Grid container spacing={1}>
       {wishList.map((ele) => {
-        const imageCover = `http://127.0.0.1:8000/products/${ele.imageCover}`;
+        const imageCover = `https://e-commerce-backend-b89n.onrender.com/products/${ele.imageCover}`;
         return (
           <Grid item key={ele._id} xs={12} md={6} lg={4}>
             <ProductCard {...{ ...ele, imageCover }} />
