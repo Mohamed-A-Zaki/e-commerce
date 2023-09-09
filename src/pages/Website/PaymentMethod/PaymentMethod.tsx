@@ -26,7 +26,7 @@ export default function PaymentMethod() {
     addresses,
     address,
     setAddress,
-    handelCreateCashOrder,
+    handleCreateOrder,
     loading
   } = usePaymentMethod();
 
@@ -78,7 +78,7 @@ export default function PaymentMethod() {
 
       <Box display={"flex"} gap={1} justifyContent={"end"}>
         <PriceButton>{totalAfterDiscount}</PriceButton>
-        <MainButton onClick={handelCreateCashOrder} disabled={loading}>
+        <MainButton onClick={handleCreateOrder} disabled={loading}>
           {loading ? "جاري انشاء الطلب" :"اتمام الشراء"}
         </MainButton>
       </Box>

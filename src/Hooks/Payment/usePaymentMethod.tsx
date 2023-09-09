@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect } from "react";
 import { getAddresses } from "../../store/AddressSlice/AddressSlice";
-import { createCashOrder } from "../../store/OrderSlice/OrderSlice";
+import {
+  createCardOrder,
+  createCashOrder,
+} from "../../store/OrderSlice/OrderSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -49,6 +52,18 @@ const usePaymentMethod = () => {
       });
   };
 
+  const handelCreateCardOrder = () => {
+    dispatch(createCardOrder(cart_id));
+  };
+
+  const handleCreateOrder = () => {
+    if (method === "cash") {
+      handelCreateCashOrder();
+    } else {
+      handelCreateCardOrder();
+    }
+  };
+
   return {
     method,
     setMethod,
@@ -56,8 +71,8 @@ const usePaymentMethod = () => {
     addresses,
     address,
     setAddress,
-    handelCreateCashOrder,
-    loading
+    handleCreateOrder,
+    loading,
   };
 };
 

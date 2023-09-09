@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import BaseURL from "../../Api/BaseURL";
 import {
+  CreateCardOrderResponseType,
   CreateCashOrderParamsType,
   GetAllOrdersType,
   OrderType,
@@ -43,6 +44,18 @@ export const createCashOrder = createAsyncThunk(
       headers: { Authorization: `Bearer ${token}` },
     });
     return data;
+  }
+);
+
+export const createCardOrder = createAsyncThunk(
+  "Order/createCardOrder",
+  async (cartId: string) => {
+    const url = `api/v1/orders/checkout-session/${cartId}`;
+    const token = localStorage.getItem("token");
+    const { data } = await BaseURL.get<CreateCardOrderResponseType>(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data.session.url;
   }
 );
 
@@ -123,6 +136,10 @@ const OrderSlice = createSlice({
       })
       .addCase(updateOrderToDeliverd.fulfilled, (state, { payload }) => {
         state.specific_order = payload;
+      })
+
+      .addCase(createCardOrder.fulfilled, (_state, { payload }) => {
+        window.open(payload);
       });
   },
 });

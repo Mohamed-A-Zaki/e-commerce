@@ -58,3 +58,9 @@ export type CreateCashOrderParamsType = {
     };
   };
 };
+
+export type CreateCardOrderResponseType = {
+  session : {
+    url : string;
+  }
+}
