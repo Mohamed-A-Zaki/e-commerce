@@ -42,11 +42,18 @@ const useRegister = () => {
         toast.success("تم تسجيل الحساب بنجاح");
         navigate("/");
       })
-      .catch(() => {
-        toast.error("يوجد خطا ما");
-      }).finally (() => {
-        setSubmitting(false)
-      }) 
+      .catch((error) => {
+        const code = Number((error as Error).message.split(" ").slice(-1)[0]);
+        console.log(code);
+        if (code === 400) {
+          toast.error("هذا الايميل موجود بالفعل");
+        } else {
+          toast.error("يوجد خطا ما");
+        }
+      })
+      .finally(() => {
+        setSubmitting(false);
+      });
   };
 
   return { initialValues, validationSchema, onSubmit };

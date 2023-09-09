@@ -35,8 +35,13 @@ const useLogin = () => {
         navigate("/");
         dispatch(getWishList());
       })
-      .catch(() => {
-        toast.error("يوجد خطا ما");
+      .catch((error) => {
+        const code = Number((error as Error).message.split(" ").slice(-1)[0]);
+        if (code === 500) {
+          toast.error("خطا في الايميل او كلمة السر");
+        } else {
+          toast.error("يوجد خطا ما");
+        }
       })
       .finally(() => {
         setSubmitting(false);
